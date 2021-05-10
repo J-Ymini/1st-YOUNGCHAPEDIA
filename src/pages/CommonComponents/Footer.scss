@@ -1,0 +1,23 @@
+@import url('../../styles/variables.scss');
+
+.footerBottom {
+  color: white;
+  .footerLeft {
+    li {
+      margin-bottom: 10px;
+      line-height: 14px;
+      text-align: left;
+    }
+  }
+  .footerRight {
+    li {
+      margin-bottom: 10px;
+
+      span:first-of-type {
+        margin-right: 10px;
+        text-align: left;
+        font-size: 14px;
+      }
+    }
+  }
+}
