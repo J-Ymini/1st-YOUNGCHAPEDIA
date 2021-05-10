@@ -1,0 +1,58 @@
+@import url('../../styles/variables.scss');
+
+.navBar {
+  @include flexSet(space-between);
+  width: 100%;
+  background-color: white;
+  .navLeft {
+    header {
+      height: 44px;
+      font-size: 30px;
+      font-family: 'Oswald', sans-serif;
+
+      span:first-of-type {
+        margin-right: 5px;
+        font-weight: 700;
+        color: $hot-pink;
+      }
+    }
+
+    &.scrollDown {
+      color: white;
+      background-color: rgba($color: #000000, $alpha: 0);
+    }
+
+    .navMenu {
+      color: $menu-normal-text;
+      font-weight: 500;
+      &.navMenuClicked {
+        color: $menu-bold-text;
+        font-weight: 700;
+      }
+    }
+  }
+  .navRight {
+    .navSearch {
+      position: relative;
+      .searchIcon {
+        position: absolute;
+        top: 50%;
+        left: 10px;
+        color: $search-icon;
+      }
+      input {
+        all: unset;
+        margin-left: 10px;
+        width: 100px;
+        text-align: left;
+        color: $search-bar-text;
+        background-color: $input-background;
+      }
+    }
+
+    button {
+      border: 1px solid $line;
+      border-radius: 50%;
+    }
+  }
+}
