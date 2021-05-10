@@ -1,0 +1,31 @@
+@import '../../styles/variables.scss';
+
+.MovieDetail {
+  border-radius: 6px;
+
+  .movieBannerSection {
+    border-bottom: 1px solid $line;
+    margin-bottom: 28px;
+
+    .movieBannerPoster {
+      height: 460px;
+      background-color: lightblue;
+    }
+
+    .movieSimpleInformation {
+      width: 975px;
+      height: 200px;
+      margin: 0 auto;
+      padding: 14px 16px 22px;
+      background-color: grey;
+    }
+  }
+
+  .movieDetailContents {
+    width: 975px;
+    height: 250px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: aqua;
+  }
+}
