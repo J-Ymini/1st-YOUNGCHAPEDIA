@@ -1,31 +1,105 @@
 @import '../../styles/variables.scss';
 
-.MovieDetail {
+.movieBannerSection {
+  border-bottom: 1px solid $line;
+}
+
+.movieBannerPoster {
+  height: 460px;
+  background-image: linear-gradient(to right, black, white, black);
+}
+
+.movieSimpleInformation {
+  @include flexSet();
+  background-repeat: no-repeat;
+  height: 240px;
+}
+
+.movieSimpleInformationContents {
+  display: flex;
+  flex-wrap: wrap;
+  width: 975px;
+  height: 200px;
+  position: relative;
+  padding: 14px 16px 22px;
+}
+
+.movieBookRating {
+  position: absolute;
+  top: -50px;
+  left: 230px;
+}
+
+.movieSimpleInformationContents img {
+  display: block;
+  position: relative;
+  width: 200px;
+  margin-right: 20px;
+  bottom: 100px;
+  border: 2px solid white;
   border-radius: 6px;
+}
 
-  .movieBannerSection {
-    border-bottom: 1px solid $line;
-    margin-bottom: 28px;
+.movieSubject {
+  width: 720px;
+}
 
-    .movieBannerPoster {
-      height: 460px;
-      background-color: lightblue;
-    }
+.movieSubject h1 {
+  font-size: 2.0625em;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
 
-    .movieSimpleInformation {
-      width: 975px;
-      height: 200px;
-      margin: 0 auto;
-      padding: 14px 16px 22px;
-      background-color: grey;
-    }
-  }
+.movieGenre {
+  color: $movie-info-text;
+  font-size: 1.0625;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid $line;
+}
 
-  .movieDetailContents {
-    width: 975px;
-    height: 250px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: aqua;
-  }
+.averageOfStarPoint {
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid $line;
+}
+
+.wishAndStarPoint {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  align-items: center;
+  bottom: -25px;
+}
+
+.wishButton {
+  padding: 10px 40px;
+  color: white;
+  background-color: #ff2f6e;
+  font-size: 1.0625em;
+  font-weight: bold;
+  border-radius: 10px;
+}
+
+.wishButton:hover .wishButton {
+  transform: rotate(90deg);
+}
+
+.movieDetailContentsSection {
+  @include flexSet();
+  margin-top: 30px;
+  background-color: $section-background;
+}
+.movieDetailContents {
+  width: 975px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 6px;
+  border: 1px solid $line;
+}
+
+.movieInformationContents {
+  margin-bottom: 20px;
+  border-bottom: 1px solid $line;
+  padding-bottom: 20px;
 }
