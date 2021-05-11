@@ -5,12 +5,12 @@ export default class Footer extends Component {
   render() {
     return (
       <footer className="commonFooter">
-        <section>
+        <section className="evaluationFooter">
           <span>
             지금까지 <span className="footerCounter">얼마</span>의 평가
           </span>
         </section>
-        <section>
+        <section className="descriptionFooter">
           <div className="siteDescription">
             <ul>
               <li>

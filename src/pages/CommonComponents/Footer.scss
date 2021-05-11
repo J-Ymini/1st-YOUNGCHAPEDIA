@@ -4,7 +4,7 @@
   @include flexColumnSet;
   background-color: black;
 
-  section:first-of-type {
+  .evaluationFooter {
     @include flexSet;
     height: 60px;
     color: white;
@@ -16,7 +16,7 @@
     }
   }
 
-  section:last-of-type {
+  .descriptionFooter {
     @include flexSet(space-between);
     width: 100%;
     height: 100px;
