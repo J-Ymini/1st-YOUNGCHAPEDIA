@@ -3,14 +3,14 @@ import './Footer.scss';
 export default class Footer extends Component {
   render() {
     return (
-      <div className="footer">
-        <div className="footerTop">
+      <footer>
+        <section>
           <span>
-            지금까지 <span className="footerCount">얼마</span>의 평가
+            지금까지 <span className="footerCounter">얼마</span>의 평가
           </span>
-        </div>
-        <div className="footerBottom">
-          <div className="footerLeft">
+        </section>
+        <section>
+          <div className="footerSiteDescription">
             <ul>
               <li>
                 <span>이 사이트는 공식 왓챠 사이트가 아닙니다</span>
@@ -26,14 +26,14 @@ export default class Footer extends Component {
               </li>
             </ul>
           </div>
-          <div className="footerRight">
+          <div className="footerMemberDescription">
             <ul>
-              {MEMBER_LIST.map(el => {
+              {MEMBER_LIST.map(member => {
                 return (
-                  <li key={el.id}>
+                  <li key={member.id}>
                     <button>
-                      <a href={el.blog} target="_blank">
-                        <span>{el.name}</span>
+                      <a href={member.blog} target="_blank">
+                        <span>{member.name}</span>
                       </a>
                     </button>
                   </li>
@@ -41,8 +41,8 @@ export default class Footer extends Component {
               })}
             </ul>
           </div>
-        </div>
-      </div>
+        </section>
+      </footer>
     );
   }
 }
