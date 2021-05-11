@@ -8,6 +8,14 @@
   .movieBannerPoster {
     height: 460px;
     background-image: linear-gradient(to right, black, white, black);
+
+    .poster {
+      height: 100%;
+      background-size: contain;
+      background-image: url('https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F256C8F3C525F2BC51B');
+      background-repeat: no-repeat;
+      background-position: center center;
+    }
   }
 
   .movieSimpleInformation {
@@ -23,32 +31,33 @@
     height: 200px;
     position: relative;
     padding: 14px 16px 22px;
+
+    img {
+      display: block;
+      position: relative;
+      width: 200px;
+      margin-right: 20px;
+      bottom: 100px;
+      border: 2px solid white;
+      border-radius: 6px;
+    }
   }
 
   .movieBookRating {
     position: absolute;
     top: -50px;
     left: 230px;
-  }
-
-  .movieSimpleInformationContents img {
-    display: block;
-    position: relative;
-    width: 200px;
-    margin-right: 20px;
-    bottom: 100px;
-    border: 2px solid white;
-    border-radius: 6px;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.8125em;
   }
 
   .movieSubject {
     width: 720px;
-  }
-
-  .movieSubject h1 {
-    font-size: 2.0625em;
-    font-weight: 700;
-    margin-bottom: 10px;
+    h1 {
+      font-size: 2.0625em;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
   }
 
   .movieGenre {
@@ -73,6 +82,10 @@
     bottom: -20px;
   }
 
+  .wishButton:hover .fa-plus {
+    transform: rotate(90deg);
+  }
+
   .wishButton {
     padding: 10px 80px;
     color: white;
@@ -80,31 +93,34 @@
     font-size: 1.0625em;
     font-weight: bold;
     border-radius: 10px;
+
+    .fa-plus {
+      display: inline-block;
+      margin-right: 5px;
+      transition: transform 0.5s;
+    }
   }
 
   .giveStarPoint {
     position: relative;
-  }
 
-  .giveStarPoint div:first-child {
-    position: absolute;
-    top: -20px;
-    color: $movie-info-text;
-  }
+    div:first-child {
+      position: absolute;
+      top: -20px;
+      margin-bottom: 5px;
+      color: $movie-info-text;
+      font-size: 0.75em;
+    }
 
-  .giveStarPoint div:first-child {
-    margin-bottom: 5px;
-    font-size: 0.75em;
+    div:nth-child(2) i {
+      font-size: 40px;
+    }
   }
 
   .movieDetailContentsSection {
     @include flexSet();
     padding-top: 30px;
     background-color: $section-background;
-  }
-
-  .giveStarPoint div:nth-child(2) i {
-    font-size: 40px;
   }
 
   .movieDetailContents {
@@ -120,33 +136,33 @@
     margin-bottom: 20px;
     border-bottom: 1.5px solid $line;
     padding-bottom: 20px;
-  }
 
-  .movieInformationContents header {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-  }
+    header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
 
-  .movieInformationContents header h2 {
-    font-size: 1.3125em;
-    font-weight: bold;
-  }
+      h2 {
+        font-size: 1.3125em;
+        font-weight: bold;
+      }
 
-  .movieInformationContents header div a {
-    color: #ff2f62;
-  }
+      div a {
+        color: #ff2f62;
+      }
+    }
 
-  .movieInformationContents article {
-    color: $info-main-text;
-  }
+    article {
+      color: $info-main-text;
 
-  .movieInformationContents article div {
-    margin-bottom: 20px;
-  }
+      div {
+        margin-bottom: 20px;
+      }
 
-  .movieInformationContents article p {
-    line-height: 1.5;
+      p {
+        line-height: 1.5;
+      }
+    }
   }
 
   .movieInformationContents span {
@@ -169,19 +185,21 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    span {
+      color: $info-main-text;
+    }
+
+    h2 {
+      margin-right: 10px;
+    }
   }
 
-  .commentSubjectAndCount span {
-    color: $info-main-text;
-  }
-
-  .commentSubjectAndCount h2 {
-    margin-right: 10px;
-  }
-
-  .commentComents header div:first-child {
-    display: flex;
-    flex-direction: row;
+  .commentSubjectAndCount {
+    .commentComents header div:first-child {
+      display: flex;
+      flex-direction: row;
+    }
   }
 
   .commentContents header h2 {

@@ -7,7 +7,7 @@ export default class MovieDetail extends React.Component {
       <main className="MovieDetail">
         <section className="movieBannerSection">
           <div className="movieBannerPoster">
-            <div className="movieBannerAndBookRating"></div>
+            <div className="poster"></div>
           </div>
           <div className="movieSimpleInformation">
             <div className="movieSimpleInformationContents">
