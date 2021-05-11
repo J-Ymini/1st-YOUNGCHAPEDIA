@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import './Navbar.scss';
 
 export default class Navbar extends Component {
   render() {
@@ -19,8 +22,10 @@ export default class Navbar extends Component {
         <div className="navRight">
           {/* submit걸기 */}
           <div className="navSearch">
-            <FontAwesomeIcon className="searchIcon" />
-            <input placeholder="제목, 배우, 감독을 검색하세요" type="text" />
+            <label>
+              <FontAwesomeIcon icon={faSearch} className="searchIcon" />
+              <input placeholder="제목, 배우, 감독을 검색하세요" type="text" />
+            </label>
           </div>
           <button className="navUserProfile">
             <img alt="유저님의 이미지" src="http://google.com"></img>

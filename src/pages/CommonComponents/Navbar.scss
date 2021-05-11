@@ -1,10 +1,13 @@
-@import url('../../styles/variables.scss');
+@import '../../styles/variables.scss';
 
 .navBar {
   @include flexSet(space-between);
+  padding: 10px 20px;
   width: 100%;
   background-color: white;
+
   .navLeft {
+    @include flexSet;
     header {
       height: 44px;
       font-size: 30px;
@@ -25,32 +28,46 @@
     .navMenu {
       color: $menu-normal-text;
       font-weight: 500;
-      &.navMenuClicked {
+
+      &.Clicked {
         color: $menu-bold-text;
         font-weight: 700;
       }
     }
   }
   .navRight {
+    @include flexSet;
+
     .navSearch {
       position: relative;
-      .searchIcon {
-        position: absolute;
-        top: 50%;
-        left: 10px;
-        color: $search-icon;
-      }
-      input {
-        all: unset;
-        margin-left: 10px;
-        width: 100px;
-        text-align: left;
-        color: $search-bar-text;
-        background-color: $input-background;
+
+      label {
+        width: 300px;
+        height: 35px;
+
+        .searchIcon {
+          position: absolute;
+          top: 50%;
+          left: 10px;
+          color: $search-icon;
+        }
+
+        input {
+          all: unset;
+          margin-left: 10px;
+          width: 100px;
+          text-align: left;
+          color: $search-bar-text;
+          background-color: $input-background;
+        }
       }
     }
 
     button {
+      width: 30px;
+      height: 30px;
+      background-image: url('https://an2-glx.amz.wtchn.net/assets/default/user/photo_file_name_small-bc8b334acec6a4e386249dedf9e763b5e6aff523fa85cc29211f22e6bed540df.jpg')
+        center center / cover no-repeat;
       border: 1px solid $line;
       border-radius: 50%;
     }
