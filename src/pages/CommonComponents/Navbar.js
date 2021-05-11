@@ -6,9 +6,9 @@ import './Navbar.scss';
 export default class Navbar extends Component {
   render() {
     return (
-      <div className="navBar">
+      <nav className="navBar">
         {/* 이거 로고 컴포넌트로 해야하는지? */}
-        <div className="navLeft">
+        <div>
           <header>
             <h1>
               <span>YOUNGCHA</span>
@@ -19,19 +19,10 @@ export default class Navbar extends Component {
             <li>영화</li>
           </ul>
         </div>
-        <div className="navRight">
-          {/* submit걸기 */}
-          <div className="navSearch">
-            <label>
-              <FontAwesomeIcon icon={faSearch} className="searchIcon" />
-              <input placeholder="제목, 배우, 감독을 검색하세요" type="text" />
-            </label>
-          </div>
-          <button className="navUserProfile">
-            <img alt="유저님의 이미지" src="http://google.com"></img>
-          </button>
+        <div>
+          <input placeholder="작품 제목, 배우, 감독을 검색해보세요"></input>
         </div>
-      </div>
+      </nav>
     );
   }
 }
