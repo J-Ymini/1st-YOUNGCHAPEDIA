@@ -1,7 +1,7 @@
 @import '../../styles/variables.scss';
 
 .movieBannerSection {
-  border-bottom: 1px solid $line;
+  border-bottom: 1.5px solid $line;
 }
 
 .movieBannerPoster {
@@ -55,13 +55,13 @@
   font-size: 1.0625;
   margin-bottom: 10px;
   padding-bottom: 10px;
-  border-bottom: 1px solid $line;
+  border-bottom: 1.5px solid $line;
 }
 
 .averageOfStarPoint {
   margin-bottom: 10px;
   padding-bottom: 10px;
-  border-bottom: 1px solid $line;
+  border-bottom: 1.5px solid $line;
 }
 
 .wishAndStarPoint {
@@ -69,11 +69,11 @@
   justify-content: space-between;
   position: relative;
   align-items: center;
-  bottom: -25px;
+  bottom: -20px;
 }
 
 .wishButton {
-  padding: 10px 40px;
+  padding: 10px 80px;
   color: white;
   background-color: #ff2f6e;
   font-size: 1.0625em;
@@ -81,25 +81,118 @@
   border-radius: 10px;
 }
 
-.wishButton:hover .wishButton {
-  transform: rotate(90deg);
+.giveStarPoint {
+  position: relative;
+}
+
+.giveStarPoint div:first-child {
+  position: absolute;
+  top: -20px;
+  color: $movie-info-text;
+}
+
+.giveStarPoint div:first-child {
+  margin-bottom: 5px;
+  font-size: 0.75em;
 }
 
 .movieDetailContentsSection {
   @include flexSet();
-  margin-top: 30px;
+  padding-top: 30px;
   background-color: $section-background;
 }
+
+.giveStarPoint div:nth-child(2) i {
+  font-size: 40px;
+}
+
 .movieDetailContents {
   width: 975px;
+  margin-bottom: 30px;
   padding: 20px;
   background-color: white;
   border-radius: 6px;
-  border: 1px solid $line;
+  border: 2px solid $line;
 }
 
 .movieInformationContents {
   margin-bottom: 20px;
-  border-bottom: 1px solid $line;
+  border-bottom: 1.5px solid $line;
   padding-bottom: 20px;
+}
+
+.movieInformationContents header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.movieInformationContents header h2 {
+  font-size: 1.3125em;
+  font-weight: bold;
+}
+
+.movieInformationContents header div a {
+  color: #ff2f62;
+}
+
+.movieInformationContents article {
+  color: $info-main-text;
+}
+
+.movieInformationContents article div {
+  margin-bottom: 20px;
+}
+
+.movieInformationContents article p {
+  line-height: 1.5;
+}
+
+.movieInformationContents span {
+  display: block;
+}
+
+.comments {
+  margin-bottom: 20px;
+  border-bottom: 1.5px solid $line;
+  padding-bottom: 20px;
+}
+
+.commentContents header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.commentSubjectAndCount {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.commentSubjectAndCount span {
+  color: $info-main-text;
+}
+
+.commentSubjectAndCount h2 {
+  margin-right: 10px;
+}
+
+.commentComents header div:first-child {
+  display: flex;
+  flex-direction: row;
+}
+
+.commentContents header h2 {
+  font-size: 1.3125em;
+  font-weight: bold;
+}
+
+.commentContents header div a {
+  color: #ff2f62;
+}
+
+.similarMovieContents header h2 {
+  font-size: 1.3125em;
+  font-weight: bold;
 }

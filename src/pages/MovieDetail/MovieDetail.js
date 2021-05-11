@@ -28,8 +28,8 @@ export default class MovieDetail extends React.Component {
                   <button className="wishButton">
                     <i class="fas fa-plus"></i> 보고싶어요
                   </button>
-                  <div>
-                    평가하기
+                  <div className="giveStarPoint">
+                    <div>평가하기</div>
                     <div>
                       <i class="far fa-star" />
                       <i class="far fa-star" />
@@ -56,11 +56,11 @@ export default class MovieDetail extends React.Component {
                 </header>
                 <article>
                   <div>
-                    F9
+                    <span>F9</span>
                     <br />
                     <span>2020 &middot; 미국 &middot; 스릴러</span>
                     <br />
-                    2시간 15분
+                    <span>2시간 15분</span>
                   </div>
                   <p>
                     기다림은 끝났다! 전 세계가 기다려온 단 하나의
@@ -75,15 +75,15 @@ export default class MovieDetail extends React.Component {
             <article className="comments">
               <div className="commentContents">
                 <header>
-                  <div>
+                  <div className="commentSubjectAndCount">
                     <h2>코멘트</h2>
                     <span>20+</span>
                   </div>
-                  <button>
+                  <div>
                     <a>더보기</a>
-                  </button>
+                  </div>
                 </header>
-                <article>코멘트 컴포넌트</article>
+                <article> 코멘트 컴포넌트가 들어갈 자리입니다.</article>
               </div>
             </article>
             <article className="similarMovie">
