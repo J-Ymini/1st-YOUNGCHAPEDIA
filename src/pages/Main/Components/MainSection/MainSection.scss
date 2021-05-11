@@ -2,21 +2,22 @@
 
 .mainSection {
   @include flexColumnSet();
-}
 
-.mainSectionTitle {
-  padding: 12px 0px 14px;
-  width: 100%;
-  height: 55px;
-  font-weight: 700;
-  background-color: yellow;
-  p {
-    font-size: 22px;
-    font-family: 'Oswald', sans-serif;
+  .mainTitle {
+    padding: 12px 0px 14px;
+    width: 100%;
+    height: 55px;
+    font-weight: 700;
+    background-color: yellow;
+
+    p {
+      font-size: 22px;
+      font-family: 'Oswald', sans-serif;
+    }
   }
-}
 
-.mainSectionMovie {
-  @include flexSet();
-  background-color: skyblue;
+  .mainMovie {
+    @include flexSet();
+    background-color: skyblue;
+  }
 }

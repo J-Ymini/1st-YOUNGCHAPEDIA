@@ -6,10 +6,10 @@ export default class MainSection extends React.Component {
   render() {
     return (
       <section className="mainSection">
-        <div className="mainSectionTitle">
+        <div className="mainTitle">
           <p>박스오피스 순위</p>
         </div>
-        <section className="mainSectionMovie">
+        <section className="mainMovie">
           <MainSectionMovieList />
           <MainSectionMovieList />
           <MainSectionMovieList />
