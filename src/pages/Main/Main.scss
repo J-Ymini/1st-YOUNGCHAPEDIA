@@ -1,0 +1,120 @@
+// 메인 페이지
+// 순위 배경색, 네비 볼드체, 리스트 헤더
+$dark-gray: #0f2632;
+$hot-pink: #f12658;
+$white: #ffffff;
+// 리스트 아이템 텍스트
+$list-main-gray: #292a32;
+$list-sub-gray: #555765;
+$search-bar-text: #74747c;
+$search-icon: #c9c9cf;
+$input-background: #f5f5f5;
+$menu-bold-text: #353535;
+$menu-normal-text: #7e7e7e;
+//상세페이지
+//첫번째 column
+$title-text: #000000;
+$movie-info-text: #7f7f7f;
+$movie-rating-text: #282828;
+$star-title: #a2a6a6;
+$star-blank: #eeeeee;
+$star-filled: #f9dd64;
+$line: #ededed;
+$section-background: #f8f8f8;
+$info-main-text: #4a4a4a;
+$info-sub-text: #9c9c9c;
+$comment-background: #f2f2f2;
+$comment-header-icon: #4a4a4a;
+$comment-bottom-icon: #787878;
+$section-aside-text: #a0a0a0;
+
+@mixin flexSet($just: center, $align: center) {
+  display: flex;
+  justify-content: $just;
+  align-items: $align;
+}
+@mixin flexColumnSet($just: center, $align: center) {
+  display: flex;
+  flex-direction: column;
+  justify-content: $just;
+  align-items: $align;
+}
+///////////////////////////////////////////////
+.main {
+  @include flexColumnSet();
+  height: 100%;
+  margin-top: 100px;
+}
+
+.mainSection {
+  @include flexColumnSet();
+}
+
+.mainSectionMovie {
+  @include flexSet();
+  background-color: skyblue;
+}
+
+.mainSectionMovieList {
+  @include flexColumnSet(center, stretch);
+  position: relative;
+  padding: 0px 8px;
+  img {
+    width: 250px;
+    height: 363px;
+    border: 1px solid $line;
+    border-radius: 5px;
+  }
+}
+
+.mainSectionTitle {
+  background-color: yellow;
+  width: 100%;
+  height: 55px;
+  padding: 12px 0px 14px;
+  font-weight: 700;
+  p {
+    font-size: 22px;
+    font-family: 'Oswald', sans-serif;
+  }
+}
+
+.mainSectionMovieListRanking {
+  border: 1px $dark-gray;
+  border-radius: 5px;
+  background-color: $dark-gray;
+  color: $white;
+  width: 28px;
+  height: 28px;
+  line-height: 27px;
+  padding: 1px 0 0 10px;
+  font-weight: 700;
+  opacity: 0.9;
+  position: absolute;
+  top: 6px;
+  left: 14px;
+  font-size: 18px;
+}
+
+.mainSectionMovieListDes {
+  margin: 5px 10px 0 0;
+}
+
+.mainSectionMovieListDesTitle {
+  color: $list-main-gray;
+  font-size: 16px;
+  font-weight: 700;
+  margin: 5px 0px 7px;
+}
+
+.mainSectionMovieListDesYear {
+  color: $list-main-gray;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.mainSectionMovieListDesGrade {
+  color: $list-sub-gray;
+  font-size: 14px;
+  margin: 2px 0 0;
+}
