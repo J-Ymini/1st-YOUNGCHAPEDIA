@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import './Footer.scss';
+
 export default class Footer extends Component {
   render() {
     return (
-      <footer>
+      <footer className="commonFooter">
         <section>
           <span>
             지금까지 <span className="footerCounter">얼마</span>의 평가
           </span>
         </section>
         <section>
-          <div className="footerSiteDescription">
+          <div className="siteDescription">
             <ul>
               <li>
                 <span>이 사이트는 공식 왓챠 사이트가 아닙니다</span>
@@ -26,7 +27,7 @@ export default class Footer extends Component {
               </li>
             </ul>
           </div>
-          <div className="footerMemberDescription">
+          <div className="memberDescription">
             <ul>
               {MEMBER_LIST.map(member => {
                 return (

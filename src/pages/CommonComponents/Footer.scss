@@ -1,6 +1,6 @@
 @import '../../styles/variables.scss';
 
-footer {
+.commonFooter {
   @include flexColumnSet;
   background-color: black;
 
@@ -23,7 +23,7 @@ footer {
     background-color: #1c1d1f;
     color: rgba($color: #ffffff, $alpha: 0.7);
 
-    .footerSiteDescription {
+    .siteDescription {
       padding: 0 20px;
       font-size: 0.8125rem;
 
@@ -34,7 +34,7 @@ footer {
       }
     }
 
-    .footerMemberDescription {
+    .memberDescription {
       li {
         display: inline-block;
         margin-right: 10px;
