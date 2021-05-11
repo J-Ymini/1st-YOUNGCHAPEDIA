@@ -4,7 +4,7 @@ export default class Footer extends Component {
   render() {
     return (
       <>
-        <div>
+        <div className="footerTop">
           <span>지금까지 얼마의 평가</span>
         </div>
         <div className="footerBottom">

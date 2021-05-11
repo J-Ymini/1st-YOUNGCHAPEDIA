@@ -1,6 +1,11 @@
 @import url('../../styles/variables.scss');
 
+.footerTop {
+  @include flexSet;
+  height: 60px;
+}
 .footerBottom {
+  height: 100px;
   color: white;
   .footerLeft {
     li {
