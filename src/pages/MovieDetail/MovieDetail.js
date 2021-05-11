@@ -91,7 +91,7 @@ export default class MovieDetail extends React.Component {
                 <header>
                   <h2>비슷한 작품</h2>
                 </header>
-                <article></article>
+                <article>비슷한 작품 컴포넌트가 들어갈 자리입니다.</article>
               </div>
             </article>
           </div>

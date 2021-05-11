@@ -1,198 +1,201 @@
 @import '../../styles/variables.scss';
 
-.movieBannerSection {
-  border-bottom: 1.5px solid $line;
-}
+.MovieDetail {
+  .movieBannerSection {
+    border-bottom: 1.5px solid $line;
+  }
 
-.movieBannerPoster {
-  height: 460px;
-  background-image: linear-gradient(to right, black, white, black);
-}
+  .movieBannerPoster {
+    height: 460px;
+    background-image: linear-gradient(to right, black, white, black);
+  }
 
-.movieSimpleInformation {
-  @include flexSet();
-  background-repeat: no-repeat;
-  height: 240px;
-}
+  .movieSimpleInformation {
+    @include flexSet();
+    background-repeat: no-repeat;
+    height: 240px;
+  }
 
-.movieSimpleInformationContents {
-  display: flex;
-  flex-wrap: wrap;
-  width: 975px;
-  height: 200px;
-  position: relative;
-  padding: 14px 16px 22px;
-}
+  .movieSimpleInformationContents {
+    display: flex;
+    flex-wrap: wrap;
+    width: 975px;
+    height: 200px;
+    position: relative;
+    padding: 14px 16px 22px;
+  }
 
-.movieBookRating {
-  position: absolute;
-  top: -50px;
-  left: 230px;
-}
+  .movieBookRating {
+    position: absolute;
+    top: -50px;
+    left: 230px;
+  }
 
-.movieSimpleInformationContents img {
-  display: block;
-  position: relative;
-  width: 200px;
-  margin-right: 20px;
-  bottom: 100px;
-  border: 2px solid white;
-  border-radius: 6px;
-}
+  .movieSimpleInformationContents img {
+    display: block;
+    position: relative;
+    width: 200px;
+    margin-right: 20px;
+    bottom: 100px;
+    border: 2px solid white;
+    border-radius: 6px;
+  }
 
-.movieSubject {
-  width: 720px;
-}
+  .movieSubject {
+    width: 720px;
+  }
 
-.movieSubject h1 {
-  font-size: 2.0625em;
-  font-weight: 700;
-  margin-bottom: 10px;
-}
+  .movieSubject h1 {
+    font-size: 2.0625em;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
 
-.movieGenre {
-  color: $movie-info-text;
-  font-size: 1.0625;
-  margin-bottom: 10px;
-  padding-bottom: 10px;
-  border-bottom: 1.5px solid $line;
-}
+  .movieGenre {
+    color: $movie-info-text;
+    font-size: 1.0625;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1.5px solid $line;
+  }
 
-.averageOfStarPoint {
-  margin-bottom: 10px;
-  padding-bottom: 10px;
-  border-bottom: 1.5px solid $line;
-}
+  .averageOfStarPoint {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1.5px solid $line;
+  }
 
-.wishAndStarPoint {
-  display: flex;
-  justify-content: space-between;
-  position: relative;
-  align-items: center;
-  bottom: -20px;
-}
+  .wishAndStarPoint {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    align-items: center;
+    bottom: -20px;
+  }
 
-.wishButton {
-  padding: 10px 80px;
-  color: white;
-  background-color: #ff2f6e;
-  font-size: 1.0625em;
-  font-weight: bold;
-  border-radius: 10px;
-}
+  .wishButton {
+    padding: 10px 80px;
+    color: white;
+    background-color: #ff2f6e;
+    font-size: 1.0625em;
+    font-weight: bold;
+    border-radius: 10px;
+  }
 
-.giveStarPoint {
-  position: relative;
-}
+  .giveStarPoint {
+    position: relative;
+  }
 
-.giveStarPoint div:first-child {
-  position: absolute;
-  top: -20px;
-  color: $movie-info-text;
-}
+  .giveStarPoint div:first-child {
+    position: absolute;
+    top: -20px;
+    color: $movie-info-text;
+  }
 
-.giveStarPoint div:first-child {
-  margin-bottom: 5px;
-  font-size: 0.75em;
-}
+  .giveStarPoint div:first-child {
+    margin-bottom: 5px;
+    font-size: 0.75em;
+  }
 
-.movieDetailContentsSection {
-  @include flexSet();
-  padding-top: 30px;
-  background-color: $section-background;
-}
+  .movieDetailContentsSection {
+    @include flexSet();
+    padding-top: 30px;
+    background-color: $section-background;
+  }
 
-.giveStarPoint div:nth-child(2) i {
-  font-size: 40px;
-}
+  .giveStarPoint div:nth-child(2) i {
+    font-size: 40px;
+  }
 
-.movieDetailContents {
-  width: 975px;
-  margin-bottom: 30px;
-  padding: 20px;
-  background-color: white;
-  border-radius: 6px;
-  border: 2px solid $line;
-}
+  .movieDetailContents {
+    width: 975px;
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 6px;
+    border: 2px solid $line;
+  }
 
-.movieInformationContents {
-  margin-bottom: 20px;
-  border-bottom: 1.5px solid $line;
-  padding-bottom: 20px;
-}
+  .movieInformationContents {
+    margin-bottom: 20px;
+    border-bottom: 1.5px solid $line;
+    padding-bottom: 20px;
+  }
 
-.movieInformationContents header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
+  .movieInformationContents header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
 
-.movieInformationContents header h2 {
-  font-size: 1.3125em;
-  font-weight: bold;
-}
+  .movieInformationContents header h2 {
+    font-size: 1.3125em;
+    font-weight: bold;
+  }
 
-.movieInformationContents header div a {
-  color: #ff2f62;
-}
+  .movieInformationContents header div a {
+    color: #ff2f62;
+  }
 
-.movieInformationContents article {
-  color: $info-main-text;
-}
+  .movieInformationContents article {
+    color: $info-main-text;
+  }
 
-.movieInformationContents article div {
-  margin-bottom: 20px;
-}
+  .movieInformationContents article div {
+    margin-bottom: 20px;
+  }
 
-.movieInformationContents article p {
-  line-height: 1.5;
-}
+  .movieInformationContents article p {
+    line-height: 1.5;
+  }
 
-.movieInformationContents span {
-  display: block;
-}
+  .movieInformationContents span {
+    display: block;
+  }
 
-.comments {
-  margin-bottom: 20px;
-  border-bottom: 1.5px solid $line;
-  padding-bottom: 20px;
-}
+  .comments {
+    margin-bottom: 20px;
+    border-bottom: 1.5px solid $line;
+    padding-bottom: 20px;
+  }
 
-.commentContents header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
+  .commentContents header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
 
-.commentSubjectAndCount {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  .commentSubjectAndCount {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-.commentSubjectAndCount span {
-  color: $info-main-text;
-}
+  .commentSubjectAndCount span {
+    color: $info-main-text;
+  }
 
-.commentSubjectAndCount h2 {
-  margin-right: 10px;
-}
+  .commentSubjectAndCount h2 {
+    margin-right: 10px;
+  }
 
-.commentComents header div:first-child {
-  display: flex;
-  flex-direction: row;
-}
+  .commentComents header div:first-child {
+    display: flex;
+    flex-direction: row;
+  }
 
-.commentContents header h2 {
-  font-size: 1.3125em;
-  font-weight: bold;
-}
+  .commentContents header h2 {
+    font-size: 1.3125em;
+    font-weight: bold;
+  }
 
-.commentContents header div a {
-  color: #ff2f62;
-}
+  .commentContents header div a {
+    color: #ff2f62;
+  }
 
-.similarMovieContents header h2 {
-  font-size: 1.3125em;
-  font-weight: bold;
+  .similarMovieContents header h2 {
+    font-size: 1.3125em;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
 }
