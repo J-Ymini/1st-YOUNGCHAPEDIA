@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-
+import './Footer.scss';
 export default class Footer extends Component {
   render() {
     return (
-      <>
+      <div className="footer">
         <div className="footerTop">
-          <span>지금까지 얼마의 평가</span>
+          <span>
+            지금까지 <span className="footerCount">얼마</span>의 평가
+          </span>
         </div>
         <div className="footerBottom">
           <div className="footerLeft">
@@ -27,25 +29,28 @@ export default class Footer extends Component {
           <div className="footerRight">
             <ul>
               {MEMBER_LIST.map(el => {
-                <li key={el.id}>
-                  <span>{el.name}</span>
-                  <button>
-                    <a>{el.blog}</a>
-                  </button>
-                </li>;
+                return (
+                  <li key={el.id}>
+                    <button>
+                      <a href={el.blog} target="_blank">
+                        <span>{el.name}</span>
+                      </a>
+                    </button>
+                  </li>
+                );
               })}
             </ul>
           </div>
         </div>
-      </>
+      </div>
     );
   }
 }
 
 const MEMBER_LIST = [
-  { id: 1, name: '임유진', blog: 'velog.io/@1703979' },
-  { id: 2, name: '전용민', blog: 'velog.io/@1703979' },
-  { id: 3, name: '이다슬', blog: 'velog.io/@1703979' },
-  { id: 4, name: '김하민', blog: 'velog.io/@1703979' },
-  { id: 5, name: '최대환', blog: 'velog.io/@1703979' },
+  { id: 1, name: '임유진', blog: 'https://velog.io/@1703979' },
+  { id: 2, name: '전용민', blog: 'https://velog.io/@dydalsdl1414' },
+  { id: 3, name: '이다슬', blog: 'https://velog.io/@_seeul' },
+  { id: 4, name: '김하민', blog: 'https://github.com/HaMin-Kim' },
+  { id: 5, name: '최대환', blog: 'https://github.com/Dae-Hwan' },
 ];
