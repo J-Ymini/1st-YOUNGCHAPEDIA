@@ -1,14 +1,16 @@
 @import '../../styles/variables.scss';
 
 nav {
-  @include flexSet;
+  @include flexSet(space-between);
   position: fixed;
   top: 0;
   background-color: white;
   height: 60px;
+  width: 100vw;
 
-  div {
-    @include flexSet(flex-start);
+  span {
+    // @include flexSet(flex-start);
+    // display: inline-flex;
     padding: 10px 20px;
 
     &:first-of-type {

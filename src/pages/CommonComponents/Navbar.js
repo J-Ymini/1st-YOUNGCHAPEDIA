@@ -6,9 +6,9 @@ import './Navbar.scss';
 export default class Navbar extends Component {
   render() {
     return (
-      <nav className="navBar">
+      <nav>
         {/* 이거 로고 컴포넌트로 해야하는지? */}
-        <div>
+        <span>
           <header>
             <h1>
               <span>YOUNGCHA</span>
@@ -18,10 +18,10 @@ export default class Navbar extends Component {
           <ul className="navMenu">
             <li>영화</li>
           </ul>
-        </div>
-        <div>
+        </span>
+        <span>
           <input placeholder="작품 제목, 배우, 감독을 검색해보세요"></input>
-        </div>
+        </span>
       </nav>
     );
   }
