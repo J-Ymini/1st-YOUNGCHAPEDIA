@@ -95,6 +95,17 @@
     }
   }
 
+  .wishButton.active {
+    color: black;
+    border: 2px solid $line;
+    background-color: $section-background;
+    transition: background-color 1s;
+
+    i {
+      margin-right: 10px;
+    }
+  }
+
   .giveStarPoint {
     position: relative;
 
