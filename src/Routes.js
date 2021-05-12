@@ -5,11 +5,13 @@ import Main from './pages/Main/Main';
 import Footer from './pages/CommonComponents/Footer';
 // import login
 // import mypage
+import Navbar from './pages/CommonComponents/Navbar';
 
 class Routes extends React.Component {
   render() {
     return (
       <Router>
+        <Navbar />
         <Switch>
           <Route exact path="/" component={Main}></Route>
           {/* <Route exact path="/contents" component={}></Route> */}
