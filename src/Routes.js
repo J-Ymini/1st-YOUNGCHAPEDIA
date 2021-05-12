@@ -1,8 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import MovieDetail from './pages/MovieDetail/MovieDetail';
-
 export default class Routes extends React.Component {
   render() {
     return (

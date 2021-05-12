@@ -7,12 +7,12 @@ export default class MovieDetail extends React.Component {
       <main className="MovieDetail">
         <section className="movieBannerSection">
           <div className="movieBannerPoster">
-            <div className="poster"></div>
+            <div className="poster" />
           </div>
           <div className="movieSimpleInformation">
             <div className="movieSimpleInformationContents">
               <img
-                alt="poster-img"
+                alt="poster"
                 src="https://img.hankyung.com/photo/202104/BF.26103128.1.jpg"
               />
               <div className="movieBookRating">예매 순위: 2위</div>
