@@ -14,7 +14,7 @@ export default class MainSectionMovieList extends React.Component {
         />
         <div className="listDescription">
           <p className="listDescriptionTitle">분노의 질주: 더 얼티메이트</p>
-          <p className="listDescriptionYear">2020</p>
+          <p className="listDescriptionYear">2020 ・ 미국</p>
           <p className="listDescriptionGrade">평균 3.8</p>
         </div>
       </li>
