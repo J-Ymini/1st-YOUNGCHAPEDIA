@@ -43,9 +43,9 @@ export default class MovieDetail extends React.Component {
             </div>
           </div>
         </section>
+        <section className="leaveCommentSection"></section>
         <section className="movieDetailContentsSection">
           <div className="movieDetailContents">
-            <article className="leaveComment"></article>
             <article className="movieInformation">
               <div className="movieInformationContents">
                 <header>
