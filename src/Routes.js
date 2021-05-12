@@ -1,7 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-
-export default class Routes extends React.Component {
+import Main from './pages/Main/Main';
+import Footer from './pages/CommonComponents/Footer';
+// import login
+// import mypage
+import Navbar from './pages/CommonComponents/Navbar';
+import MovieDetail from './pages/MovieDetail/MovieDetail';
+class Routes extends React.Component {
   render() {
     return (
       <Router>
@@ -14,3 +19,5 @@ export default class Routes extends React.Component {
     );
   }
 }
+
+export default Routes;
