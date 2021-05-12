@@ -77,20 +77,15 @@
     }
   }
 
-  .commentSubjectAndCount {
-    .commentComents header div:first-child {
-      display: flex;
-      flex-direction: row;
+  .commentContents header {
+    h2 {
+      font-size: 1.3125em;
+      font-weight: bold;
     }
-  }
 
-  .commentContents header h2 {
-    font-size: 1.3125em;
-    font-weight: bold;
-  }
-
-  .commentContents header div a {
-    color: #ff2f62;
+    div a {
+      color: #ff2f62;
+    }
   }
 
   .similarMovieContents header h2 {
