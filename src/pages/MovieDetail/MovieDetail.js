@@ -1,7 +1,7 @@
 import React from 'react';
-import MovieBannerSection from './components/MovieBannerSection/MovieBannerSection';
-import LeaveCommentSection from './components/LeaveCommentSection/LeaveCommentSection';
-import MovieDetailContentsSection from './components/MovieDetailContentsSection/MovieDetailContentsSection';
+import MovieBannerSection from './Components/MovieBannerSection/MovieBannerSection';
+import LeaveCommentSection from './Components/LeaveCommentSection/LeaveCommentSection';
+import MovieDetailContentsSection from './Components/MovieDetailContentsSection/MovieDetailContentsSection';
 
 import './MovieDetail.scss';
 
