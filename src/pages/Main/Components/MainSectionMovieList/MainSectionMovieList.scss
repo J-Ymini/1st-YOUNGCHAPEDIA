@@ -23,7 +23,7 @@
     background-color: $dark-gray;
     line-height: 27px;
     font-weight: 700;
-    font-size: 18px;
+    font-size: 1.125em;
     border: 1px $dark-gray;
     border-radius: 5px;
     opacity: 0.9;
@@ -34,20 +34,20 @@
 
     .listDescriptionTitle {
       margin: 5px 0px 7px;
-      font-size: 16px;
+      font-size: 1rem;
       font-weight: 700;
       color: $list-main-gray;
     }
 
     .listDescriptionYear {
       margin-bottom: 5px;
-      font-size: 14px;
+      font-size: 0.875rem;
       color: $list-main-gray;
     }
 
     .listDescriptionGrade {
       margin: 2px 0 0;
-      font-size: 14px;
+      font-size: 0.875rem;
       color: $list-sub-gray;
     }
   }

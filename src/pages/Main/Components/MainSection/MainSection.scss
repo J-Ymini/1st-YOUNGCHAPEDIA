@@ -2,6 +2,7 @@
 
 .mainSection {
   @include flexColumnSet();
+  margin-bottom: 50px;
 
   .mainTitle {
     padding: 12px 0px 14px;
@@ -11,13 +12,16 @@
     background-color: $white;
 
     p {
-      font-size: 22px;
+      font-size: 1.375rem;
       font-family: 'Oswald', sans-serif;
     }
   }
 
   .mainMovie {
-    @include flexSet();
+    ul {
+      @include flexSet();
+    }
+
     background-color: $white;
   }
 }

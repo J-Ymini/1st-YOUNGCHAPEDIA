@@ -12,6 +12,10 @@ export default class MainSection extends React.Component {
         <section className="mainMovie">
           <ul>
             <MainSectionMovieList />
+            <MainSectionMovieList />
+            <MainSectionMovieList />
+            <MainSectionMovieList />
+            <MainSectionMovieList />
           </ul>
         </section>
       </section>
