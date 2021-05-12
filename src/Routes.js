@@ -5,6 +5,7 @@ import Main from './pages/Main/Main';
 import Footer from './pages/CommonComponents/Footer';
 // import login
 // import mypage
+import Navbar from './pages/CommonComponents/Navbar';
 import MovieDetail from './pages/MovieDetail/MovieDetail';
 class Routes extends React.Component {
   render() {
