@@ -10,10 +10,9 @@ export default class MainSection extends React.Component {
           <p>박스오피스 순위</p>
         </div>
         <section className="mainMovie">
-          <MainSectionMovieList />
-          <MainSectionMovieList />
-          <MainSectionMovieList />
-          <MainSectionMovieList />
+          <ul>
+            <MainSectionMovieList />
+          </ul>
         </section>
       </section>
     );
