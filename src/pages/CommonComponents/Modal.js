@@ -16,13 +16,8 @@ export default class Modal extends Component {
   }
 
   closeModal = e => {
-    if (
-      this.props.isLoginClicked &&
-      !this.modalRef.current.contains(e.target)
-    ) {
-      // console.log('Click');
-      this.props.test();
-    }
+    if (this.props.isLoginClicked && !this.modalRef.current.contains(e.target))
+      this.props.closeModal();
   };
 
   render() {

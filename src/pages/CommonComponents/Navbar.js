@@ -14,14 +14,13 @@ export default class Navbar extends Component {
     };
   }
 
-  test = () => {
+  closeModal = () => {
     this.setState({
       isLoginClicked: false,
     });
   };
 
   openModal = () => {
-    console.log('hi');
     this.setState({
       isLoginClicked: true,
     });
@@ -29,12 +28,15 @@ export default class Navbar extends Component {
 
   render() {
     const { isUserLogin, isLoginClicked } = this.state;
+    const { closeModal, openModal } = this;
     const logoutedBtn = (
       <>
-        <button className="navLoginBtn" onClick={this.openModal}>
+        <button className="navLoginBtn" onClick={openModal}>
           로그인
         </button>
-        <button className="navSignInBtn">회원가입</button>
+        <button className="navSignInBtn" onClick={openModal}>
+          회원가입
+        </button>
       </>
     );
     const loginedBtn = (
@@ -49,13 +51,14 @@ export default class Navbar extends Component {
     return (
       <>
         {isLoginClicked && (
-          <Modal isLoginClicked={isLoginClicked} test={this.test} />
+          <Modal isLoginClicked={isLoginClicked} closeModal={closeModal} />
         )}
         <nav className="topNav">
           <span className="logoMenu">
             <header>
               <Link to="/">
                 <h1>
+                  {/* h1을 두 개 할 수는 없어서 h1안에 span 2개로 했습니다 */}
                   <span>YOUNGCHA</span>
                   <span>PEDIA</span>
                 </h1>
@@ -66,9 +69,12 @@ export default class Navbar extends Component {
             </ul>
           </span>
           <span className="searchUser">
-            <label className="navSearch">
+            <label className="navSearch" htmlFor="searchInput">
               <FontAwesomeIcon icon={faSearch} className="topNavIcon" />
-              <input placeholder="작품 제목, 배우, 감독을 검색해보세요" />
+              <input
+                id="searchInput"
+                placeholder="작품 제목, 배우, 감독을 검색해보세요"
+              />
             </label>
             {isUserLogin ? loginedBtn : logoutedBtn}
           </span>
