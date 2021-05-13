@@ -1,9 +1,12 @@
 import React from 'react';
-
-class Main extends React.Component {
+import MainSection from './Components/MainSection/MainSection';
+import './Main.scss';
+export default class Main extends React.Component {
   render() {
-    return <div>"초기세팅입니다."</div>;
+    return (
+      <section className="main">
+        <MainSection />
+      </section>
+    );
   }
 }
-
-export default Main;
