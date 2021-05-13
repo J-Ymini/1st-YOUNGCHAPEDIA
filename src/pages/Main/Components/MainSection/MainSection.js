@@ -13,9 +13,9 @@ export default class MainSection extends React.Component {
       method: 'GET',
     })
       .then(res => res.json())
-      .then(movieInfomation => {
+      .then(movieInfomationList => {
         this.setState({
-          movieInfomationList: movieInfomation,
+          movieInfomationList,
         });
       });
   }
@@ -29,13 +29,15 @@ export default class MainSection extends React.Component {
         <section className="mainMovie">
           <ul>
             {movieInfomationList.map(movie => {
+              const { id, korean_title, country, release_date, thumbnail_img } =
+                movie;
               return (
                 <MainSectionMovieList
-                  key={movie.id}
-                  title={movie.korean_title}
-                  country={movie.country}
-                  releaseDate={movie.release_date}
-                  thumbnailImgUrl={movie.thumbnail_img}
+                  key={id}
+                  title={korean_title}
+                  country={country}
+                  releaseDate={release_date}
+                  thumbnailImgUrl={thumbnail_img}
                 />
               );
             })}
