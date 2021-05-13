@@ -7,10 +7,11 @@
     display: flex;
     justify-content: center;
     height: 460px;
-    background-image: linear-gradient(to right, black, white, black);
+    background-image: linear-gradient(to right, white, black, white);
 
     .stillCut {
       height: 100%;
+      box-shadow: 0px -20px 100px black;
     }
   }
 

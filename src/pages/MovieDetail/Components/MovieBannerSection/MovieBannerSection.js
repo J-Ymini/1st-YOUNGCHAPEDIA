@@ -25,15 +25,7 @@ export default class LeaveCommentSection extends React.Component {
                 2020 &middot; 스릴러 &middot; 미국
               </div>
               <div className="averageOfStarPoint">
-                평균{' '}
-                <i
-                  class={
-                    this.props.userWishStatus.userWish
-                      ? 'fas fa-star'
-                      : 'fas fa-bookmark'
-                  }
-                ></i>{' '}
-                3.8(192명)
+                평균 <i class="fas fa-star"></i> 3.8(192명)
               </div>
               <div className="wishAndStarPoint">
                 <button
@@ -44,7 +36,14 @@ export default class LeaveCommentSection extends React.Component {
                   }
                   onClick={this.props.userWishStatusHandler}
                 >
-                  <i class="fas fa-plus"></i> 보고싶어요
+                  <i
+                    class={
+                      this.props.userWishStatus.userWish
+                        ? 'far fa-bookmark'
+                        : 'fas fa-plus'
+                    }
+                  ></i>{' '}
+                  보고싶어요
                 </button>
                 <div className="giveStarPoint">
                   <div>평가하기</div>

@@ -16,6 +16,10 @@ export default class MovieDetail extends React.Component {
     !className.includes('active') && this.setState({ userWish: true });
   };
 
+  showConsole = () => {
+    console.log('안녕하세요');
+  };
+
   render() {
     return (
       <main className="MovieDetail">
@@ -23,7 +27,10 @@ export default class MovieDetail extends React.Component {
           userWishStatus={this.state}
           userWishStatusHandler={this.changeStateOfWish}
         />
-        <LeaveCommentSection userWishStatus={this.state} />
+        <LeaveCommentSection
+          userWishStatus={this.state}
+          showEvent={this.showConsole}
+        />
         <MovieDetailContentsSection />
       </main>
     );

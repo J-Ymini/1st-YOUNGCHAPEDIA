@@ -27,5 +27,9 @@
 
   .recommendLeaveComment.active {
     display: block;
+
+    button {
+      cursor: pointer;
+    }
   }
 }
