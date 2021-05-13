@@ -7,25 +7,29 @@ import './ReviewPage.scss';
 export default class ReviewPage extends Component {
   constructor(props) {
     super(props);
-    this.scrollBoxRef = createRef();
-    this.initItemsRef = createRef();
-    this.addItemsRef = createRef();
-    this.initItemsRef.current = 0;
-    this.addItemsRef.current = 5;
+    // this.scrollBoxRef = createRef();
+    // this.initItemsRef = createRef();
+    // this.addItemsRef = createRef();
+    // this.initItemsRef.current = 0;
+    // this.addItemsRef.current = 5;
     this.state = {
-      initItems: this.initItemsRef.current,
-      addItems: this.addItemsRef.current,
+      initItems: 0,
+      addItems: 7,
       movieData: [],
     };
+    this.scrollBoxRef = createRef();
   }
 
   componentDidMount() {
     this.getMovieData();
-    window.addEventListener('scroll', this.infiniteScroll);
+    this.scrollBoxRef.current.addEventListener('scroll', this.infiniteScroll);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.infiniteScroll);
+    this.scrollBoxRef.current.removeEventListener(
+      'scroll',
+      this.infiniteScroll
+    );
   }
 
   getMovieData = () => {
@@ -41,25 +45,24 @@ export default class ReviewPage extends Component {
   };
 
   infiniteScroll = () => {
-    const scrollHeight = Math.max(
-      document.documentElement.scrollHeight,
-      document.body.scrollHeight
-    );
-    const scrollTop = Math.max(
-      document.documentElement.scrollTop,
-      document.body.scrollTop
-    );
-    const clientHeight = document.documentElement.clientHeight;
-    if (scrollTop + clientHeight >= scrollHeight) {
+    const scrollHeight = this.scrollBoxRef.current.scrollHeight;
+    const scrollTop = this.scrollBoxRef.current.scrollTop;
+    const offsetTop = this.scrollBoxRef.current.offsetTop;
+    const clientHeight = this.scrollBoxRef.current.clientHeight;
+    if (
+      offsetTop + scrollTop + clientHeight >= scrollHeight &&
+      this.state.initItems < this.state.movieData.length
+    ) {
       this.setState({
         initItems: this.state.addItems,
-        addItems: this.state.addItems + this.addItemsRef.current,
+        addItems: this.state.addItems + 5,
       });
       this.getMovieData();
     }
   };
 
   render() {
+    console.log();
     return (
       <section className="reviewSection">
         <header className="reviewHeader">
@@ -89,7 +92,7 @@ export default class ReviewPage extends Component {
         <div
           className="reviewList"
           ref={this.scrollBoxRef}
-          onScroll={this.infiniteScroll}
+          // onScroll={this.infiniteScroll}
         >
           <ul>
             {this.state.movieData.map(movie => (
