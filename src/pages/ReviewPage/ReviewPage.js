@@ -1,5 +1,4 @@
 import React, { Component, createRef } from 'react';
-import ReactDOM from 'react-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisV, faStar } from '@fortawesome/free-solid-svg-icons';
 import './ReviewPage.scss';
@@ -8,14 +7,8 @@ export default class ReviewPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      initItems: 0,
-      addItems: 7,
       movieData: [],
     };
-    // this.initItemsRef = createRef();
-    // this.addItemsRef = createRef();
-    // this.initItemsRef.current = 0;
-    // this.addItemsRef.current = 7;
     this.scrollBoxRef = createRef();
   }
 
@@ -32,13 +25,15 @@ export default class ReviewPage extends Component {
   }
 
   getMovieData = () => {
-    const { initItems, addItems, movieData } = this.state;
-    //mockData 주소는 따로 config에 저장하지 않았습니당
+    const { movieData } = this.state;
     const MOVIE_DATA = '/data/movieMockData.json';
     fetch(MOVIE_DATA)
       .then(res => res.json())
       .then(movies => {
-        const updatedMovieData = movies.slice(initItems, addItems);
+        const updatedMovieData = movies.slice(
+          movieData.length,
+          movieData.length + 7
+        );
         this.setState({ movieData: [...movieData, ...updatedMovieData] });
       });
   };
@@ -48,16 +43,8 @@ export default class ReviewPage extends Component {
     const scrollTop = this.scrollBoxRef.current.scrollTop;
     const offsetTop = this.scrollBoxRef.current.offsetTop;
     const clientHeight = this.scrollBoxRef.current.clientHeight;
-    if (
-      offsetTop + scrollTop + clientHeight >= scrollHeight &&
-      this.state.initItems < this.state.movieData.length
-    ) {
-      this.setState({
-        initItems: this.state.addItems,
-        addItems: this.state.addItems + 5,
-      });
+    if (offsetTop + scrollTop + clientHeight >= scrollHeight)
       this.getMovieData();
-    }
   };
 
   render() {
@@ -65,20 +52,16 @@ export default class ReviewPage extends Component {
       <section className="reviewSection">
         <header className="reviewHeader">
           <h2 className="reviewCount">14</h2>
-          <p className="reviewNotice">
+          <h3 className="reviewNotice">
             이제 알듯 말듯 하네요. 조금만 더 평가해주세요!
-          </p>
+          </h3>
           <div className="reviewMenu">
             <ul>
-              <li>
-                <button>영화</button>
-              </li>
-              <li>
-                <button>TV프로그램</button>
-              </li>
-              <li>
-                <button>책</button>
-              </li>
+              {CATEGORY_LIST.map(category => (
+                <li className="reviewMenuList" key={category.id}>
+                  <button>{category.name}</button>
+                </li>
+              ))}
             </ul>
           </div>
           <div className="reviewCategory">
@@ -101,7 +84,7 @@ export default class ReviewPage extends Component {
                       </span>
                     </div>
                     <div className="movieYearCountry">
-                      {movie.release_date} - {movie.country}
+                      {movie.release_date}·{movie.country}
                     </div>
                   </div>
                   <div className="movieInfoColumn">
@@ -120,3 +103,18 @@ export default class ReviewPage extends Component {
     );
   }
 }
+
+const CATEGORY_LIST = [
+  {
+    id: 1,
+    name: '영화',
+  },
+  {
+    id: 2,
+    name: 'TV프로그램',
+  },
+  {
+    id: 3,
+    name: '책',
+  },
+];

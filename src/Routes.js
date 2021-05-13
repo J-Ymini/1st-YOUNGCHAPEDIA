@@ -3,8 +3,6 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Main from './pages/Main/Main';
 import Footer from './pages/CommonComponents/Footer';
-// import login
-// import mypage
 import Navbar from './pages/CommonComponents/Navbar';
 import ReviewPage from './pages/ReviewPage/ReviewPage';
 
@@ -19,10 +17,16 @@ class Routes extends React.Component {
           {/* <Route exact path="/contents" component={}></Route> */}
           {/* <Route exact path="/myPage" component={}></Route> */}
         </Switch>
-        <Footer />
+        {location.pathname !== '/review' && <Footer />}
       </Router>
     );
   }
 }
 
 export default Routes;
+
+/* global history */
+/* global location */
+/* global window */
+
+/* eslint no-restricted-globals: ["off"] */

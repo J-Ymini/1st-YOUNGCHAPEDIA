@@ -8,7 +8,6 @@
 
   .reviewHeader {
     @include flexColumnSet(space-between);
-    width: 640px;
     background-color: white;
     border: 1px solid $line;
     border-top-left-radius: 8px;
@@ -18,44 +17,48 @@
       margin-top: 20px;
       height: 43px;
       color: black;
-      font-size: 25px;
+      font-size: 1.563rem;
       font-weight: 700;
     }
 
     .reviewNotice {
+      margin-top: 10px;
       height: 43px;
       color: $movie-info-text;
-      font-size: 15px;
+      font-size: 0.85rem;
     }
 
     .reviewMenu {
-      width: 100%;
+      width: 640px;
       height: 43px;
-      color: $movie-info-text;
       text-align: center;
 
       ul {
         @include flexSet;
 
-        li {
+        .reviewMenuList {
           position: relative;
           @include flexSet;
           margin-bottom: 10px;
           width: 33%;
-          font-size: 15px;
 
-          button:hover {
-            color: #fa2f6e;
-            border-bottom-color: #fa2f6e;
+          button {
+            color: $movie-info-text;
+            font-size: 0.9rem;
 
-            &:after {
-              content: '';
-              position: absolute;
-              left: 0;
-              bottom: -22px;
-              width: 200px;
-              height: 2px;
-              background: #fa2f6e;
+            &:hover {
+              color: #fa2f6e;
+              border-bottom-color: #fa2f6e;
+
+              &:after {
+                content: '';
+                position: absolute;
+                left: 0;
+                bottom: -17px;
+                width: 200px;
+                height: 2px;
+                background: #fa2f6e;
+              }
             }
           }
         }
@@ -68,14 +71,10 @@
       height: 48px;
       border-top: 1px solid $line;
 
-      div {
-        @include flexSet(flex-start);
-      }
-
       .reviewCategoryBtn {
         padding-left: 20px;
         color: $comment-header-icon;
-        font-size: 15px;
+        font-size: 0.8rem;
       }
     }
   }
@@ -89,6 +88,13 @@
     border-top: none;
     overflow-y: scroll;
     overflow-x: hidden;
+    // Hide scroll-bar
+    -ms-overflow-style: none;
+    scrollbar-width: none; /* Firefox */
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
 
     ul {
       height: 100%;
@@ -119,14 +125,18 @@
             @include flexSet(space-between);
 
             span:first-of-type {
-              font-size: 17px;
+              font-size: 0.9rem;
+            }
+
+            .reviewIcon {
+              color: $movie-info-text;
             }
           }
 
           .movieYearCountry {
             margin-top: 8px;
             color: $info-sub-text;
-            font-size: 14px;
+            font-size: 0.7rem;
           }
         }
       }
