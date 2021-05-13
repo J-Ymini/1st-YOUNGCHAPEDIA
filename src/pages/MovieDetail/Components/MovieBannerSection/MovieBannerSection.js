@@ -1,7 +1,7 @@
 import React from 'react';
 import './MovieBannerSection.scss';
 
-export default class LeaveCommentSection extends React.Component {
+export default class MovieBannerSection extends React.Component {
   render() {
     return (
       <section className="MovieBannerSection">
