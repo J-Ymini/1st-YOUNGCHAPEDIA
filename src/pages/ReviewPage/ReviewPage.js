@@ -1,4 +1,5 @@
 import React, { Component, createRef } from 'react';
+import ReactDOM from 'react-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisV, faStar } from '@fortawesome/free-solid-svg-icons';
 import './ReviewPage.scss';
@@ -33,9 +34,9 @@ export default class ReviewPage extends Component {
     const MOVIE_DATA = '/data/movieMockData.json';
     fetch(MOVIE_DATA)
       .then(res => res.json())
-      .then(feedData => {
-        const sliceData = feedData.slice(initItems, addItems);
-        this.setState({ movieData: [...movieData, ...sliceData] });
+      .then(movies => {
+        const updatedMovieData = movies.slice(initItems, addItems);
+        this.setState({ movieData: [...movieData, ...updatedMovieData] });
       });
   };
 
@@ -61,7 +62,7 @@ export default class ReviewPage extends Component {
   render() {
     return (
       <section className="reviewSection">
-        <div className="reviewHeader">
+        <header className="reviewHeader">
           <h2 className="reviewCount">14</h2>
           <p className="reviewNotice">
             이제 알듯 말듯 하네요. 조금만 더 평가해주세요!
@@ -84,36 +85,38 @@ export default class ReviewPage extends Component {
               <button className="reviewCategoryBtn">🔻랜덤 영화</button>
             </div>
           </div>
-        </div>
-        <div className="reviewList" ref={this.scrollBoxRef}>
+        </header>
+        <div
+          className="reviewList"
+          ref={this.scrollBoxRef}
+          onScroll={this.infiniteScroll}
+        >
           <ul>
-            {this.state.movieData.map(movie => {
-              return (
-                <li key={movie.id}>
-                  <img src={movie.thumbnail} />
-                  <div className="movieInfos">
-                    <div className="movieInfoColumn">
-                      <div className="reviewMovieTitle">
-                        <span>{movie.title}</span>
-                        <span className="reviewIcon">
-                          <FontAwesomeIcon icon={faEllipsisV} />
-                        </span>
-                      </div>
-                      <div className="movieYearCountry">
-                        {movie.release_date} - {movie.country}
-                      </div>
+            {this.state.movieData.map(movie => (
+              <li key={movie.id}>
+                <img alt={`${movie.title}포스터`} src={movie.thumbnail} />
+                <div className="movieInfos">
+                  <div className="movieInfoColumn">
+                    <div className="reviewMovieTitle">
+                      <span>{movie.title}</span>
+                      <span className="reviewIcon">
+                        <FontAwesomeIcon icon={faEllipsisV} />
+                      </span>
                     </div>
-                    <div className="movieInfoColumn">
-                      <FontAwesomeIcon icon={faStar} />
-                      <FontAwesomeIcon icon={faStar} />
-                      <FontAwesomeIcon icon={faStar} />
-                      <FontAwesomeIcon icon={faStar} />
-                      <FontAwesomeIcon icon={faStar} />
+                    <div className="movieYearCountry">
+                      {movie.release_date} - {movie.country}
                     </div>
                   </div>
-                </li>
-              );
-            })}
+                  <div className="movieInfoColumn">
+                    <FontAwesomeIcon icon={faStar} />
+                    <FontAwesomeIcon icon={faStar} />
+                    <FontAwesomeIcon icon={faStar} />
+                    <FontAwesomeIcon icon={faStar} />
+                    <FontAwesomeIcon icon={faStar} />
+                  </div>
+                </div>
+              </li>
+            ))}
           </ul>
         </div>
       </section>

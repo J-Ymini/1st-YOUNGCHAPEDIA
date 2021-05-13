@@ -3,8 +3,6 @@
 .reviewSection {
   @include flexColumnSet;
   padding-top: 100px;
-  width: 100%;
-  overflow: hidden;
   background-color: $section-background;
 
   .reviewHeader {
@@ -84,7 +82,7 @@
   .reviewList {
     @include flexColumnSet;
     width: 640px;
-    height: 120vh;
+    height: 100vh;
     background-color: white;
     border: 1px solid $line;
     border-top: none;
