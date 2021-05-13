@@ -7,16 +7,15 @@ import './ReviewPage.scss';
 export default class ReviewPage extends Component {
   constructor(props) {
     super(props);
-    // this.scrollBoxRef = createRef();
-    // this.initItemsRef = createRef();
-    // this.addItemsRef = createRef();
-    // this.initItemsRef.current = 0;
-    // this.addItemsRef.current = 5;
     this.state = {
       initItems: 0,
       addItems: 7,
       movieData: [],
     };
+    // this.initItemsRef = createRef();
+    // this.addItemsRef = createRef();
+    // this.initItemsRef.current = 0;
+    // this.addItemsRef.current = 7;
     this.scrollBoxRef = createRef();
   }
 
@@ -62,7 +61,6 @@ export default class ReviewPage extends Component {
   };
 
   render() {
-    console.log();
     return (
       <section className="reviewSection">
         <header className="reviewHeader">
@@ -89,11 +87,7 @@ export default class ReviewPage extends Component {
             </div>
           </div>
         </header>
-        <div
-          className="reviewList"
-          ref={this.scrollBoxRef}
-          // onScroll={this.infiniteScroll}
-        >
+        <div className="reviewList" ref={this.scrollBoxRef}>
           <ul>
             {this.state.movieData.map(movie => (
               <li key={movie.id}>
