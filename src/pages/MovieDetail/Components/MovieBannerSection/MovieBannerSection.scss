@@ -6,11 +6,10 @@
   .movieBannerPoster {
     display: flex;
     justify-content: center;
-    height: 460px;
     background-image: linear-gradient(to right, black, white, black);
 
     .stillCut {
-      height: 100%;
+      height: 460px;
     }
   }
 
@@ -49,6 +48,7 @@
 
   .movieSubject {
     width: 720px;
+    height: 200px;
     h1 {
       font-size: 2.0625em;
       font-weight: 700;

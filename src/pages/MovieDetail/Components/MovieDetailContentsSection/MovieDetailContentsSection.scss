@@ -29,8 +29,9 @@
         font-weight: bold;
       }
 
-      div a {
+      button {
         color: #ff2f62;
+        font-size: 1.2em;
       }
     }
 
@@ -45,10 +46,6 @@
         line-height: 1.5;
       }
     }
-  }
-
-  .movieInformationContents span {
-    display: block;
   }
 
   .comments {
@@ -83,8 +80,9 @@
       font-weight: bold;
     }
 
-    div a {
+    button {
       color: #ff2f62;
+      font-size: 1.2em;
     }
   }
 

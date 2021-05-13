@@ -10,17 +10,15 @@ export default class MovieDetailContentsSection extends React.Component {
             <div className="movieInformationContents">
               <header>
                 <h2>기본정보</h2>
-                <div>
-                  <a>더보기</a>
-                </div>
+                <button>더보기</button>
               </header>
               <article>
                 <div>
-                  <span>F9</span>
+                  <div>F9</div>
                   <br />
-                  <span>2020 &middot; 미국 &middot; 스릴러</span>
+                  <div>2020 &middot; 미국 &middot; 스릴러</div>
                   <br />
-                  <span>2시간 15분</span>
+                  <div>2시간 15분</div>
                 </div>
                 <p>
                   기다림은 끝났다! 전 세계가 기다려온 단 하나의 액션블록버스터!
@@ -38,9 +36,7 @@ export default class MovieDetailContentsSection extends React.Component {
                   <h2>코멘트</h2>
                   <span>20+</span>
                 </div>
-                <div>
-                  <a>더보기</a>
-                </div>
+                <button>더보기</button>
               </header>
               <article> 코멘트 컴포넌트가 들어갈 자리입니다.</article>
             </div>
