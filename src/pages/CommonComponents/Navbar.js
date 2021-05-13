@@ -1,4 +1,4 @@
-import React, { Component, createRef } from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
@@ -10,39 +10,25 @@ export default class Navbar extends Component {
     super(props);
     this.state = {
       isUserLogin: false,
-      test: false,
+      isLoginClicked: false,
     };
-    this.modalRef = createRef();
   }
 
-  componentDidMount() {
-    window.addEventListener('click', this.closeModal);
-  }
-  componentDidUnmount() {
-    window.addEventListener('click', this.closeModal);
-  }
+  test = () => {
+    this.setState({
+      isLoginClicked: false,
+    });
+  };
 
   openModal = () => {
     console.log('hi');
     this.setState({
-      test: true,
+      isLoginClicked: true,
     });
   };
 
-  closeModal = e => {
-    this.modalRef = e => {
-      console.log(e.target);
-    };
-    // console.log(this.modalRef.current);
-    // if (this.state.test && !this.modalRef.current.contains(e.target)) {
-    //   this.setState({ test: false });
-    // }
-  };
-
   render() {
-    const { isUserLogin } = this.state;
-    //원래는 바깥으로 뺐었는데 onClick을 붙이려면 여기 안에 있어야 해서 다시 이동했습니다
-    // 이런 것도 ref를 걸어 비효율적인 연산을 줄이나요?
+    const { isUserLogin, isLoginClicked } = this.state;
     const logoutedBtn = (
       <>
         <button className="navLoginBtn" onClick={this.openModal}>
@@ -62,8 +48,9 @@ export default class Navbar extends Component {
 
     return (
       <>
-        {/* 연산자로 렌더링하면 null 떠서 오류남 */}
-        <Modal ref={this.modalRef} />
+        {isLoginClicked && (
+          <Modal isLoginClicked={isLoginClicked} test={this.test} />
+        )}
         <nav className="topNav">
           <span className="logoMenu">
             <header>
