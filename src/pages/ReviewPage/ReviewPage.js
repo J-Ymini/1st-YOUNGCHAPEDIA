@@ -1,6 +1,7 @@
 import React, { Component, createRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisV, faStar } from '@fortawesome/free-solid-svg-icons';
+import { throttle } from '../../utils/throttle';
 import './ReviewPage.scss';
 
 export default class ReviewPage extends Component {
@@ -14,13 +15,16 @@ export default class ReviewPage extends Component {
 
   componentDidMount() {
     this.getMovieData();
-    this.scrollBoxRef.current.addEventListener('scroll', this.infiniteScroll);
+    this.scrollBoxRef.current.addEventListener(
+      'scroll',
+      throttle(this.infiniteScroll)
+    );
   }
 
   componentWillUnmount() {
     this.scrollBoxRef.current.removeEventListener(
       'scroll',
-      this.infiniteScroll
+      throttle(this.infiniteScroll)
     );
   }
 
@@ -43,6 +47,7 @@ export default class ReviewPage extends Component {
     const scrollTop = this.scrollBoxRef.current.scrollTop;
     const offsetTop = this.scrollBoxRef.current.offsetTop;
     const clientHeight = this.scrollBoxRef.current.clientHeight;
+    console.log(scrollHeight);
     if (offsetTop + scrollTop + clientHeight >= scrollHeight)
       this.getMovieData();
   };
