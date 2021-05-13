@@ -1,23 +1,16 @@
 import React from 'react';
 import './MainSectionMovieList.scss';
 export default class MainSectionMovieList extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      scrollStart: 0,
-    };
-  }
-
-  // handleScrollnext = () => {
-  //   this.setState({
-  //     scrollleft(100px)
-  //   });
-  // };
-
   render() {
-    const { title, country, releaseDate, thumbnailImgUrl } = this.props;
+    const { title, country, releaseDate, thumbnailImgUrl, width } = this.props;
     return (
-      <li className="mainSectionMovieList">
+      <li
+        style={{
+          transform: `translateX(-${width}px)`,
+          transition: 'transform .7s',
+        }}
+        className="mainSectionMovieList"
+      >
         <div className="listRanking">1</div>
         <img alt="test" src={thumbnailImgUrl} />
         <div className="listDescription">

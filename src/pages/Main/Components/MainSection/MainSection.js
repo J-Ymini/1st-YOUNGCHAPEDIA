@@ -6,8 +6,10 @@ export default class MainSection extends React.Component {
     super();
     this.state = {
       movieInfomationList: [],
-      movieListIndex: 0,
+      width: '',
+      index: 1,
     };
+    this.containerWidth = React.createRef();
   }
 
   componentDidMount() {
@@ -15,37 +17,48 @@ export default class MainSection extends React.Component {
       method: 'GET',
     })
       .then(res => res.json())
-      .then(movieInfomation => {
+      .then(movieInfomationList => {
         this.setState({
-          movieInfomationList: movieInfomation,
+          movieInfomationList,
         });
       });
   }
 
+  handleSliding = () => {
+    this.setState({
+      index: this.state.index + 1,
+      width: this.containerWidth.current.scrollWidth * this.state.index,
+    });
+  };
+
   render() {
-    const { movieInfomationList } = this.state;
+    const { movieInfomationList, width } = this.state;
     return (
       <section className="mainSection">
+        <input onChange={this.handleSliding} />
         <div className="mainTitle">
           <p>박스오피스 순위</p>
         </div>
-        <button>hi</button>
-        <section className="mainMovie">
+        <section className="mainMovie" ref={this.containerWidth}>
+          <button className="mainMoviePreBtn"></button>
           <ul>
             {movieInfomationList.map(movie => {
+              const { id, korean_title, country, release_date, thumbnail_img } =
+                movie;
               return (
                 <MainSectionMovieList
-                  key={movie.id}
-                  title={movie.korean_title}
-                  country={movie.country}
-                  releaseDate={movie.release_date}
-                  thumbnailImgUrl={movie.thumbnail_img}
+                  width={width}
+                  key={id}
+                  title={korean_title}
+                  country={country}
+                  releaseDate={release_date}
+                  thumbnailImgUrl={thumbnail_img}
                 />
               );
             })}
           </ul>
+          <button className="mainMovieNextBtn"></button>
         </section>
-        <button>hisds</button>
       </section>
     );
   }
