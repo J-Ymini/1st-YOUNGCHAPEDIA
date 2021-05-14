@@ -91,4 +91,10 @@
     font-weight: bold;
     margin-bottom: 20px;
   }
+
+  .similarMovieList {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
 }

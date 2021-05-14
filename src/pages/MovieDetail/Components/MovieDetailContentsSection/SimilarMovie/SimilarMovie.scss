@@ -1,0 +1,11 @@
+@import '../../../../../styles/variables.scss';
+
+.SimilarMovie {
+  margin-right: 30px;
+  margin-bottom: 30px;
+  img {
+    display: block;
+    width: 155px;
+    border-radius: 6px;
+  }
+}

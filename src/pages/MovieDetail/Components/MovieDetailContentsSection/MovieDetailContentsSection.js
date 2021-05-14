@@ -1,4 +1,5 @@
 import React from 'react';
+import SimilarMovie from './SimilarMovie/SimilarMovie';
 import './MovieDetailContentsSection.scss';
 
 export default class MovieDetailContentsSection extends React.Component {
@@ -46,7 +47,9 @@ export default class MovieDetailContentsSection extends React.Component {
               <header>
                 <h2>비슷한 작품</h2>
               </header>
-              <article>비슷한 작품 컴포넌트가 들어갈 자리입니다.</article>
+              <ul className="similarMovieList">
+                <SimilarMovie />
+              </ul>
             </div>
           </article>
         </div>
