@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import Modal from './Modal';
+// 테스트용
+import test from './test';
 import './Navbar.scss';
 
 export default class Navbar extends Component {
@@ -51,7 +53,11 @@ export default class Navbar extends Component {
     return (
       <>
         {isLoginClicked && (
-          <Modal modalOpened={isLoginClicked} closeModal={closeModal} />
+          <Modal
+            modalOpened={isLoginClicked}
+            closeModal={closeModal}
+            childComponent={test}
+          />
         )}
         <nav className="topNav">
           <span className="logoMenu">
