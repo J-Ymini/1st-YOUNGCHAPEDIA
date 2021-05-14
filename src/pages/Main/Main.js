@@ -6,6 +6,9 @@ export default class Main extends React.Component {
     return (
       <section className="main">
         <MainSection />
+        <MainSection />
+        <MainSection />
+        <MainSection />
       </section>
     );
   }

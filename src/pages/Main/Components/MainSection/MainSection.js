@@ -24,10 +24,25 @@ export default class MainSection extends React.Component {
       });
   }
 
-  handleSliding = () => {
+  handleNextSliding = () => {
+    const { movieInfomationList, index } = this.state;
+    if (index === Math.floor(movieInfomationList.length / 5)) {
+      return;
+    }
     this.setState({
-      index: this.state.index + 1,
-      width: this.containerWidth.current.scrollWidth * this.state.index,
+      index: index + 1,
+      width: this.containerWidth.current.scrollWidth * index + 1,
+    });
+  };
+
+  handlePreSliding = () => {
+    const { index } = this.state;
+    if (index === 1) {
+      return;
+    }
+    this.setState({
+      index: index - 1,
+      width: this.containerWidth.current.scrollWidth * (index - 2),
     });
   };
 
@@ -35,12 +50,17 @@ export default class MainSection extends React.Component {
     const { movieInfomationList, width } = this.state;
     return (
       <section className="mainSection">
-        <input onChange={this.handleSliding} />
         <div className="mainTitle">
           <p>박스오피스 순위</p>
         </div>
+        <button
+          disabled={this.state.index === 1 && 'disabled'}
+          onClick={this.handlePreSliding}
+          className="mainMoviePreBtn"
+        >
+          <i class="fas fa-chevron-left"></i>
+        </button>
         <section className="mainMovie" ref={this.containerWidth}>
-          <button className="mainMoviePreBtn"></button>
           <ul>
             {movieInfomationList.map(movie => {
               const { id, korean_title, country, release_date, thumbnail_img } =
@@ -57,8 +77,11 @@ export default class MainSection extends React.Component {
               );
             })}
           </ul>
-          <button className="mainMovieNextBtn"></button>
+          <div></div>
         </section>
+        <button onClick={this.handleNextSliding} className="mainMovieNextBtn">
+          <i class="fas fa-chevron-right"></i>
+        </button>
       </section>
     );
   }
