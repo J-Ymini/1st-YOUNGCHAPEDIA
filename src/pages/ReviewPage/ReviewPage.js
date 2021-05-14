@@ -9,6 +9,7 @@ export default class ReviewPage extends Component {
     super(props);
     this.state = {
       movieData: [],
+      genreFilterData: [],
     };
     this.scrollBoxRef = createRef();
   }
@@ -30,22 +31,27 @@ export default class ReviewPage extends Component {
 
   getMovieData = () => {
     const { movieData } = this.state;
-    const MOVIE_DATA = 'http://10.58.2.55:8000/users/review';
+    // const MOVIE_DATA = 'http://10.58.2.55:8000/users/review';
+    const MOVIE_DATA = '/data/expectedData.json';
     fetch(MOVIE_DATA, {
       method: 'GET',
-      headers: {
-        Authorization:
-          'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxfQ.j-6V8dLx9sVbVgnyGqibQwfZi1Hhl0aS71vjFWCrbj4',
-      },
+      // headers: {
+      //   Authorization:
+      //     'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxfQ.j-6V8dLx9sVbVgnyGqibQwfZi1Hhl0aS71vjFWCrbj4',
+      // },
     })
       .then(res => res.json())
       .then(movies => {
         //여기 다시 검토
-        const updatedMovieData = movies[movie]?.slice(
+        const updatedMovieData = movies['result']?.slice(
           movieData.length,
           movieData.length + 7
         );
-        this.setState({ movieData: [...movieData, ...updatedMovieData] });
+        const genreFilterData = movies['genre'];
+        this.setState({
+          movieData: [...movieData, ...updatedMovieData],
+          genreFilterData: [...genreFilterData],
+        });
       });
   };
 
@@ -59,7 +65,10 @@ export default class ReviewPage extends Component {
   };
 
   render() {
-    console.log(this.state.movieData);
+    console.log(
+      '무비' + this.state.movieData,
+      '장르' + this.state.genreFilterData
+    );
     return (
       <section className="reviewSection">
         <header className="reviewHeader">
@@ -96,7 +105,7 @@ export default class ReviewPage extends Component {
                       </span>
                     </div>
                     <div className="movieYearCountry">
-                      {movie.release_date}·{movie.country}
+                      {movie.release_date.slice(0, 4)}·{movie.country}
                     </div>
                   </div>
                   <div className="movieInfoColumn">
