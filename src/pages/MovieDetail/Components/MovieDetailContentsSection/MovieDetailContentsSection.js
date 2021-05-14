@@ -9,6 +9,7 @@ export default class MovieDetailContentsSection extends React.Component {
     this.commentList = React.createRef();
     this.count = React.createRef(0);
     this.count.current = 0;
+    this.state = { commentListContents: [] };
   }
 
   goToPrevious = () => {
@@ -20,14 +21,24 @@ export default class MovieDetailContentsSection extends React.Component {
 
   goToNext = () => {
     const { style } = this.commentList.current;
-    const commentLength = parseInt(COMMENT_DATA.length / 3);
+    const { commentListContents } = this.state;
+    const commentLength = parseInt(commentListContents.length / 3);
 
     if (this.count.current === commentLength) return;
     this.count.current += 1;
     style.transform = `translate(-${931 * this.count.current}px, 0)`;
   };
 
+  componentDidMount() {
+    fetch('http://localhost:3000/data/MovieDetailPageComments.json')
+      .then(res => res.json())
+      .then(res => {
+        this.setState({ commentListContents: res.commentData });
+      });
+  }
+
   render() {
+    const { commentListContents } = this.state;
     return (
       <section className="MovieDetailContentsSection">
         <div className="movieDetailContents">
@@ -73,7 +84,7 @@ export default class MovieDetailContentsSection extends React.Component {
                   </button>
                 </div>
                 <ul ref={this.commentList} className="commentList">
-                  {COMMENT_DATA.map(comment => {
+                  {commentListContents.map(comment => {
                     return (
                       <Comment
                         key={comment.id}
@@ -100,71 +111,3 @@ export default class MovieDetailContentsSection extends React.Component {
     );
   }
 }
-
-const COMMENT_DATA = [
-  {
-    id: 1,
-    name: 'drakeofficial',
-    comment: '안녕하세요',
-  },
-  {
-    id: 2,
-    name: 'theweeknd',
-    comment: '반갑습니다.',
-  },
-  {
-    id: 3,
-    name: 'justinbieber',
-    comment: '재미있어요!!',
-  },
-  {
-    id: 4,
-    name: 'wjsdydalskdf',
-    comment: '재미있어요!!',
-  },
-  {
-    id: 5,
-    name: 'dydalsdl15',
-    comment: '재미있어요!!',
-  },
-  {
-    id: 6,
-    name: 'slk2kj51',
-    comment: '재미있어요!!',
-  },
-  {
-    id: 7,
-    name: '1l1k2j5',
-    comment: '재미있어요!!',
-  },
-  {
-    id: 8,
-    name: 'lllekjt',
-    comment: '재미있어요!!',
-  },
-  {
-    id: 9,
-    name: 'dldkj6',
-    comment: '재미있어요!!',
-  },
-  {
-    id: 10,
-    name: 'llkrj6',
-    comment: '재미있어요!!',
-  },
-  {
-    id: 11,
-    name: '299u6878',
-    comment: '재미있어요!!',
-  },
-  {
-    id: 12,
-    name: '2ii1o5',
-    comment: '재미있어요!!',
-  },
-  {
-    id: 13,
-    name: 'd2i5i66',
-    comment: '재미있어요!!',
-  },
-];
