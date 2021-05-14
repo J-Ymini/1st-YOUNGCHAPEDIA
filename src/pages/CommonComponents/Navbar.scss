@@ -1,6 +1,7 @@
 @import '../../styles/variables.scss';
 
 .topNav {
+  z-index: 999;
   position: fixed;
   top: 0;
   @include flexSet(space-between, none);
