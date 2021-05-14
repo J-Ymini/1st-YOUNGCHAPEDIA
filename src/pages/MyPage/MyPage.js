@@ -31,17 +31,18 @@ export default class MyPage extends Component {
             </div>
             <div className="contentBanners">
               <div className="myMovies">
-                <i class="fas fa-film"></i>
-
-                <p className="contentBannersColumn">영화</p>
-                <p className="contentBannersColumn">
-                  <span>★</span>
-                  <span>14</span>
-                </p>
-                <p className="contentBannersColumn">
-                  <span>보고싶어요</span>
-                  <span>1</span>
-                </p>
+                <button>
+                  <i class="fas fa-film"></i>
+                  <p className="contentBannersColumn">영화</p>
+                  <p className="contentBannersColumn">
+                    <span>★</span>
+                    <span>14</span>
+                  </p>
+                  <p className="contentBannersColumn">
+                    <span>보고싶어요</span>
+                    <span>1</span>
+                  </p>
+                </button>
               </div>
             </div>
           </div>
