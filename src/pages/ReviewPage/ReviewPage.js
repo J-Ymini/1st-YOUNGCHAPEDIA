@@ -47,7 +47,6 @@ export default class ReviewPage extends Component {
     const scrollTop = this.scrollBoxRef.current.scrollTop;
     const offsetTop = this.scrollBoxRef.current.offsetTop;
     const clientHeight = this.scrollBoxRef.current.clientHeight;
-    console.log(scrollHeight);
     if (offsetTop + scrollTop + clientHeight >= scrollHeight)
       this.getMovieData();
   };
