@@ -16,7 +16,7 @@ export default class Modal extends Component {
   }
 
   closeModal = e => {
-    if (this.props.isLoginClicked && !this.modalRef.current.contains(e.target))
+    if (this.props.modalOpened && !this.modalRef.current.contains(e.target))
       this.props.closeModal();
   };
 
@@ -34,3 +34,11 @@ export default class Modal extends Component {
     );
   }
 }
+
+/*
+How To Use
+
+1. Modal을 이용할 부모 컴포넌트에서 state값 준비, Modal 컴포넌트에 Props로 전달 ex. modalOpened={state값}
+
+2. 
+*/

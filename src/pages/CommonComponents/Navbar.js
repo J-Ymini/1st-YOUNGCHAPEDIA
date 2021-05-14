@@ -51,7 +51,7 @@ export default class Navbar extends Component {
     return (
       <>
         {isLoginClicked && (
-          <Modal isLoginClicked={isLoginClicked} closeModal={closeModal} />
+          <Modal modalOpened={isLoginClicked} closeModal={closeModal} />
         )}
         <nav className="topNav">
           <span className="logoMenu">
