@@ -3,7 +3,22 @@ import SimilarMovie from './SimilarMovie/SimilarMovie';
 import './MovieDetailContentsSection.scss';
 
 export default class MovieDetailContentsSection extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { similarMovieList: [] };
+  }
+
+  componentDidMount() {
+    fetch('http://localhost:3000/data/SimilarMovieMockData.json')
+      .then(res => res.json())
+      .then(res =>
+        this.setState({ similarMovieList: [...res.similarMovieData] })
+      );
+  }
+
   render() {
+    const { similarMovieList } = this.state;
+    console.log(this.state.similarMovieList);
     return (
       <section className="MovieDetailContentsSection">
         <div className="movieDetailContents">
@@ -48,7 +63,16 @@ export default class MovieDetailContentsSection extends React.Component {
                 <h2>비슷한 작품</h2>
               </header>
               <ul className="similarMovieList">
-                <SimilarMovie />
+                {similarMovieList.map(movie => {
+                  return (
+                    <SimilarMovie
+                      key={movie.id}
+                      img={movie.img}
+                      name={movie.name}
+                      rating={movie.AverageofStarRating}
+                    />
+                  );
+                })}
               </ul>
             </div>
           </article>
