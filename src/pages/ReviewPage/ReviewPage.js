@@ -30,11 +30,18 @@ export default class ReviewPage extends Component {
 
   getMovieData = () => {
     const { movieData } = this.state;
-    const MOVIE_DATA = '/data/movieMockData.json';
-    fetch(MOVIE_DATA)
+    const MOVIE_DATA = 'http://10.58.2.55:8000/users/review';
+    fetch(MOVIE_DATA, {
+      method: 'GET',
+      headers: {
+        Authorization:
+          'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxfQ.j-6V8dLx9sVbVgnyGqibQwfZi1Hhl0aS71vjFWCrbj4',
+      },
+    })
       .then(res => res.json())
       .then(movies => {
-        const updatedMovieData = movies.slice(
+        //여기 다시 검토
+        const updatedMovieData = movies[movie]?.slice(
           movieData.length,
           movieData.length + 7
         );
@@ -52,6 +59,7 @@ export default class ReviewPage extends Component {
   };
 
   render() {
+    console.log(this.state.movieData);
     return (
       <section className="reviewSection">
         <header className="reviewHeader">
