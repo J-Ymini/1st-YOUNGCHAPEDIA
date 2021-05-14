@@ -33,7 +33,7 @@ export default class Navbar extends Component {
     const { closeModal, openModal } = this;
     const logoutedBtn = (
       <>
-        <button className="navLoginBtn" onClick={openModal}>
+        <button className="navBtn navLoginBtn" onClick={openModal}>
           로그인
         </button>
         <button className="navSignInBtn" onClick={openModal}>
@@ -43,7 +43,8 @@ export default class Navbar extends Component {
     );
     const loginedBtn = (
       <>
-        <button className="navLogoutBtn">로그아웃</button>
+        <button className="navBtn navReviewBtn">평가하기</button>
+        <button className="navBtn navLogoutBtn">로그아웃</button>
         <button>
           <div className="navUserProfile"></div>
         </button>
