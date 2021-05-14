@@ -1,0 +1,127 @@
+@import '../../styles/variables.scss';
+
+.myPageSection {
+  height: 100vh;
+  @include flexColumnSet;
+  padding: 62px 0;
+  background-color: $section-background;
+
+  .myPageContainer {
+    margin: 30px 0;
+    height: 620px;
+    background-color: white;
+    border: 1px solid $line;
+    border-radius: 7px;
+
+    .myHeader {
+      width: 640px;
+      height: 200px;
+      background: linear-gradient(#e76d90, #e882a3);
+      border-top-left-radius: 7px;
+      border-top-right-radius: 7px;
+      position: relative;
+
+      &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        left: 0px;
+        background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0));
+      }
+
+      .fa-cog {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        color: white;
+      }
+    }
+
+    .myContents {
+      @include flexColumnSet;
+
+      .myProfile {
+        @include flexColumnSet;
+        background-color: white;
+        position: relative;
+
+        .myProfileColumn {
+          @include flexSet(flex-start);
+          width: 598px;
+
+          &:nth-of-type(2) {
+            margin-top: 40px;
+            height: 30px;
+            font-size: 25px;
+            font-weight: 700;
+          }
+
+          &:nth-of-type(3) {
+            height: 35px;
+            font-size: 15px;
+            color: $menu-normal-text;
+          }
+        }
+
+        img {
+          position: absolute;
+          top: -25px;
+          left: 0;
+          height: 60px;
+          width: 60px;
+          border-radius: 50%;
+          border: 1px solid $line;
+        }
+      }
+
+      .analyzeTest {
+        @include flexSet(flex-start);
+        width: 598px;
+        height: 48px;
+        border-top: 1px solid $line;
+        border-bottom: 1px solid $line;
+        margin: 20px 0;
+        button {
+          font-size: 17px;
+        }
+      }
+
+      .contentBanners {
+        .myMovies {
+          position: relative;
+          @include flexColumnSet(none, none);
+          height: 200px;
+          width: 600px;
+          background: linear-gradient(70deg, #82d957, #bbe772);
+          border-radius: 8px;
+          color: white;
+
+          .fa-film {
+            position: absolute;
+            overflow: hidden;
+            right: 30px;
+            bottom: -50px;
+            font-size: 250px;
+            opacity: 0.5;
+          }
+
+          .contentBannersColumn {
+            padding: 8px 10px 0 10px;
+            &:first-of-type {
+              font-size: 17px;
+            }
+            &:nth-of-type(2) {
+              font-size: 19px;
+            }
+            &:last-of-type {
+              margin-top: 120px;
+              font-size: 13px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
