@@ -7,7 +7,7 @@ export default class MainSectionMovieList extends React.Component {
       <li
         style={{
           transform: `translateX(-${width}px)`,
-          transition: 'transform .8s',
+          transition: 'transform .8s ', //영화 각 리스트에 translateX 스타일 지정
         }}
         className="mainSectionMovieList"
       >

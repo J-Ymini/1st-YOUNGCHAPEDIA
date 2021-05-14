@@ -5,7 +5,7 @@ export default class MainSection extends React.Component {
   constructor() {
     super();
     this.state = {
-      movieInfomationList: [],
+      movieInformationList: [],
       width: '',
       index: 1,
     };
@@ -19,14 +19,16 @@ export default class MainSection extends React.Component {
       .then(res => res.json())
       .then(movieInfomationList => {
         this.setState({
-          movieInfomationList,
+          movieInformationList: movieInfomationList,
         });
       });
   }
 
+  //다음 슬라이드 이동 함수
   handleNextSliding = () => {
-    const { movieInfomationList, index } = this.state;
-    if (index === Math.floor(movieInfomationList.length / 5)) {
+    const { movieInformationList, index } = this.state;
+
+    if (index === Math.floor(movieInformationList.length / 5)) {
       return;
     }
     this.setState({
@@ -35,6 +37,7 @@ export default class MainSection extends React.Component {
     });
   };
 
+  //이전 슬라이드 이동 함수
   handlePreSliding = () => {
     const { index } = this.state;
     if (index === 1) {
@@ -47,42 +50,53 @@ export default class MainSection extends React.Component {
   };
 
   render() {
-    const { movieInfomationList, width } = this.state;
-    return (
-      <section className="mainSection">
-        <div className="mainTitle">
-          <p>박스오피스 순위</p>
-        </div>
-        <button
-          disabled={this.state.index === 1 && 'disabled'}
-          onClick={this.handlePreSliding}
-          className="mainMoviePreBtn"
-        >
-          <i class="fas fa-chevron-left"></i>
-        </button>
-        <section className="mainMovie" ref={this.containerWidth}>
-          <ul>
-            {movieInfomationList.map(movie => {
-              const { id, korean_title, country, release_date, thumbnail_img } =
-                movie;
-              return (
-                <MainSectionMovieList
-                  width={width}
-                  key={id}
-                  title={korean_title}
-                  country={country}
-                  releaseDate={release_date}
-                  thumbnailImgUrl={thumbnail_img}
-                />
-              );
-            })}
-          </ul>
-          <div></div>
+    const { movieInformationList, width, index } = this.state;
+    const keys = Object.keys(movieInformationList)[0];
+    // 조건부 렌더링
+    if (movieInformationList.length === 0) {
+      return null;
+    } else {
+      return (
+        <section className="mainSection">
+          <div className="mainTitle">
+            <p>{keys}</p>
+          </div>
+          <button
+            disabled={index === 1 && 'disabled'} //초기값일때 이전버튼 비활성화
+            onClick={this.handlePreSliding}
+            className="mainMoviePreBtn"
+          >
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <section className="mainMovie" ref={this.containerWidth}>
+            <ul>
+              {movieInformationList[keys].map(movie => {
+                const {
+                  id,
+                  korean_title,
+                  country,
+                  release_date,
+                  thumbnail_img,
+                } = movie;
+                return (
+                  <MainSectionMovieList
+                    width={width}
+                    key={id}
+                    title={korean_title}
+                    country={country}
+                    releaseDate={release_date}
+                    thumbnailImgUrl={thumbnail_img}
+                  />
+                );
+              })}
+            </ul>
+            <div></div>
+          </section>
+          <button onClick={this.handleNextSliding} className="mainMovieNextBtn">
+            <i class="fas fa-chevron-right"></i>
+          </button>
         </section>
-        <button onClick={this.handleNextSliding} className="mainMovieNextBtn">
-          <i class="fas fa-chevron-right"></i>
-        </button>
-      </section>
-    );
+      );
+    }
   }
 }
