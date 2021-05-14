@@ -31,7 +31,7 @@ export default class MainSection extends React.Component {
     }
     this.setState({
       index: index + 1,
-      width: this.containerWidth.current.scrollWidth * index + 1,
+      width: this.containerWidth.current.scrollWidth * index,
     });
   };
 

@@ -1,8 +1,8 @@
 @import '../../../../styles/variables.scss';
 
 .mainSection {
-  position: relative;
   @include flexColumnSet();
+  position: relative;
   margin-bottom: 50px;
 
   .mainTitle {
@@ -20,10 +20,10 @@
 
   .mainMovie {
     @include flexSet();
+    position: relative;
     width: 85vw;
     max-width: 1400px;
     overflow: hidden;
-    position: relative;
 
     ul {
       @include flexSet(start);
@@ -43,8 +43,8 @@
     background-color: $white;
     border-radius: 50%;
     z-index: 5;
-    cursor: pointer;
     box-shadow: 1px 1px 1px 1px $section-aside-text;
+    cursor: pointer;
   }
 
   .mainMovieNextBtn {
