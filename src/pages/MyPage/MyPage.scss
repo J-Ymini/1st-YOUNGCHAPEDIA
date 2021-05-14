@@ -1,7 +1,6 @@
 @import '../../styles/variables.scss';
 
 .myPageSection {
-  height: 100vh;
   @include flexColumnSet;
   padding: 62px 0;
   background-color: $section-background;
@@ -14,20 +13,20 @@
     border-radius: 7px;
 
     .myHeader {
+      position: relative;
       width: 640px;
       height: 200px;
       background: linear-gradient(#e76d90, #e882a3);
       border-top-left-radius: 7px;
       border-top-right-radius: 7px;
-      position: relative;
 
       &::before {
         content: '';
-        display: block;
         position: absolute;
         top: 0px;
         right: 0px;
         left: 0px;
+        display: block;
         background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0));
       }
 
@@ -43,9 +42,9 @@
       @include flexColumnSet;
 
       .myProfile {
+        position: relative;
         @include flexColumnSet;
         background-color: white;
-        position: relative;
 
         .myProfileColumn {
           @include flexSet(flex-start);
@@ -60,8 +59,8 @@
 
           &:nth-of-type(3) {
             height: 35px;
-            font-size: 15px;
             color: $menu-normal-text;
+            font-size: 15px;
           }
         }
 
@@ -71,18 +70,19 @@
           left: 0;
           height: 60px;
           width: 60px;
-          border-radius: 50%;
           border: 1px solid $line;
+          border-radius: 50%;
         }
       }
 
       .analyzeTest {
         @include flexSet(flex-start);
+        margin: 20px 0;
         width: 598px;
         height: 48px;
         border-top: 1px solid $line;
         border-bottom: 1px solid $line;
-        margin: 20px 0;
+
         button {
           font-size: 17px;
         }
@@ -100,21 +100,24 @@
 
           .fa-film {
             position: absolute;
-            overflow: hidden;
             right: 30px;
             bottom: -50px;
             font-size: 250px;
+            overflow: hidden;
             opacity: 0.5;
           }
 
           .contentBannersColumn {
             padding: 8px 10px 0 10px;
+
             &:first-of-type {
               font-size: 17px;
             }
+
             &:nth-of-type(2) {
               font-size: 19px;
             }
+
             &:last-of-type {
               margin-top: 120px;
               font-size: 13px;
