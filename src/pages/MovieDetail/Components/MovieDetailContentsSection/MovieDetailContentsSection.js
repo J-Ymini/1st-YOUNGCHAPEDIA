@@ -1,8 +1,74 @@
 import React from 'react';
+import Comment from './Components/Comment/Comment';
+
 import './MovieDetailContentsSection.scss';
 
 export default class MovieDetailContentsSection extends React.Component {
+  constructor(props) {
+    super(props);
+    this.commentList = React.createRef();
+  }
+
+  goToPrevious = () => {
+    const { style } = this.commentList.current;
+    style.transform = "translate3d(500px, 0, 0)'
+    console.log('안녕하세요');
+  };
+
+  goToNext = () => {
+    console.log('안녕하세요');
+    console.log(this.commentList.current);
+  };
+
   render() {
+    const COMMENT_DATA = [
+      {
+        id: 1,
+        name: 'drakeofficial',
+        comment: '안녕하세요',
+      },
+      {
+        id: 2,
+        name: 'theweeknd',
+        comment: '반갑습니다.',
+      },
+      {
+        id: 3,
+        name: 'justinbieber',
+        comment: '재미있어요!!',
+      },
+      {
+        id: 4,
+        name: 'wjsdydalskdf',
+        comment: '재미있어요!!',
+      },
+      {
+        id: 5,
+        name: 'dydalsdl15',
+        comment: '재미있어요!!',
+      },
+      {
+        id: 6,
+        name: 'slk2kj51',
+        comment: '재미있어요!!',
+      },
+      {
+        id: 7,
+        name: '1l1k2j5',
+        comment: '재미있어요!!',
+      },
+      {
+        id: 8,
+        name: 'lllekjt',
+        comment: '재미있어요!!',
+      },
+      {
+        id: 9,
+        name: 'dlkj16',
+        comment: '재미있어요!!',
+      },
+    ];
+
     return (
       <section className="MovieDetailContentsSection">
         <div className="movieDetailContents">
@@ -38,7 +104,28 @@ export default class MovieDetailContentsSection extends React.Component {
                 </div>
                 <button>더보기</button>
               </header>
-              <article> 코멘트 컴포넌트가 들어갈 자리입니다.</article>
+              <article className="commentContainer">
+                <div className="commentSlideButton">
+                  <button className="prevButton" onClick={this.goToPrevious}>
+                    &#8592;
+                  </button>
+                  <button className="nextButton" onClick={this.goToNext}>
+                    &#8594;
+                  </button>
+                </div>
+                <ul ref={this.commentList} className="commentList">
+                  {COMMENT_DATA.map(comment => {
+                    return (
+                      <Comment
+                        key={comment.id}
+                        number={comment.id}
+                        name={comment.name}
+                        content={comment.comment}
+                      />
+                    );
+                  })}
+                </ul>
+              </article>
             </div>
           </article>
           <article className="similarMovie">
