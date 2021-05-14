@@ -96,14 +96,14 @@
 
   .commentList {
     display: flex;
+    transition: all 1s;
   }
 
   .commentContainer {
-    overflow-x: scroll;
+    overflow: hidden;
 
     .commentSlideButton {
       display: none;
-      transition: all 3s;
     }
 
     &:hover .commentSlideButton {
@@ -117,6 +117,7 @@
     .nextButton {
       font-size: 2em;
       color: grey;
+      z-index: 50;
     }
 
     .nextButton {
