@@ -18,7 +18,6 @@ export default class MovieDetailContentsSection extends React.Component {
 
   render() {
     const { similarMovieList } = this.state;
-    console.log(this.state.similarMovieList);
     return (
       <section className="MovieDetailContentsSection">
         <div className="movieDetailContents">
@@ -68,7 +67,7 @@ export default class MovieDetailContentsSection extends React.Component {
                     <SimilarMovie
                       key={movie.id}
                       img={movie.img}
-                      name={movie.name}
+                      name={movie.koreanTitle}
                       rating={movie.AverageofStarRating}
                     />
                   );
