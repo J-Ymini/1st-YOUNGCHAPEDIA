@@ -22,9 +22,11 @@ export default class MovieDetailContentsSection extends React.Component {
   goToNext = () => {
     const { style } = this.commentList.current;
     const { commentListContents } = this.state;
-    const commentLength = parseInt(commentListContents.length / 3);
+    const commentLength = Math.floor(commentListContents.length / 3);
 
-    if (this.count.current === commentLength) return;
+    if (this.count.current === commentLength) {
+      this.count.current = -1;
+    }
     this.count.current += 1;
     style.transform = `translate(-${931 * this.count.current}px, 0)`;
   };
@@ -33,7 +35,7 @@ export default class MovieDetailContentsSection extends React.Component {
     fetch('http://localhost:3000/data/MovieDetailPageComments.json')
       .then(res => res.json())
       .then(res => {
-        this.setState({ commentListContents: res.commentData });
+        this.setState({ commentListContents: [...res.commentData] });
       });
   }
 
