@@ -16,8 +16,7 @@ export default class Modal extends Component {
   }
 
   closeModal = e => {
-    if (this.props.modalOpened && !this.modalRef.current.contains(e.target))
-      this.props.closeModal();
+    if (!this.modalRef.current.contains(e.target)) this.props.closeModal();
   };
 
   render() {
@@ -39,12 +38,7 @@ export default class Modal extends Component {
 ------------
 How To Use
 ------------
-1. Modal을 이용할 부모 컴포넌트에서 state값을 초기값 false로 준비하여 Modal 컴포넌트에 Props로 전달해주세요. props이름은  modalOpened입니다. 이 state값으로 모달창을 키고 끌거예요~!
-ex.<Modal
-      modalOpened={isLoginClicked}
-    />
-------------
-2. 부모 컴포넌트 안에 closeModal 메소드를 작성해주세요
+1. 모달창을 실행할 부모 컴포넌트 안에 closeModal 메소드를 작성해주세요
   closeModal = () => {
     this.setState({
       설정하신 state 이름: false,
@@ -55,9 +49,9 @@ ex.<Modal
     />
   
 ------------
-3. Modal 안에 넣을 컴포넌트를 부모 컴포넌트에서 전달해주세요. props 이름은 childComponent입니다.
+2. Modal 안에 넣을 컴포넌트를 부모 컴포넌트에서 전달해주세요. props 이름은 childComponent입니다.
 ex.<Modal
-      childComponent={test} <- test 컴포넌트 전달
+      childComponent={<LoginSignInForm />}
     />
 ------------
 */
