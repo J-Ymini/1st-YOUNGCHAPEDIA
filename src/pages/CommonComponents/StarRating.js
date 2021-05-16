@@ -92,6 +92,8 @@ export default class StarRating extends Component {
         rating: this.state.rating,
       }),
     });
+    // 의도 : 별점 평가 후 실시간으로 count 반영
+    this.props.updateRatingCount();
   };
 
   debounce = (func, timeout = 100) => {
