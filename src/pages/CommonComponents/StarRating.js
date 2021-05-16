@@ -30,7 +30,6 @@ export default class StarRating extends Component {
   changeStarRating = e => {
     const starX =
       e.clientX - this.starContainerRef.current.getBoundingClientRect().left;
-    console.log(starX);
     if (starX < 10) {
       this.setState({
         rating: 0.5,
