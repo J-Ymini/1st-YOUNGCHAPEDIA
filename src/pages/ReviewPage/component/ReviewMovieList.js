@@ -14,6 +14,7 @@ export default class ReviewMovieList extends Component {
       movieCountry,
       updateRatingCount,
     } = this.props;
+
     return (
       <li className="reviewMovieList">
         <img alt={`${movieTitle}포스터`} src={imgSrc} />
@@ -30,11 +31,7 @@ export default class ReviewMovieList extends Component {
             </div>
           </div>
           <div className="movieInfoColumn">
-            <StarRating
-              id={id}
-              postRatings={postRatings}
-              updateRatingCount={updateRatingCount}
-            />
+            <StarRating id={id} updateRatingCount={updateRatingCount} />
           </div>
         </div>
       </li>
