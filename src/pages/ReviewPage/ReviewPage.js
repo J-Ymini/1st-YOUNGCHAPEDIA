@@ -18,6 +18,7 @@ export default class ReviewPage extends Component {
 
   componentDidMount() {
     this.getMovieData();
+    this.updateRatingCount();
     this.scrollBoxRef.current.addEventListener(
       'scroll',
       throttle(this.infiniteScroll)
@@ -42,10 +43,8 @@ export default class ReviewPage extends Component {
           movieData.length,
           movieData.length + 7
         );
-        const updatedRatingsCount = res['rating_movies'];
         this.setState({
           movieData: [...movieData, ...updatedMovieData],
-          ratingsCount: updatedRatingsCount,
         });
       });
 
@@ -70,6 +69,21 @@ export default class ReviewPage extends Component {
     const clientHeight = this.scrollBoxRef.current.clientHeight;
     if (offsetTop + scrollTop + clientHeight >= scrollHeight)
       this.getMovieData();
+  };
+
+  updateRatingCount = () => {
+    fetch(API_URLS.REVIEW, {
+      headers: {
+        Authorization: token,
+      },
+    })
+      .then(res => res.json())
+      .then(res => {
+        const updatedRatingsCount = res['rating_movies'];
+        this.setState({
+          ratingsCount: updatedRatingsCount,
+        });
+      });
   };
 
   render() {
@@ -116,6 +130,7 @@ export default class ReviewPage extends Component {
                     <StarRating
                       id={movie.movie_id}
                       postRatings={this.postRatings}
+                      updateRatingCount={this.updateRatingCount}
                     />
                   </div>
                 </div>
