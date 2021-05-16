@@ -144,7 +144,10 @@ export default class ReviewPage extends Component {
                     </div>
                   </div>
                   <div className="movieInfoColumn">
-                    <StarRating postRatings={this.postRatings} />
+                    <StarRating
+                      id={movie.movie_id}
+                      postRatings={this.postRatings}
+                    />
                   </div>
                 </div>
               </li>
