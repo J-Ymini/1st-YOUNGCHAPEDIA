@@ -4,7 +4,6 @@ import './SimilarMovie.scss';
 export default class SimilarMovie extends React.Component {
   render() {
     const { img, name, rating } = this.props;
-    console.log(name);
     return (
       <>
         <li className="SimilarMovie">
