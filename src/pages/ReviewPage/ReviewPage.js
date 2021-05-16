@@ -1,7 +1,8 @@
 import React, { Component, createRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEllipsisV, faStar } from '@fortawesome/free-solid-svg-icons';
+import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 import { throttle } from '../../utils/throttle';
+import StarRating from '../CommonComponents/StarRating';
 import './ReviewPage.scss';
 
 export default class ReviewPage extends Component {
@@ -9,7 +10,7 @@ export default class ReviewPage extends Component {
     super(props);
     this.state = {
       movieData: [],
-      genreFilterData: [],
+      ratingsCount: 0,
     };
     this.scrollBoxRef = createRef();
   }
@@ -22,37 +23,43 @@ export default class ReviewPage extends Component {
     );
   }
 
-  componentWillUnmount() {
-    this.scrollBoxRef.current.removeEventListener(
-      'scroll',
-      throttle(this.infiniteScroll)
-    );
-  }
-
   getMovieData = () => {
+    let token = localStorage.getItem('TOKEN') || '';
     const { movieData } = this.state;
-    // const MOVIE_DATA = 'http://10.58.2.55:8000/users/review';
-    const MOVIE_DATA = '/data/expectedData.json';
-    fetch(MOVIE_DATA, {
-      method: 'GET',
-      // headers: {
-      //   Authorization:
-      //     'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxfQ.j-6V8dLx9sVbVgnyGqibQwfZi1Hhl0aS71vjFWCrbj4',
-      // },
+    fetch(API_URLS.REVIEW, {
+      headers: {
+        Authorization: token,
+      },
     })
-      .then(res => res.json())
-      .then(movies => {
-        //여기 다시 검토
-        const updatedMovieData = movies['result']?.slice(
+      .then(res => {
+        if (res.status === 200 && token) {
+          return res.json();
+        }
+      })
+      .then(res => {
+        const updatedMovieData = res['result'].slice(
           movieData.length,
           movieData.length + 7
         );
-        const genreFilterData = movies['genre'];
+        const updatedRatingsCount = res['rating_movies'];
         this.setState({
           movieData: [...movieData, ...updatedMovieData],
-          genreFilterData: [...genreFilterData],
+          ratingsCount: updatedRatingsCount,
         });
       });
+
+    // 서버 연결 안됐을 때 테스트용
+    // fetch('/data/movieMockData.json')
+    //   .then(res => res.json())
+    //   .then(res => {
+    //     const updatedMovieData = res.slice(
+    //       movieData.length,
+    //       movieData.length + 7
+    //     );
+    //     this.setState({
+    //       movieData: [...movieData, ...updatedMovieData],
+    //     });
+    //   });
   };
 
   infiniteScroll = () => {
@@ -64,15 +71,42 @@ export default class ReviewPage extends Component {
       this.getMovieData();
   };
 
-  render() {
-    console.log(
-      '무비' + this.state.movieData,
-      '장르' + this.state.genreFilterData
+  postRatings = e => {
+    let token = localStorage.getItem('TOKEN') || '';
+    const movieId = e.target.parentNode.parentNode.parentNode.id;
+    const ratingNum = parseInt(e.target.previousElementSibling.value);
+    console.log(movieId, ratingNum);
+    fetch(API_URLS.REVIEW, {
+      method: 'POST',
+      headers: {
+        Authorization: token,
+      },
+      body: JSON.stringify({
+        movie: movieId,
+        rating: ratingNum,
+      }),
+    }).then(
+      fetch(API_URLS.REVIEW, {
+        method: 'GET',
+        headers: {
+          Authorization: token,
+        },
+      })
+        .then(res => res.json())
+        .then(res => {
+          const test = res['rating_movies'];
+          this.setState({
+            ratingsCount: test,
+          });
+        })
     );
+  };
+
+  render() {
     return (
       <section className="reviewSection">
         <header className="reviewHeader">
-          <h2 className="reviewCount">14</h2>
+          <h2 className="reviewCount">{this.state.ratingsCount}</h2>
           <h3 className="reviewNotice">
             이제 알듯 말듯 하네요. 조금만 더 평가해주세요!
           </h3>
@@ -94,7 +128,7 @@ export default class ReviewPage extends Component {
         <div className="reviewList" ref={this.scrollBoxRef}>
           <ul>
             {this.state.movieData.map(movie => (
-              <li key={movie.id}>
+              <li key={movie.movie_id} id={movie.movie_id}>
                 <img alt={`${movie.title}포스터`} src={movie.thumbnail} />
                 <div className="movieInfos">
                   <div className="movieInfoColumn">
@@ -109,11 +143,7 @@ export default class ReviewPage extends Component {
                     </div>
                   </div>
                   <div className="movieInfoColumn">
-                    <FontAwesomeIcon icon={faStar} />
-                    <FontAwesomeIcon icon={faStar} />
-                    <FontAwesomeIcon icon={faStar} />
-                    <FontAwesomeIcon icon={faStar} />
-                    <FontAwesomeIcon icon={faStar} />
+                    <StarRating postRatings={this.postRatings} />
                   </div>
                 </div>
               </li>
