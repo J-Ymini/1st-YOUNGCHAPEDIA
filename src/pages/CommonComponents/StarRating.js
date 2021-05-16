@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 import './StarRating.scss';
 
 export default class StarRating extends Component {
@@ -7,50 +7,50 @@ export default class StarRating extends Component {
     this.state = {
       rating: 0,
     };
-  }
-
-  componentDidMount() {
-    fetch(URL);
+    this.starContainerRef = createRef();
   }
 
   changeStarRating = e => {
-    if (e.clientX < 10) {
+    const starX =
+      e.clientX - this.starContainerRef.current.getBoundingClientRect().left;
+    console.log(starX);
+    if (starX < 10) {
       this.setState({
         rating: 0.5,
       });
-    } else if (10 <= e.clientX && e.clientX < 23) {
+    } else if (10 <= starX && starX < 20) {
       this.setState({
         rating: 1,
       });
-    } else if (23 <= e.clientX && e.clientX < 33) {
+    } else if (20 <= starX && starX < 33) {
       this.setState({
         rating: 1.5,
       });
-    } else if (33 <= e.clientX && e.clientX < 44) {
+    } else if (33 <= starX && starX < 42) {
       this.setState({
         rating: 2,
       });
-    } else if (44 <= e.clientX && e.clientX < 56) {
+    } else if (42 <= starX && starX < 55) {
       this.setState({
         rating: 2.5,
       });
-    } else if (56 <= e.clientX && e.clientX < 67) {
+    } else if (55 <= starX && starX < 64) {
       this.setState({
         rating: 3,
       });
-    } else if (67 <= e.clientX && e.clientX < 79) {
+    } else if (64 <= starX && starX < 77) {
       this.setState({
         rating: 3.5,
       });
-    } else if (79 <= e.clientX && e.clientX < 89) {
+    } else if (77 <= starX && starX < 87) {
       this.setState({
         rating: 4,
       });
-    } else if (89 <= e.clientX && e.clientX < 101) {
+    } else if (87 <= starX && starX < 99) {
       this.setState({
         rating: 4.5,
       });
-    } else if (101 <= e.clientX && e.clientX < 112) {
+    } else if (99 <= starX && starX < 110) {
       this.setState({
         rating: 5,
       });
@@ -65,9 +65,6 @@ export default class StarRating extends Component {
     this.changeStarRating(e);
     // fetch(URL, {
     //   method: 'POST',
-    //   header:{
-    //     Authroization:token
-    //   },
     //   body: {
     //     id: 1,
     //     rating: this.state.rating,
@@ -75,14 +72,26 @@ export default class StarRating extends Component {
     // });
   };
 
+  debounce = (func, timeout = 100) => {
+    let timer;
+    return (...args) => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        func.apply(this, args);
+      }, timeout);
+    };
+  };
+
   render() {
+    const { changeStarRating, debounce } = this;
     const status = this.state.rating;
     return (
       <>
         <div
+          ref={this.starContainerRef}
           className="starContainer"
-          onClick={this.postStarRating}
-          onMouseMove={this.changeStarRating}
+          onClick={changeStarRating}
+          onMouseMove={debounce(e => changeStarRating(e))}
         >
           {Rating[status]}
         </div>
