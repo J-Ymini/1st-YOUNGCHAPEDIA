@@ -3,7 +3,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import Modal from './Modal';
-import LoginSignInForm from '../LoginSignInForm/LoginSignInForm';
+import LoginSignInForm from '../LoginSignIn/LoginSignInForm';
 import './Navbar.scss';
 
 class Navbar extends Component {
@@ -70,13 +70,14 @@ class Navbar extends Component {
         </button>
       </>
     );
+
     return (
       <>
         {modalOpened && (
           <Modal
             closeModal={closeModal}
             childComponent={
-              <LoginSignInForm isSignBtnClicked={this.state.isSignBtnClicked} />
+              <LoginSignInForm isSignBtnClicked={isSignBtnClicked} />
             }
           />
         )}
