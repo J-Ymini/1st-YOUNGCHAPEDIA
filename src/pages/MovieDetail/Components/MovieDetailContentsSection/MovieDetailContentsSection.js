@@ -11,8 +11,7 @@ export default class MovieDetailContentsSection extends React.Component {
   }
 
   handleScroll = () => {
-    const { scrollTop, scrollHeight, offsetHeight, clientHeight, offsetTop } =
-      document.documentElement;
+    const { scrollTop, clientHeight } = document.documentElement;
 
     const eventStartHeight = scrollTop + clientHeight;
     if (eventStartHeight > 1260) {
