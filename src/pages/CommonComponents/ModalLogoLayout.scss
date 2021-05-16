@@ -1,13 +1,18 @@
 @import '../../styles/variables.scss';
 
-.modalLogo {
-  height: 44px;
-  font-size: 30px;
-  font-family: 'Oswald', sans-serif;
+.modalSize {
+  @include flexColumnSet;
+  padding: 100px 0;
 
-  span:first-of-type {
-    margin-right: 5px;
-    color: $hot-pink;
-    font-weight: 700;
+  .modalLogo {
+    height: 44px;
+    font-size: 30px;
+    font-family: 'Oswald', sans-serif;
+
+    span:first-of-type {
+      margin-right: 5px;
+      color: $hot-pink;
+      font-weight: 700;
+    }
   }
 }
