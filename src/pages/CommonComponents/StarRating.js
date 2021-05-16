@@ -84,7 +84,7 @@ export default class StarRating extends Component {
     // fetch(URL, {
     //   method: 'POST',
     //   body: {
-    //     id: 1,
+    //     id: this.props.id,
     //     rating: this.state.rating,
     //   },
     // });
