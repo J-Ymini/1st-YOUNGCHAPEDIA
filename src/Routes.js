@@ -6,18 +6,19 @@ import Footer from './pages/CommonComponents/Footer';
 // import login
 // import mypage
 import Navbar from './pages/CommonComponents/Navbar';
+import StarRating from './pages/CommonComponents/StarRating';
 
 class Routes extends React.Component {
   render() {
     return (
       <Router>
-        <Navbar />
+        {/* <Navbar /> */}
         <Switch>
-          <Route exact path="/" component={Main}></Route>
+          <Route exact path="/" component={StarRating}></Route>
           {/* <Route exact path="/contents" component={}></Route> */}
           {/* <Route exact path="/myPage" component={}></Route> */}
         </Switch>
-        <Footer />
+        {/* <Footer /> */}
       </Router>
     );
   }

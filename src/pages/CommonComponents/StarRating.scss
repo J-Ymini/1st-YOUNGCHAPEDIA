@@ -1,0 +1,42 @@
+.starContainer {
+  display: flex;
+  justify-self: flex-start;
+
+  .stars-blank {
+    position: relative;
+    padding: 0;
+  }
+
+  .stars-half {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+  }
+
+  .stars-full {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+  }
+
+  .stars-full::before {
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    content: '\f005';
+    color: #f8ce0b;
+  }
+
+  .stars-blank::before {
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    content: '\f005';
+    color: #ebebeb;
+  }
+
+  .stars-half::before {
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    content: '\f089';
+    color: #ffd900;
+  }
+}
