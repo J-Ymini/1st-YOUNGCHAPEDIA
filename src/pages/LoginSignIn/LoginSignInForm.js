@@ -30,11 +30,8 @@ export default class Form extends Component {
       })
       .then(res => {
         if (res) {
-          // ToDo : 토큰 완성시 이어서 작업 예정
-          // save localstroage
-          // localStorage.setItem('TOKEN', res.token);
-          // push to main
-          // this.props.history.push('/');
+          localStorage.setItem('TOKEN', res.token);
+          this.props.history.push('/review');
         } else {
           alert('로그인 하세요');
         }
@@ -57,44 +54,40 @@ export default class Form extends Component {
 
   checkIdValid = () => {
     const { id } = this.state;
-    let isIdValid = true;
     if (id) {
       const checkIdCondition =
         /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-      return (isIdValid = checkIdCondition.test(id));
-    } else return isIdValid;
+      return checkIdCondition.test(id);
+    } else return true;
   };
 
   checkPwValid = () => {
     const { pw } = this.state;
-    let isPwValid = true;
     if (pw) {
       const checkChars = /(?=.*[A-Za-z])/;
       const checkNums = /(?=.*\d)/;
       const checkMarks = /(?=.*[$@$!%*#?&])/;
       const checkCounts = /^[A-Za-z\d$@$!%*#?&]{10,}$/;
-      return (isPwValid =
+      return (
         checkCounts.test(pw) &&
         [checkChars.test(pw), checkNums.test(pw), checkMarks.test(pw)].filter(
           Boolean
-        ).length >= 2);
-    } else return isPwValid;
+        ).length >= 2
+      );
+    } else return true;
   };
 
   checkNameValid = () => {
     const { name } = this.state;
-    let isNameValid = true;
     if (name) {
-      isNameValid = name.length > 1;
-      return isNameValid;
-    } else return isNameValid;
+      return name.length > 1;
+    } else return true;
   };
 
   render() {
     const { id, pw, name } = this.state;
-    //default : LoginBtn 클릭했을 때
-    // const { isSignInBtnClicked } = this.props;
-    const isSignInBtnClicked = false;
+    //default : LoginBtn 클릭했을 때 (false)
+    const { isSignInBtnClicked } = this.props;
     const {
       handleInput,
       requestLogin,
@@ -110,7 +103,7 @@ export default class Form extends Component {
     const isInfoAllValid = isIdValid && isPwValid && isNameValid;
 
     return (
-      <>
+      <div className="loginSignInContainer">
         {isSignInBtnClicked ? (
           <h2 className="formHeader">회원가입</h2>
         ) : (
@@ -223,7 +216,7 @@ export default class Form extends Component {
             </p>
           </>
         )}
-      </>
+      </div>
     );
   }
 }
