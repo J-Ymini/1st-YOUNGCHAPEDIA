@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 import { throttle } from '../../utils/throttle';
 import StarRating from '../CommonComponents/StarRating';
+import API_URLS from '../../config';
 import './ReviewPage.scss';
 
 export default class ReviewPage extends Component {
