@@ -81,13 +81,17 @@ export default class StarRating extends Component {
   postStarRating = e => {
     this.changeStarRating(e);
     // ToDo : 별점 POST 요청 테스트
-    // fetch(URL, {
-    //   method: 'POST',
-    //   body: {
-    //     id: this.props.id,
-    //     rating: this.state.rating,
-    //   },
-    // });
+    let token = localStorage.getItem('TOKEN') || '';
+    fetch(API_URLS.REVIEW, {
+      method: 'POST',
+      headers: {
+        Authorization: token,
+      },
+      body: JSON.stringify({
+        movie: this.props.id,
+        rating: this.state.rating,
+      }),
+    });
   };
 
   debounce = (func, timeout = 100) => {
@@ -101,14 +105,14 @@ export default class StarRating extends Component {
   };
 
   render() {
-    const { changeStarRating, debounce } = this;
+    const { postStarRating, changeStarRating, debounce } = this;
     const status = this.state.rating;
     return (
       <>
         <div
           ref={this.starContainerRef}
           className="starContainer"
-          onClick={changeStarRating}
+          onClick={postStarRating}
           onMouseMove={debounce(e => changeStarRating(e))}
         >
           {Rating[status]}
