@@ -31,6 +31,10 @@ export default class MovieDetailContentsSection extends React.Component {
     window.addEventListener('scroll', this.handleScroll);
   };
 
+  componentWillUnmount = () => {
+    window.removeEventListener('scroll', this.handleScroll);
+  };
+
   render() {
     const { similarMovieList } = this.state;
     return (
