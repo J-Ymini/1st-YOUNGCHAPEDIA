@@ -72,7 +72,9 @@ export default class MovieDetailContentsSection extends React.Component {
               <header>
                 <div className="commentSubjectAndCount">
                   <h2>코멘트</h2>
-                  <span>20+</span>
+                  <span>
+                    {commentListContents && commentListContents.length} 개
+                  </span>
                 </div>
                 <button>더보기</button>
               </header>
