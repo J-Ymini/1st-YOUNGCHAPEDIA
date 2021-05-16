@@ -5,7 +5,6 @@ export default class MainSection extends React.Component {
   constructor() {
     super();
     this.state = {
-      // movieInformationList: [],
       width: '',
       index: 0,
     };
@@ -16,8 +15,7 @@ export default class MainSection extends React.Component {
   handleNextSliding = () => {
     const { index } = this.state;
     const { movieInformationList } = this.props;
-
-    if (index === Math.floor(movieInformationList.length / 5)) {
+    if (index === Math.floor(movieInformationList.length / 5) - 1) {
       return;
     }
     this.setState({
@@ -41,6 +39,7 @@ export default class MainSection extends React.Component {
   render() {
     const { width, index } = this.state;
     const { listTitle, movieInformationList } = this.props;
+
     return (
       <section className="mainSection">
         <div className="mainTitle">

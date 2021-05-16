@@ -10,7 +10,7 @@ export default class Main extends React.Component {
   }
 
   componentDidMount() {
-    fetch('http://192.168.25.36:8000/movies/movies', {
+    fetch('http://localhost:3000/data/MainMockData.json', {
       method: 'GET',
     })
       .then(res => res.json())
@@ -25,10 +25,10 @@ export default class Main extends React.Component {
     const { movieInformationList } = this.state;
     const listTitle = Object.keys(movieInformationList);
     const listTitleIndex = [];
+
     for (let i = 0; i < listTitle.length; i++) {
       listTitleIndex.push(i);
     }
-    console.log(listTitleIndex);
     return (
       <>
         {movieInformationList && (

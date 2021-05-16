@@ -3,5 +3,5 @@
 .main {
   @include flexColumnSet(start);
   margin-top: 90px;
-  height: 100vh;
+  height: 100%;
 }
