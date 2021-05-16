@@ -16,7 +16,7 @@ export default class Main extends React.Component {
       .then(res => res.json())
       .then(movieInformationList => {
         this.setState({
-          movieInformationList: movieInformationList,
+          movieInformationList,
         });
       });
   }

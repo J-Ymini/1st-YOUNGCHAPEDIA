@@ -37,9 +37,9 @@ export default class MainSection extends React.Component {
   };
 
   render() {
-    const { width, index } = this.state;
+    const { width, index, movieListRanking } = this.state;
     const { listTitle, movieInformationList } = this.props;
-
+    console.log('안덱스값', movieInformationList);
     return (
       <section className="mainSection">
         <div className="mainTitle">
@@ -55,16 +55,26 @@ export default class MainSection extends React.Component {
         <section className="mainMovie" ref={this.containerWidth}>
           <ul>
             {movieInformationList.map(movie => {
-              const { id, korean_title, country, release_date, thumbnail_img } =
-                movie;
+              const {
+                id,
+                korean_title,
+                country,
+                release_date,
+                thumbnail_img,
+                netflix,
+                watcha,
+              } = movie;
               return (
                 <MainSectionMovieList
-                  width={width}
+                  movieListRanking={movieListRanking}
                   key={id}
                   title={korean_title}
                   country={country}
                   releaseDate={release_date}
                   thumbnailImgUrl={thumbnail_img}
+                  watcha={watcha}
+                  netflix={netflix}
+                  width={width}
                 />
               );
             })}
