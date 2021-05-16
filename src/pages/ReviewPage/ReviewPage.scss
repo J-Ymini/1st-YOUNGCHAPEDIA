@@ -98,48 +98,6 @@
 
     ul {
       height: 100%;
-
-      li {
-        @include flexSet(flex-start);
-        padding: 10px 20px;
-        width: 640px;
-        border-bottom: 1px solid $line;
-
-        img {
-          margin-right: 10px;
-          width: 74px;
-          height: 108px;
-        }
-      }
-
-      .movieInfos {
-        width: 100%;
-
-        .movieInfoColumn {
-          &:last-of-type {
-            margin-top: 30px;
-            color: $star-blank;
-          }
-
-          .reviewMovieTitle {
-            @include flexSet(space-between);
-
-            span:first-of-type {
-              font-size: 0.9rem;
-            }
-
-            .reviewIcon {
-              color: $movie-info-text;
-            }
-          }
-
-          .movieYearCountry {
-            margin-top: 8px;
-            color: $info-sub-text;
-            font-size: 0.7rem;
-          }
-        }
-      }
     }
   }
 }

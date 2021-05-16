@@ -1,8 +1,6 @@
 import React, { Component, createRef } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 import { throttle } from '../../utils/throttle';
-import StarRating from '../CommonComponents/StarRating';
+import ReviewMovieList from './component/ReviewMovieList';
 import API_URLS from '../../config';
 import './ReviewPage.scss';
 
@@ -112,29 +110,16 @@ export default class ReviewPage extends Component {
         <div className="reviewList" ref={this.scrollBoxRef}>
           <ul>
             {this.state.movieData.map(movie => (
-              <li key={movie.movie_id} id={movie.movie_id}>
-                <img alt={`${movie.title}포스터`} src={movie.thumbnail} />
-                <div className="movieInfos">
-                  <div className="movieInfoColumn">
-                    <div className="reviewMovieTitle">
-                      <span>{movie.title}</span>
-                      <span className="reviewIcon">
-                        <FontAwesomeIcon icon={faEllipsisV} />
-                      </span>
-                    </div>
-                    <div className="movieYearCountry">
-                      {movie.release_date.slice(0, 4)}·{movie.country}
-                    </div>
-                  </div>
-                  <div className="movieInfoColumn">
-                    <StarRating
-                      id={movie.movie_id}
-                      postRatings={this.postRatings}
-                      updateRatingCount={this.updateRatingCount}
-                    />
-                  </div>
-                </div>
-              </li>
+              <ReviewMovieList
+                key={movie.movie_id}
+                id={movie.movie_id}
+                movieTitle={movie.title}
+                imgSrc={movie.thumbnail}
+                movieReleaseDate={movie.release_date}
+                movieCountry={movie.country}
+                postRatings={this.postRatings}
+                updateRatingCount={this.updateRatingCount}
+              />
             ))}
           </ul>
         </div>
