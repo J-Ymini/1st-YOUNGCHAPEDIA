@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import API_URLS from '../../config';
+import ModalLogoLayout from '../CommonComponents/ModalLogoLayout';
 import './LoginSignInForm.scss';
 
-export default class Form extends Component {
+export default class LoginSignInForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -87,7 +88,7 @@ export default class Form extends Component {
   render() {
     const { id, pw, name } = this.state;
     //default : LoginBtn 클릭했을 때 (false)
-    const { isSignInBtnClicked } = this.props;
+    const { isSignBtnClicked } = this.props;
     const {
       handleInput,
       requestLogin,
@@ -103,14 +104,14 @@ export default class Form extends Component {
     const isInfoAllValid = isIdValid && isPwValid && isNameValid;
 
     return (
-      <div className="loginSignInContainer">
-        {isSignInBtnClicked ? (
+      <ModalLogoLayout>
+        {isSignBtnClicked ? (
           <h2 className="formHeader">회원가입</h2>
         ) : (
           <h2 className="formHeader">로그인</h2>
         )}
         <form className="form">
-          {isSignInBtnClicked && (
+          {isSignBtnClicked && (
             <div className={`inputDiv ${isNameValid || 'warningInputDiv'}`}>
               <label className={`inputLabel ${isNameValid || 'warningLabel'}`}>
                 <input
@@ -184,7 +185,7 @@ export default class Form extends Component {
               </p>
             )}
           </div>
-          {isSignInBtnClicked ? (
+          {isSignBtnClicked ? (
             <button
               className="loginSignInBtn"
               disabled={!isIdPwBothValid || !isInfoAllValid}
@@ -202,7 +203,7 @@ export default class Form extends Component {
             </button>
           )}
         </form>
-        {isSignInBtnClicked ? (
+        {isSignBtnClicked ? (
           <p className="suggestSignIn suggestLogin">
             이미 가입하셨나요?<span className="loginSignInLink">로그인</span>
           </p>
@@ -216,7 +217,7 @@ export default class Form extends Component {
             </p>
           </>
         )}
-      </div>
+      </ModalLogoLayout>
     );
   }
 }
