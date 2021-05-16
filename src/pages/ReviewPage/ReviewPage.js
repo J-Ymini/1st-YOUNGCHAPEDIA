@@ -72,37 +72,6 @@ export default class ReviewPage extends Component {
       this.getMovieData();
   };
 
-  postRatings = e => {
-    let token = localStorage.getItem('TOKEN') || '';
-    const movieId = e.target.parentNode.parentNode.parentNode.id;
-    const ratingNum = parseInt(e.target.previousElementSibling.value);
-    console.log(movieId, ratingNum);
-    fetch(API_URLS.REVIEW, {
-      method: 'POST',
-      headers: {
-        Authorization: token,
-      },
-      body: JSON.stringify({
-        movie: movieId,
-        rating: ratingNum,
-      }),
-    }).then(
-      fetch(API_URLS.REVIEW, {
-        method: 'GET',
-        headers: {
-          Authorization: token,
-        },
-      })
-        .then(res => res.json())
-        .then(res => {
-          const test = res['rating_movies'];
-          this.setState({
-            ratingsCount: test,
-          });
-        })
-    );
-  };
-
   render() {
     return (
       <section className="reviewSection">
