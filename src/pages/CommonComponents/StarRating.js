@@ -10,6 +10,23 @@ export default class StarRating extends Component {
     this.starContainerRef = createRef();
   }
 
+  // ToDo : 영화별 상세페이지 접속시 전에 남긴 별점 기록이 있다면 불러오기
+
+  // componentDidMount() {
+  //   getStarRating();
+  // }
+
+  // getStarRating = () => {
+  //   //이 부분은 상세 페이지 프론트,백 담당하는 팀원이 완성되면 추가할 예정입니다
+  //   fetch(API_URLS.REVIEW, {
+  //     headers: {
+  //       Authorization: token,
+  //     },
+  //   }).then(res => {
+  //     //상세 페이지에서 유저가 해당 영화에 별점을 부여했다면 그 별점 가져오는 코드
+  //   });
+  // };
+
   changeStarRating = e => {
     const starX =
       e.clientX - this.starContainerRef.current.getBoundingClientRect().left;
@@ -63,6 +80,7 @@ export default class StarRating extends Component {
 
   postStarRating = e => {
     this.changeStarRating(e);
+    // ToDo : 별점 POST 요청 테스트
     // fetch(URL, {
     //   method: 'POST',
     //   body: {
