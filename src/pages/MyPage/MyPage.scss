@@ -68,10 +68,13 @@
           position: absolute;
           top: -25px;
           left: 0;
-          height: 60px;
-          width: 60px;
-          border: 1px solid $line;
-          border-radius: 50%;
+          color: $line;
+          font-size: 60px;
+
+          &::before {
+            background-color: $section-aside-text;
+            border-radius: 50%;
+          }
         }
       }
 
@@ -138,6 +141,10 @@
             &:last-of-type {
               margin-top: 90px;
               font-size: 13px;
+
+              .myPageWantedCount {
+                margin-left: 5px;
+              }
             }
           }
         }
