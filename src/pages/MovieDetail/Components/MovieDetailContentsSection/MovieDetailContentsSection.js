@@ -23,9 +23,7 @@ export default class MovieDetailContentsSection extends React.Component {
   componentDidMount = () => {
     fetch('http://localhost:3000/data/SimilarMovieMockData.json')
       .then(res => res.json())
-      .then(res =>
-        this.setState({ similarMovieList: [...res.similarMovieData] })
-      );
+      .then(res => this.setState({ similarMovieList: res.similarMovieData }));
 
     window.addEventListener('scroll', this.handleScroll);
   };
