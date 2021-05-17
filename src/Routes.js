@@ -6,10 +6,6 @@ import Footer from './pages/CommonComponents/Footer';
 import Navbar from './pages/CommonComponents/Navbar';
 import ReviewPage from './pages/ReviewPage/ReviewPage';
 import MovieDetail from './pages/MovieDetail/MovieDetail';
-<<<<<<< HEAD
-import MyPage from './pages/MyPage/MyPage';
-=======
->>>>>>> master
 
 class Routes extends React.Component {
   render() {
