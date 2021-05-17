@@ -33,6 +33,7 @@ export default class LoginSignInForm extends Component {
       .then(res => {
         if (res) {
           localStorage.setItem('TOKEN', res.token);
+          this.props.checkUserLogined();
           this.props.history.push('/review');
         } else {
           alert('로그인 하세요');
