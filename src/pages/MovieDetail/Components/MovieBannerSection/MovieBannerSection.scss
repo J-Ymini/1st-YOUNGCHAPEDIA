@@ -1,0 +1,113 @@
+@import '../../../../styles/variables.scss';
+
+.MovieBannerSection {
+  border-bottom: 1.5px solid $line;
+
+  .movieBannerPoster {
+    display: flex;
+    justify-content: center;
+    background-image: linear-gradient(to right, black, white, black);
+
+    .stillCut {
+      height: 460px;
+    }
+  }
+
+  .movieSimpleInformation {
+    @include flexSet();
+    background-repeat: no-repeat;
+    height: 240px;
+  }
+
+  .movieSimpleInformationContents {
+    display: flex;
+    flex-wrap: wrap;
+    width: 975px;
+    height: 200px;
+    position: relative;
+    padding: 14px 16px 22px;
+
+    img {
+      display: block;
+      position: relative;
+      width: 200px;
+      margin-right: 20px;
+      bottom: 100px;
+      border: 2px solid white;
+      border-radius: 6px;
+    }
+  }
+
+  .movieBookRating {
+    position: absolute;
+    top: -50px;
+    left: 230px;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.8125em;
+  }
+
+  .movieSubject {
+    width: 720px;
+    height: 200px;
+    h1 {
+      font-size: 2.0625em;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+  }
+
+  .movieGenre {
+    color: $movie-info-text;
+    font-size: 1.0625;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1.5px solid $line;
+  }
+
+  .averageOfStarPoint {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1.5px solid $line;
+  }
+
+  .wishAndStarPoint {
+    @include flexSet(space-between, center);
+    position: relative;
+    bottom: -20px;
+  }
+
+  .wishButton:hover .fa-plus {
+    transform: rotate(90deg);
+  }
+
+  .wishButton {
+    padding: 10px 80px;
+    color: white;
+    background-color: #ff2f6e;
+    font-size: 1.0625em;
+    font-weight: bold;
+    border-radius: 10px;
+
+    .fa-plus {
+      display: inline-block;
+      margin-right: 5px;
+      transition: transform 0.5s;
+    }
+  }
+
+  .giveStarPoint {
+    position: relative;
+
+    div:first-child {
+      position: absolute;
+      top: -20px;
+      margin-bottom: 5px;
+      color: $movie-info-text;
+      font-size: 0.75em;
+    }
+
+    div:nth-child(2) i {
+      font-size: 40px;
+    }
+  }
+}
