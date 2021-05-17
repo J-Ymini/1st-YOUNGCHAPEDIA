@@ -16,6 +16,15 @@ class Navbar extends Component {
     };
   }
 
+  componentDidMount() {
+    let token = localStorage.getItem('TOKEN');
+    if (token) {
+      this.setState({
+        isUserLogined: true,
+      });
+    }
+  }
+
   closeModal = () => {
     this.setState({
       modalOpened: false,
@@ -86,7 +95,6 @@ class Navbar extends Component {
             <header>
               <Link to="/">
                 <h1>
-                  {/* h1을 두 개 할 수는 없어서 h1안에 span 2개로 했습니다 */}
                   <span>YOUNGCHA</span>
                   <span>PEDIA</span>
                 </h1>
