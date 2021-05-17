@@ -12,6 +12,7 @@ export default class LoginSignInForm extends Component {
       id: '',
       pw: '',
       name: '',
+      isOnceBlured: false,
     };
   }
 
@@ -59,7 +60,7 @@ export default class LoginSignInForm extends Component {
       const checkIdCondition =
         /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
       return checkIdCondition.test(id);
-    } else return true;
+    }
   };
 
   checkPwValid = () => {
@@ -75,18 +76,24 @@ export default class LoginSignInForm extends Component {
           Boolean
         ).length >= 2
       );
-    } else return true;
+    }
   };
 
   checkNameValid = () => {
     const { name } = this.state;
     if (name) {
       return name.length > 1;
-    } else return true;
+    }
+  };
+
+  handleBlur = () => {
+    this.setState({
+      isOnceBlured: true,
+    });
   };
 
   render() {
-    const { id, pw, name } = this.state;
+    const { id, pw, name, isOnceBlured } = this.state;
     //default : LoginBtn 클릭했을 때 (false)
     const { isSignBtnClicked } = this.props;
     const {
@@ -97,9 +104,10 @@ export default class LoginSignInForm extends Component {
       checkPwValid,
       checkNameValid,
     } = this;
-    const isIdValid = checkIdValid();
-    const isPwValid = checkPwValid();
-    const isNameValid = checkNameValid();
+
+    const isIdValid = isOnceBlured ? checkIdValid() : undefined;
+    const isPwValid = isOnceBlured ? checkPwValid() : undefined;
+    const isNameValid = isOnceBlured ? checkNameValid() : undefined;
     const isIdPwBothValid = isIdValid && isPwValid;
     const isInfoAllValid = isIdValid && isPwValid && isNameValid;
 
@@ -112,17 +120,25 @@ export default class LoginSignInForm extends Component {
         )}
         <form className="form">
           {isSignBtnClicked && (
-            <div className={`inputDiv ${isNameValid || 'warningInputDiv'}`}>
-              <label className={`inputLabel ${isNameValid || 'warningLabel'}`}>
+            <div
+              className={`inputDiv ${
+                isNameValid === false && 'warningInputDiv'
+              }`}
+            >
+              <label
+                className={`inputLabel ${
+                  isNameValid === false && 'warningLabel'
+                }`}
+              >
                 <input
                   placeholder="이름"
                   type="text"
                   name="name"
-                  className={isNameValid || 'warningInput'}
+                  className={isNameValid === false && 'warningInput'}
                   onChange={handleInput}
                   value={name}
                 />
-                {isNameValid || (
+                {isNameValid === false && (
                   <>
                     <button className="deleteBtn" onClick={handleDeleteBtn}>
                       <FontAwesomeIcon icon={faTimes} />
@@ -131,22 +147,27 @@ export default class LoginSignInForm extends Component {
                   </>
                 )}
               </label>
-              {isNameValid || (
+              {isNameValid === false && (
                 <p className="warningText">정확하지 않은 이름입니다.</p>
               )}
             </div>
           )}
-          <div className={`inputDiv ${isIdValid || 'warningInputDiv'}`}>
-            <label className={`inputLabel ${isIdValid || 'warningLabel'}`}>
+          <div
+            className={`inputDiv ${isIdValid === false && 'warningInputDiv'}`}
+          >
+            <label
+              className={`inputLabel ${isIdValid === false && 'warningLabel'}`}
+            >
               <input
                 placeholder="이메일"
                 type="text"
                 name="id"
-                className={isIdValid || 'warningInput'}
+                className={isIdValid === false && 'warningInput'}
                 onChange={handleInput}
+                onBlur={this.handleBlur}
                 value={id}
               />
-              {isIdValid || (
+              {isIdValid === false && (
                 <>
                   <button className="deleteBtn" onClick={handleDeleteBtn}>
                     <FontAwesomeIcon icon={faTimes} />
@@ -155,21 +176,25 @@ export default class LoginSignInForm extends Component {
                 </>
               )}
             </label>
-            {isIdValid || (
+            {isIdValid === false && (
               <p className="warningText">정확하지 않은 이메일입니다.</p>
             )}
           </div>
-          <div className={`inputDiv ${isPwValid || 'warningInputDiv'}`}>
-            <label className={`inputLabel ${isPwValid || 'warningLabel'}`}>
+          <div
+            className={`inputDiv ${isPwValid === false && 'warningInputDiv'}`}
+          >
+            <label
+              className={`inputLabel ${isPwValid === false && 'warningLabel'}`}
+            >
               <input
                 placeholder="비밀번호"
                 type="password"
                 name="pw"
-                className={isPwValid || 'warningInput'}
+                className={isPwValid === false && 'warningInput'}
                 onChange={handleInput}
                 value={pw}
               />
-              {isPwValid || (
+              {isPwValid === false && (
                 <>
                   <button className="deleteBtn" onClick={handleDeleteBtn}>
                     <FontAwesomeIcon icon={faTimes} />
@@ -178,7 +203,7 @@ export default class LoginSignInForm extends Component {
                 </>
               )}
             </label>
-            {isPwValid || (
+            {isPwValid === false && (
               <p className="warningText">
                 비밀번호는 영문, 숫자, 특수문자 중 2개 이상을 조합하여 최소
                 10자리 이상이어야 합니다.
