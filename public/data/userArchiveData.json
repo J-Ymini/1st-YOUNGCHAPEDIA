@@ -1,0 +1,24 @@
+{
+  "result": [
+    {
+      "title": "영화제목",
+      "rating": "3",
+      "thumbnail": "해당 영화의 썸네일 url"
+    },
+    {
+      "title": "영화제목",
+      "rating": "4",
+      "thumbnail": "해당 영화의 썸네일 url"
+    },
+    {
+      "title": "영화제목",
+      "rating": "1",
+      "thumbnail": "해당 영화의 썸네일 url"
+    },
+    {
+      "title": "영화제목",
+      "rating": "2.5",
+      "thumbnail": "해당 영화의 썸네일 url"
+    }
+  ]
+}

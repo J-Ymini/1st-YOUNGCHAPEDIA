@@ -4,6 +4,31 @@ import './MyPage.scss';
 export default class MyPage extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      userRatedData: [],
+    };
+  }
+
+  componentDidMount() {
+    let token = localStorage.getItem('TOKEN') || '';
+    fetch(
+      '/data/userArchiveData.json'
+      //  {
+      //   headers: {
+      //     Authorization: token,
+      //   },
+      // }
+    )
+      .then(res => {
+        if (res.status === 200) {
+          return res.json();
+        }
+      })
+      .then(userRatedData => {
+        this.setState({
+          userRatedData: userRatedData['result'],
+        });
+      });
   }
 
   render() {
