@@ -7,6 +7,7 @@ import Navbar from './pages/CommonComponents/Navbar';
 import ReviewPage from './pages/ReviewPage/ReviewPage';
 import MovieDetail from './pages/MovieDetail/MovieDetail';
 import MyPage from './pages/MyPage/MyPage';
+
 class Routes extends React.Component {
   render() {
     return (
@@ -23,9 +24,11 @@ class Routes extends React.Component {
     );
   }
 }
+
 export default Routes;
 
 /* global history */
-/* global location */ t;
+/* global location */
 /* global window */
+
 /* eslint no-restricted-globals: ["off"] */
