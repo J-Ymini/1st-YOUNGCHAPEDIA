@@ -14,11 +14,11 @@ export default class MovieDetailContentsSection extends React.Component {
               </header>
               <article>
                 <div>
-                  <span>F9</span>
+                  <div>F9</div>
                   <br />
-                  <span>2020 &middot; 미국 &middot; 스릴러</span>
+                  <div>2020 &middot; 미국 &middot; 스릴러</div>
                   <br />
-                  <span>2시간 15분</span>
+                  <div>2시간 15분</div>
                 </div>
                 <p>
                   기다림은 끝났다! 전 세계가 기다려온 단 하나의 액션블록버스터!
