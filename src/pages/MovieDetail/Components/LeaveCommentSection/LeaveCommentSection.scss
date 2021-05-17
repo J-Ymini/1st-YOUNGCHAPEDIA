@@ -1,11 +1,10 @@
 @import '../../../../styles/variables.scss';
+
 .LeaveCommentSection {
   @include flexSet();
   background-color: $section-background;
 
   .recommendLeaveComment {
-    display: none;
-
     div {
       @include flexSet(space-between, center);
       margin-top: 20px;
@@ -25,11 +24,7 @@
     }
   }
 
-  .recommendLeaveComment.active {
-    display: block;
-
-    button {
-      cursor: pointer;
-    }
+  button {
+    cursor: pointer;
   }
 }

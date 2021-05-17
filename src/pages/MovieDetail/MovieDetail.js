@@ -9,32 +9,65 @@ import './MovieDetail.scss';
 export default class MovieDetail extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { userWish: false };
+    this.state = {
+      userWish: false,
+      leaveComment: false,
+      showComment: false,
+      modalActive: false,
+      commentInputValue: '',
+      commentList: [],
+    };
   }
 
-  changeStateOfWish = e => {
-    const { userWish } = this.state;
-    const { className } = e.target;
-    !className.includes('active') && this.setState({ userWish: true });
-    userWish && console.log('모달창을 띄울 겁니다.');
+  changeStateOfWish = () => {
+    this.setState({ userWish: true, leaveComment: true });
   };
 
   showModal = () => {
+    this.setState({ modalActive: true });
     console.log('안녕하세요');
   };
 
+  closeModal = () => {
+    this.setState({ modalActive: false });
+  };
+
+  commentInputHandler = e => {
+    const { value } = e.target;
+    this.setState({ commentInputValue: value });
+    console.log(this.state.commentInputValue);
+  };
+
+  commentSubmit = () => {
+    const { commentInputValue } = this.state;
+    this.setState({
+      modalActive: false,
+      leaveComment: false,
+      showComment: true,
+      commentInputValue: commentInputValue,
+    });
+  };
+
   render() {
+    console.log(this.state);
+    const { leaveComment, showComment } = this.state;
     return (
       <main className="MovieDetail">
         <MovieBannerSection
           userWishStatus={this.state}
           userWishStatusHandler={this.changeStateOfWish}
         />
-        <LeaveCommentSection
-          userWishStatus={this.state}
-          showEvent={this.showModal}
-        />
-        <ShowComment />
+
+        {leaveComment && (
+          <LeaveCommentSection
+            userWishStatus={this.state}
+            showModal={this.showModal}
+            closeModal={this.closeModal}
+            commentInput={this.commentInputHandler}
+            commentSubmit={this.commentSubmit}
+          />
+        )}
+        {showComment && <ShowComment commentValue={this.state} />}
         <MovieDetailContentsSection />
       </main>
     );

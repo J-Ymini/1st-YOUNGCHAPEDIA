@@ -42,7 +42,7 @@ export default class MovieBannerSection extends React.Component {
                         ? 'far fa-bookmark'
                         : 'fas fa-plus'
                     }
-                  ></i>{' '}
+                  ></i>
                   보고싶어요
                 </button>
                 <div className="giveStarPoint">

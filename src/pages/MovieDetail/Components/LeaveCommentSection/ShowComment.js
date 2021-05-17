@@ -15,7 +15,6 @@ export default class ShowComment extends React.Component {
               <div className="commentContent">안녕하세요 반갑습니다.</div>
             </div>
             <div>
-              <button className="modifyingComment"> ✏ 수정</button>
               <button>🗑 삭제</button>
             </div>
           </div>

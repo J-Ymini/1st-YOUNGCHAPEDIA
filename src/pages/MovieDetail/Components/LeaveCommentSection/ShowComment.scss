@@ -1,4 +1,5 @@
 @import '../../../../styles/variables.scss';
+
 .ShowComment {
   @include flexSet();
   background-color: $section-background;
@@ -24,26 +25,25 @@
           border-radius: 50%;
         }
       }
-      //   .leaveCommentButton {
-      //     padding: 10px 80px;
-      //     border: 2px solid $line;
-      //     border-radius: 6px;
-      //     font-size: 1.0625rem;
-      //     font-weight: 700;
-      //   }
-      // }
+      .leaveCommentButton {
+        padding: 10px 80px;
+        border: 2px solid $line;
+        border-radius: 6px;
+        font-size: 1.0625rem;
+        font-weight: 700;
+      }
     }
+  }
 
-    .modifyingComment {
-      margin-right: 10px;
+  .modifyingComment {
+    margin-right: 10px;
+  }
+
+  .recommendLeaveComment.active {
+    display: block;
+
+    button {
+      cursor: pointer;
     }
-
-    // .recommendLeaveComment.active {
-    //   display: block;
-
-    //   button {
-    //     cursor: pointer;
-    //   }
-    // }
   }
 }
