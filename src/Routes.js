@@ -5,6 +5,7 @@ import Main from './pages/Main/Main';
 import Footer from './pages/CommonComponents/Footer';
 import Navbar from './pages/CommonComponents/Navbar';
 import ReviewPage from './pages/ReviewPage/ReviewPage';
+import MovieDetail from './pages/MovieDetail/MovieDetail';
 
 class Routes extends React.Component {
   render() {
@@ -13,6 +14,7 @@ class Routes extends React.Component {
         <Navbar />
         <Switch>
           <Route exact path="/" component={Main}></Route>
+          <Route exact path="/moviedetail" component={MovieDetail}></Route>
           <Route exact path="/review" component={ReviewPage}></Route>
           {/* <Route exact path="/contents" component={}></Route> */}
           {/* <Route exact path="/myPage" component={}></Route> */}
