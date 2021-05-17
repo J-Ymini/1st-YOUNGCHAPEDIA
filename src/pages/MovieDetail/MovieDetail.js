@@ -13,35 +13,55 @@ export default class MovieDetail extends React.Component {
       userWish: false,
       leaveComment: false,
       showComment: false,
-      modalActive: false,
+      commentModal: false,
       commentInputValue: '',
-      commentList: [],
+      commentList: [], // 댓글 데이터를 저장할 배열입니다.
     };
   }
 
   changeStateOfWish = () => {
-    this.setState({ userWish: true, leaveComment: true });
+    const { userWish } = this.state;
+    !userWish
+      ? this.setState({ userWish: true, leaveComment: true })
+      : this.setState({
+          userWish: false,
+          leaveComment: false,
+          showComment: false,
+        });
   };
 
-  showModal = () => {
-    this.setState({ modalActive: true });
-    console.log('안녕하세요');
+  modifyingComment = () => {
+    const { commentModal, commentInputValue } = this.state;
+    this.setState({ commentModal: true });
+  };
+
+  deleteComment = () => {
+    this.setState({
+      leaveComment: true,
+      showComment: false,
+      commentInputValue: '',
+    });
+  };
+
+  showCommentModal = () => {
+    this.setState({ commentModal: true });
   };
 
   closeModal = () => {
-    this.setState({ modalActive: false });
+    this.setState({
+      commentModal: false,
+    });
   };
 
   commentInputHandler = e => {
     const { value } = e.target;
     this.setState({ commentInputValue: value });
-    console.log(this.state.commentInputValue);
   };
 
   commentSubmit = () => {
     const { commentInputValue } = this.state;
     this.setState({
-      modalActive: false,
+      commentModal: false,
       leaveComment: false,
       showComment: true,
       commentInputValue: commentInputValue,
@@ -49,8 +69,7 @@ export default class MovieDetail extends React.Component {
   };
 
   render() {
-    console.log(this.state);
-    const { leaveComment, showComment } = this.state;
+    const { leaveComment, showComment, commentInputValue } = this.state;
     return (
       <main className="MovieDetail">
         <MovieBannerSection
@@ -61,13 +80,21 @@ export default class MovieDetail extends React.Component {
         {leaveComment && (
           <LeaveCommentSection
             userWishStatus={this.state}
-            showModal={this.showModal}
+            showCommentModal={this.showCommentModal}
             closeModal={this.closeModal}
             commentInput={this.commentInputHandler}
             commentSubmit={this.commentSubmit}
           />
         )}
-        {showComment && <ShowComment commentValue={this.state} />}
+        {showComment && (
+          <ShowComment
+            commentValue={commentInputValue}
+            showCommentModal={this.showCommentModal}
+            closeModal={this.closeModal}
+            modifyingComment={this.modifyingComment}
+            deleteComment={this.deleteComment}
+          />
+        )}
         <MovieDetailContentsSection />
       </main>
     );

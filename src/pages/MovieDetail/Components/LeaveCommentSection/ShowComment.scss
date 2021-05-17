@@ -5,8 +5,9 @@
   background-color: $section-background;
 
   .recommendLeaveComment {
-    // display: none;
-
+    button {
+      cursor: pointer;
+    }
     .userAndComment {
       @include flexSet(space-between, center);
       margin-top: 20px;
@@ -37,13 +38,5 @@
 
   .modifyingComment {
     margin-right: 10px;
-  }
-
-  .recommendLeaveComment.active {
-    display: block;
-
-    button {
-      cursor: pointer;
-    }
   }
 }
