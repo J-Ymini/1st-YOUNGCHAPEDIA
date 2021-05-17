@@ -16,7 +16,6 @@
     @include flexSet(none);
 
     header {
-      margin-right: 10px;
       padding: 10px 20px;
       font-size: 30px;
       font-family: 'Oswald', sans-serif;
@@ -28,7 +27,7 @@
       }
     }
 
-    ul {
+    .navMenu {
       color: $menu-normal-text;
       font-weight: 500;
     }
@@ -57,6 +56,11 @@
         font-size: 13px;
       }
     }
+
+    .navBtn {
+      color: $menu-normal-text;
+      margin: 0 5px;
+    }
   }
 
   .navSignInBtn {
@@ -64,6 +68,7 @@
     padding: 6px 15px;
     border: 1px solid $menu-normal-text;
     border-radius: 5px;
+    color: $menu-bold-text;
   }
 
   .topNavHidden {
