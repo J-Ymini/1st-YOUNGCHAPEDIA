@@ -1,19 +1,6 @@
 import React from 'react';
 import './MainSectionMovieList.scss';
 export default class MainSectionMovieList extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      movieListRanking: 1,
-    };
-  }
-
-  rankingUp() {
-    this.setState({
-      movieListRanking: this.state.movieListRanking + 1,
-    });
-  }
-
   render() {
     const {
       title,
@@ -23,6 +10,7 @@ export default class MainSectionMovieList extends React.Component {
       width,
       netflix,
       watcha,
+      movieListRanking,
     } = this.props;
     return (
       <li
@@ -37,7 +25,7 @@ export default class MainSectionMovieList extends React.Component {
             (netflix && 'listNetflixicon') || (watcha && 'listWatchaicon')
           }
         ></div>
-        <div className="listRanking"></div>
+        <div className="listRanking">{movieListRanking + 1}</div>
         <img alt="test" src={thumbnailImgUrl} />
         <div className="listDescription">
           <p className="listDescriptionTitle">{title}</p>
