@@ -6,7 +6,10 @@ import Footer from './pages/CommonComponents/Footer';
 import Navbar from './pages/CommonComponents/Navbar';
 import ReviewPage from './pages/ReviewPage/ReviewPage';
 import MovieDetail from './pages/MovieDetail/MovieDetail';
+<<<<<<< HEAD
 import MyPage from './pages/MyPage/MyPage';
+=======
+>>>>>>> master
 
 class Routes extends React.Component {
   render() {
@@ -17,7 +20,9 @@ class Routes extends React.Component {
           <Route exact path="/" component={Main}></Route>
           <Route exact path="/moviedetail" component={MovieDetail}></Route>
           <Route exact path="/review" component={ReviewPage}></Route>
-          <Route exact path="/mypage" component={MyPage}></Route>;
+
+          {/* <Route exact path="/contents" component={}></Route> */}
+          {/* <Route exact path="/myPage" component={}></Route> */}
         </Switch>
         {location.pathname !== '/review' && <Footer />}
       </Router>
