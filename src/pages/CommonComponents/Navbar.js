@@ -16,14 +16,14 @@ class Navbar extends Component {
     };
   }
 
-  componentDidMount() {
+  checkUserLogined = () => {
     let token = localStorage.getItem('TOKEN');
     if (token) {
       this.setState({
         isUserLogined: true,
       });
     }
-  }
+  };
 
   closeModal = () => {
     this.setState({
@@ -55,7 +55,13 @@ class Navbar extends Component {
 
   render() {
     const { isUserLogined, isSignBtnClicked, modalOpened } = this.state;
-    const { closeModal, clickSignIn, clickLogin, clickLogout } = this;
+    const {
+      closeModal,
+      clickSignIn,
+      clickLogin,
+      clickLogout,
+      checkUserLogined,
+    } = this;
     const logoutedBtn = (
       <>
         <button className="navLoginBtn" onClick={clickLogin}>
@@ -86,7 +92,10 @@ class Navbar extends Component {
           <Modal
             closeModal={closeModal}
             childComponent={
-              <LoginSignInForm isSignBtnClicked={isSignBtnClicked} />
+              <LoginSignInForm
+                checkUserLogined={checkUserLogined}
+                isSignBtnClicked={isSignBtnClicked}
+              />
             }
           />
         )}
