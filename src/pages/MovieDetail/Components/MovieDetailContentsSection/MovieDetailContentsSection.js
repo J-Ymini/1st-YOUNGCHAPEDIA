@@ -1,21 +1,24 @@
+import { faWindows } from '@fortawesome/free-brands-svg-icons';
 import React from 'react';
 import Comment from './Components/Comment/Comment';
 
+import SimilarMovie from './Components/SimilarMovie/SimilarMovie';
 import './MovieDetailContentsSection.scss';
 
 export default class MovieDetailContentsSection extends React.Component {
   constructor(props) {
     super(props);
     this.commentList = React.createRef();
+    this.fadeInTarget = React.createRef();
     this.count = React.createRef(0);
     this.count.current = 0;
-    this.state = { commentListContents: [] };
+    this.state = { commentListContents: [], similarMovieList: [] };
   }
 
   goToPrevious = () => {
     const { style } = this.commentList.current;
     if (this.count.current === 0) return;
-    this.count.current -= 1;
+    this.count.current--;
     style.transform = `translate(-${931 * this.count.current}px, 0)`;
   };
 
@@ -27,20 +30,37 @@ export default class MovieDetailContentsSection extends React.Component {
     if (this.count.current === commentLength) {
       this.count.current = -1;
     }
-    this.count.current += 1;
+    this.count.current++;
     style.transform = `translate(-${931 * this.count.current}px, 0)`;
   };
 
+  handleScroll = () => {
+    const { scrollTop, clientHeight } = document.documentElement;
+
+    const eventStartHeight = scrollTop + clientHeight;
+    if (eventStartHeight > 1560) {
+      this.fadeInTarget.current.className = 'similarMovieList fadeIn';
+      window.removeEventListener('scroll', this.handleScroll);
+    }
+  };
+
   componentDidMount() {
-    fetch('http://localhost:3000/data/MovieDetailPageComments.json')
+    fetch('/data/MovieDetailPageComments.json')
       .then(res => res.json())
       .then(res => {
-        this.setState({ commentListContents: [...res.commentData] });
+        this.setState({ commentListContents: res.commentData });
       });
+
+    fetch('/data/SimilarMovieMockData.json')
+      .then(res => res.json())
+      .then(res => this.setState({ similarMovieList: res.similarMovieData }));
+
+    window.addEventListener('scroll', this.handleScroll);
   }
 
   render() {
-    const { commentListContents } = this.state;
+    console.log(this.state);
+    const { commentListContents, similarMovieList } = this.state;
     return (
       <section className="MovieDetailContentsSection">
         <div className="movieDetailContents">
@@ -88,16 +108,14 @@ export default class MovieDetailContentsSection extends React.Component {
                   </button>
                 </div>
                 <ul ref={this.commentList} className="commentList">
-                  {commentListContents.map(comment => {
-                    return (
-                      <Comment
-                        key={comment.id}
-                        number={comment.id}
-                        name={comment.name}
-                        content={comment.comment}
-                      />
-                    );
-                  })}
+                  {commentListContents.map(comment => (
+                    <Comment
+                      key={comment.id}
+                      number={comment.id}
+                      name={comment.name}
+                      content={comment.comment}
+                    />
+                  ))}
                 </ul>
               </article>
             </div>
@@ -107,7 +125,18 @@ export default class MovieDetailContentsSection extends React.Component {
               <header>
                 <h2>비슷한 작품</h2>
               </header>
-              <article>비슷한 작품 컴포넌트가 들어갈 자리입니다.</article>
+              <ul className="similarMovieList" ref={this.fadeInTarget}>
+                {similarMovieList.map(movie => {
+                  return (
+                    <SimilarMovie
+                      key={movie.id}
+                      img={movie.img}
+                      name={movie.koreanTitle}
+                      rating={movie.AverageofStarRating}
+                    />
+                  );
+                })}
+              </ul>
             </div>
           </article>
         </div>
