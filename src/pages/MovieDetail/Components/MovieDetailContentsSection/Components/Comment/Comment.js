@@ -21,11 +21,11 @@ export default class Comment extends React.Component {
           </span>
         </div>
         <div className="likeAndCommentPlus">
-          <div className="">
-            <span className="like">👍 0</span>
-            <span>💭 0</span>
+          <div className="container">
+            <span className="likeCount">👍 0</span>
+            <span className="commentCount">💭 0</span>
           </div>
-          <div>좋아요</div>
+          <button className="likeButton">좋아요</button>
         </div>
       </li>
     );

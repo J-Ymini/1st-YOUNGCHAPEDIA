@@ -33,16 +33,16 @@
   }
 
   .likeAndCommentPlus {
-    div:first-child {
+    .container {
       padding: 10px 20px;
       border-bottom: 1px solid rgb(230, 225, 225);
 
-      span:first-child {
+      .likeCount {
         margin-right: 10px;
       }
     }
 
-    div:nth-child(2) {
+    .likeButton {
       padding: 10px 20px;
     }
   }
