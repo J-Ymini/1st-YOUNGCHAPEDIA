@@ -1,0 +1,38 @@
+@import '../../../styles/variables.scss';
+
+.topResults {
+  @include flexSet(space-around);
+  padding-top: 30px;
+
+  .resultRow {
+    @include flexColumnSet;
+    font-size: 17px;
+    font-weight: 700;
+
+    span {
+      margin-top: 8px;
+      color: $list-sub-gray;
+      font-size: 12px;
+      font-weight: 400;
+
+      span:last-of-type::before {
+        content: '·';
+      }
+    }
+  }
+}
+
+.resultLists {
+  padding-top: 30px;
+
+  .resultList {
+    @include flexSet(space-between);
+    padding: 10px 0;
+    color: $list-sub-gray;
+    font-size: 14px;
+
+    span span:last-of-type::before {
+      content: '·';
+    }
+  }
+}
