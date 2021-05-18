@@ -33,9 +33,7 @@ export default class MyPage extends Component {
   }
 
   render() {
-    const userName = this.state.userData[0]?.userName;
-    const moviesCount = this.state.userData[0]?.moviesCount;
-    const wantedCount = this.state.userData[0]?.wantedCount;
+    const { userName, moviesCount, wantedCount } = this.state.userData[0];
     return (
       <section className="myPageSection">
         <div className="myPageContainer">
