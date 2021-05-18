@@ -29,5 +29,4 @@ export default Routes;
 /* global history */
 /* global location */
 /* global window */
-
 /* eslint no-restricted-globals: ["off"] */
