@@ -34,15 +34,13 @@ class Footer extends Component {
               <div className="memberDescription">
                 <ul>
                   {MEMBER_LIST.map(member => {
-                    return (
-                      <li key={member.id}>
-                        <button>
-                          <a href={member.blog} target="_blank">
-                            <span>{member.name}</span>
-                          </a>
-                        </button>
-                      </li>
-                    );
+                    <li key={member.id}>
+                      <button>
+                        <a href={member.blog} target="_blank">
+                          <span>{member.name}</span>
+                        </a>
+                      </button>
+                    </li>;
                   })}
                 </ul>
               </div>
