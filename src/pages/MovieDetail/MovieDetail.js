@@ -1,7 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
+import MovieBannerSection from './Components/MovieBannerSection/MovieBannerSection';
+import LeaveCommentSection from './Components/LeaveCommentSection/LeaveCommentSection';
+import MovieDetailContentsSection from './Components/MovieDetailContentsSection/MovieDetailContentsSection';
 
-export default class MovieDetail extends Component {
+import './MovieDetail.scss';
+
+export default class MovieDetail extends React.Component {
   render() {
-    return <div></div>;
+    return (
+      <main className="MovieDetail">
+        <MovieBannerSection />
+        <LeaveCommentSection />
+        <MovieDetailContentsSection />
+      </main>
+    );
   }
 }
