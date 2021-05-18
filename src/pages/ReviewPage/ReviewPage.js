@@ -1,6 +1,6 @@
 import React, { Component, createRef } from 'react';
 import { throttle } from '../../utils/throttle';
-import ReviewMovieList from './component/ReviewMovieList';
+import ReviewMovieList from './Component/ReviewMovieList';
 import API_URLS from '../../config';
 import './ReviewPage.scss';
 

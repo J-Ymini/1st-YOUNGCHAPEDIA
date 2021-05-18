@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import SingleStar from './SingleStar';
+import API_URLS from '../../config';
 import './StarRating.scss';
 
 export default class StarRating extends Component {
@@ -34,7 +35,7 @@ export default class StarRating extends Component {
       });
     }
 
-    fetch(API, {
+    fetch(API_URLS.REVIEW, {
       method: 'POST',
       headers: {
         Authorization: token,
@@ -48,6 +49,22 @@ export default class StarRating extends Component {
     );
   };
 
+  starHover = e => {
+    const starX = e.nativeEvent.offsetX;
+    if (starX > 10 && starX < 20) {
+      postStarRating = parseInt(e.target.id);
+      this.setState({
+        rating: parseInt(e.target.id),
+      });
+    }
+    if (starX > 0 && starX <= 10) {
+      postStarRating = parseInt(e.target.id) - 0.5;
+      this.setState({
+        rating: e.target.id - 0.5,
+      });
+    }
+  }
+
   render() {
     console.log(this.state.rating);
     return (
@@ -58,6 +75,7 @@ export default class StarRating extends Component {
             handler={this.handleStar}
             nthStar={index + 1}
             rating={this.state.rating}
+            starHover={this.starHover}
           />
         ))}
       </div>
