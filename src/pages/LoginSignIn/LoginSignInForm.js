@@ -96,7 +96,7 @@ export default class LoginSignInForm extends Component {
   render() {
     const { id, pw, name, isOnceBlured } = this.state;
     //default : LoginBtn 클릭했을 때 (false)
-    const { isSignBtnClicked } = this.props;
+    const { isSignBtnClicked, goToLoginModal, goToSignInModal } = this.props;
     const {
       handleInput,
       requestLogin,
@@ -231,7 +231,10 @@ export default class LoginSignInForm extends Component {
         </form>
         {isSignBtnClicked ? (
           <p className="suggestSignIn suggestLogin">
-            이미 가입하셨나요?<span className="loginSignInLink">로그인</span>
+            이미 가입하셨나요?
+            <span className="loginSignInLink" onClick={goToLoginModal}>
+              로그인
+            </span>
           </p>
         ) : (
           <>
@@ -239,7 +242,9 @@ export default class LoginSignInForm extends Component {
 
             <p className="suggestSignIn">
               계정이 없으신가요?
-              <span className="loginSignInLink">회원가입</span>
+              <span className="loginSignInLink" onClick={goToSignInModal}>
+                회원가입
+              </span>
             </p>
           </>
         )}

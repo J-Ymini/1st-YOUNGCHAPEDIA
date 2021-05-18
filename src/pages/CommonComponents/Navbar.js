@@ -53,6 +53,18 @@ class Navbar extends Component {
     this.props.history.push('/');
   };
 
+  goToLoginModal = () => {
+    this.setState({
+      isSignBtnClicked: false,
+    });
+  };
+
+  goToSignInModal = () => {
+    this.setState({
+      isSignBtnClicked: true,
+    });
+  };
+
   render() {
     const { isUserLogined, isSignBtnClicked, modalOpened } = this.state;
     const {
@@ -61,6 +73,8 @@ class Navbar extends Component {
       clickLogin,
       clickLogout,
       checkUserLogined,
+      goToLoginModal,
+      goToSignInModal,
     } = this;
     const logoutedBtn = (
       <>
@@ -95,6 +109,8 @@ class Navbar extends Component {
               <LoginSignInForm
                 checkUserLogined={checkUserLogined}
                 isSignBtnClicked={isSignBtnClicked}
+                goToLoginModal={goToLoginModal}
+                goToSignInModal={goToSignInModal}
               />
             }
           />
