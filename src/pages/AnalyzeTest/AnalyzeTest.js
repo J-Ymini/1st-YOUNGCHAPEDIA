@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import AnalyzeCardLayout from './Component/AnalyzeCardLayout';
 import AnalyzeFavorite from './Component/AnalyzeFavorite';
 import AnalyzeStarRate from './Component/AnalyzeStarRate';
+import API_URL from '../../config';
 import './AnalyzeTest.scss';
 
 export default class AnalyzeTest extends Component {
