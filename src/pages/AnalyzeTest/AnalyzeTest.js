@@ -24,6 +24,27 @@ export default class AnalyzeTest extends Component {
       );
   }
 
+  // Todo : API 붙이기
+  // componentDidMount() {
+  //   let token = localStorage.getItem('TOKEN');
+  //   fetch(API_URLS.MYTEST, {
+  //     headers: {
+  //       Authorization: token,
+  //     },
+  //   })
+  //     .then(res => {
+  //       if (res.status === 200 && token) {
+  //         return res.json();
+  //       }
+  //     })
+  //     .then(data =>
+  //       this.setState({
+  //         favDatas: [data['favorite_genre'], data['favorite_country']],
+  //         starRateDatas: [...data['star_distribution']],
+  //       })
+  //     );
+  // }
+
   render() {
     const { favDatas, starRateDatas } = this.state;
     return (
