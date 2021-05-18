@@ -14,12 +14,18 @@ export default class AnalyzeTest extends Component {
   }
 
   componentDidMount() {
-    fetch('/data/myTestMockData.json')
+    fetch('/data/analyzeStarRatesMockData.json')
+      .then(res => res.json())
+      .then(data =>
+        this.setState({
+          starRateDatas: [data['star_distribution']],
+        })
+      );
+    fetch('/data/analyzeGenresMockData.json')
       .then(res => res.json())
       .then(data =>
         this.setState({
           favDatas: [data['favorite_genre'], data['favorite_country']],
-          starRateDatas: [...data['star_distribution']],
         })
       );
   }
@@ -62,19 +68,12 @@ export default class AnalyzeTest extends Component {
         </header>
         <AnalyzeCardLayout
           childComponent={<AnalyzeStarRate starRateDatas={starRateDatas} />}
+          favTitle={1}
+        />
+        <AnalyzeCardLayout
+          childComponent={<AnalyzeFavorite favDatas={favDatas} />}
           favTitle={2}
         />
-        {favDatas && (
-          <>
-            {favDatas.map((favData, index) => (
-              <AnalyzeCardLayout
-                key={index}
-                childComponent={<AnalyzeFavorite favDatas={favData} />}
-                favTitle={index}
-              />
-            ))}
-          </>
-        )}
       </section>
     );
   }
