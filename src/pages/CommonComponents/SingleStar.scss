@@ -1,0 +1,33 @@
+.blankStar {
+  position: relative;
+  width: 22px;
+
+  &::before {
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    content: '\f005';
+    color: #ebebeb;
+  }
+
+  .fullStar,
+  .halfStar {
+    z-index: 999;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .fullStar::before {
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    content: '\f005';
+    color: #ffd900;
+  }
+
+  .halfStar::before {
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    content: '\f089';
+    color: #ffd900;
+  }
+}
