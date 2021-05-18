@@ -3,48 +3,83 @@ import { Link, withRouter } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import Modal from './Modal';
-// 테스트용
-import test from './test';
+import LoginSignInForm from '../LoginSignIn/LoginSignInForm';
 import './Navbar.scss';
 
 class Navbar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isUserLogin: false,
-      isLoginClicked: false,
+      isUserLogined: false,
+      isSignBtnClicked: false,
+      modalOpened: false,
     };
   }
 
+  checkUserLogined = () => {
+    let token = localStorage.getItem('TOKEN');
+    if (token) {
+      this.setState({
+        isUserLogined: true,
+      });
+    }
+  };
+
   closeModal = () => {
     this.setState({
-      isLoginClicked: false,
+      modalOpened: false,
     });
   };
 
-  openModal = () => {
+  clickSignIn = () => {
     this.setState({
-      isLoginClicked: true,
+      modalOpened: true,
+      isSignBtnClicked: true,
     });
+  };
+
+  clickLogin = () => {
+    this.setState({
+      modalOpened: true,
+      isSignBtnClicked: false,
+    });
+  };
+
+  clickLogout = () => {
+    localStorage.removeItem('TOKEN');
+    this.setState({
+      isUserLogined: false,
+    });
+    this.props.history.push('/');
   };
 
   render() {
-    const { isUserLogin, isLoginClicked } = this.state;
-    const { closeModal, openModal } = this;
+    const { isUserLogined, isSignBtnClicked, modalOpened } = this.state;
+    const {
+      closeModal,
+      clickSignIn,
+      clickLogin,
+      clickLogout,
+      checkUserLogined,
+    } = this;
     const logoutedBtn = (
       <>
-        <button className="navBtn navLoginBtn" onClick={openModal}>
+        <button className="navLoginBtn" onClick={clickLogin}>
           로그인
         </button>
-        <button className="navSignInBtn" onClick={openModal}>
+        <button className="navSignInBtn" onClick={clickSignIn}>
           회원가입
         </button>
       </>
     );
     const loginedBtn = (
       <>
-        <button className="navBtn navReviewBtn">평가하기</button>
-        <button className="navBtn navLogoutBtn">로그아웃</button>
+        <button className="navLogoutBtn">
+          <Link to="/review">평가하기</Link>
+        </button>
+        <button className="navLogoutBtn" onClick={clickLogout}>
+          로그아웃
+        </button>
         <button>
           <div className="navUserProfile"></div>
         </button>
