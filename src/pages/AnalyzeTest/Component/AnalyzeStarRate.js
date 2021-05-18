@@ -2,43 +2,29 @@ import React, { Component } from 'react';
 import './AnalyzeStarRate.scss';
 
 export default class AnalyzeStarRate extends Component {
-  drawHighlightGraph = index => {
-    return (
-      <div
-        key={index}
-        className="starGraph"
-        style={{
-          height: this.props.starRateDatas[0][`star_${STAR_GRADE[index]}`],
-          backgroundColor: '#FCA137',
-        }}
-      />
-    );
-  };
-
-  drawGeneralGraph = index => {
-    return (
-      <div
-        key={index}
-        className="starGraph"
-        style={{
-          height: this.props.starRateDatas[0][`star_${STAR_GRADE[index]}`],
-        }}
-      />
-    );
-  };
-
   render() {
     const { starRateDatas } = this.props;
+    const starY = [];
+    starRateDatas[0]?.['star_distribution'].forEach(el =>
+      starY.push(...Object.values(el))
+    );
+
     return (
       <>
         {starRateDatas[0] && (
           <>
             <div className="analyzeStarChart">
               <div className="starGraphs">
-                {STAR_GRAPH_COUNT.map(index =>
-                  index / 2 === starRateDatas[0]['highest_rating']
-                    ? this.drawHighlightGraph(index)
-                    : this.drawGeneralGraph(index)
+                {starY.map((nthY, nthX) =>
+                  STAR_GRADE[nthX + 1] ===
+                  starRateDatas[0]['rating_highest'] ? (
+                    <div
+                      style={{ height: nthY * 5, backgroundColor: '#FCA137' }}
+                      className="starGraph"
+                    />
+                  ) : (
+                    <div style={{ height: nthY * 5 }} className="starGraph" />
+                  )
                 )}
               </div>
               <div className="starGraphsLabel">
@@ -51,15 +37,15 @@ export default class AnalyzeStarRate extends Component {
             </div>
             <ul className="topResults">
               <li className="resultRow">
-                {starRateDatas[0].average}
+                {starRateDatas[0]['rating_average']}
                 <span>별점 평균</span>
               </li>
               <li className="resultRow">
-                {starRateDatas[0]['all_count']}
+                {starRateDatas[0]['rating_count']}
                 <span>별점 개수</span>
               </li>
               <li className="resultRow">
-                {starRateDatas[0]['highest_rating']}
+                {starRateDatas[0]['rating_highest']}
                 <span>많이 준 별점</span>
               </li>
             </ul>
@@ -71,16 +57,16 @@ export default class AnalyzeStarRate extends Component {
 }
 
 const STAR_GRADE = {
-  1: 'halfone',
-  2: 'one',
-  3: 'halftwo',
-  4: 'two',
-  5: 'halfthree',
-  6: 'three',
-  7: 'halffour',
-  8: 'four',
-  9: 'halffive',
-  10: 'five',
+  1: 0.5,
+  2: 1.0,
+  3: 1.5,
+  4: 2.0,
+  5: 2.5,
+  6: 3.0,
+  7: 3.5,
+  8: 4.0,
+  9: 4.5,
+  10: 5.0,
 };
 
 const STAR_GRAPH_COUNT = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];

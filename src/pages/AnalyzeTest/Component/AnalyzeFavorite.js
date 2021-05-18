@@ -7,22 +7,22 @@ export default class AnalyzeFavorite extends Component {
     return (
       <>
         <ul className="topResults">
-          {favDatas?.slice(0, 3).map(favData => (
+          {favDatas[0]?.slice(0, 3).map(favData => (
             <li className="resultRow" key={favData.id}>
               {favData.genre || favData.country}
               <span>
-                <span>{favData['average_rating']}점</span>
+                <span>{favData.average}점</span>
                 <span>{favData.count}편</span>
               </span>
             </li>
           ))}
         </ul>
         <ul className="resultLists">
-          {favDatas?.slice(3).map(favData => (
+          {favDatas[0]?.slice(3).map(favData => (
             <li className="resultList" key={favData.id}>
               {favData.genre || favData.country}
               <span>
-                <span>{favData['average_rating']}점</span>
+                <span>{favData.average}점</span>
                 <span>{favData.count}편</span>
               </span>
             </li>
