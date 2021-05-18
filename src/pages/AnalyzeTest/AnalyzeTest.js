@@ -35,6 +35,7 @@ export default class AnalyzeTest extends Component {
           <p>취향분석</p>
           <div>
             <i className="fas fa-user-circle analyzeProfileImg" />
+            {/* 이름은 데이터 받아오는걸로 추후 변경예정입니다 */}
             <span>김영차</span>
           </div>
         </header>
