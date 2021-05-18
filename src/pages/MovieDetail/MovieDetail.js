@@ -66,6 +66,14 @@ export default class MovieDetail extends React.Component {
       showComment: true,
       commentInputValue: commentInputValue,
     });
+
+    // fetch('https://api.google.com/user', { fetch 로직 구현중
+    //   method: 'post',
+    //   headers: '',
+    //   body: JSON.stringify({
+    //     comment: 'commentInputValue',
+    //   }),
+    // });
   };
 
   render() {
