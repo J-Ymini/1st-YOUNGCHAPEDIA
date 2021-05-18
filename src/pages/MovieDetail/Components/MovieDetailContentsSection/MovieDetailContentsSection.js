@@ -1,8 +1,35 @@
+import { faWindows } from '@fortawesome/free-brands-svg-icons';
 import React from 'react';
+import SimilarMovie from './Components/SimilarMovie/SimilarMovie';
 import './MovieDetailContentsSection.scss';
 
 export default class MovieDetailContentsSection extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { similarMovieList: [] };
+    this.fadeInTarget = React.createRef();
+  }
+
+  handleScroll = () => {
+    const { scrollTop, clientHeight } = document.documentElement;
+
+    const eventStartHeight = scrollTop + clientHeight;
+    if (eventStartHeight > 1260) {
+      this.fadeInTarget.current.className = 'similarMovieList fadeIn';
+      window.removeEventListener('scroll', this.handleScroll);
+    }
+  };
+
+  componentDidMount = () => {
+    fetch('http://localhost:3000/data/SimilarMovieMockData.json')
+      .then(res => res.json())
+      .then(res => this.setState({ similarMovieList: res.similarMovieData }));
+
+    window.addEventListener('scroll', this.handleScroll);
+  };
+
   render() {
+    const { similarMovieList } = this.state;
     return (
       <section className="MovieDetailContentsSection">
         <div className="movieDetailContents">
@@ -46,7 +73,18 @@ export default class MovieDetailContentsSection extends React.Component {
               <header>
                 <h2>비슷한 작품</h2>
               </header>
-              <article>비슷한 작품 컴포넌트가 들어갈 자리입니다.</article>
+              <ul className="similarMovieList" ref={this.fadeInTarget}>
+                {similarMovieList.map(movie => {
+                  return (
+                    <SimilarMovie
+                      key={movie.id}
+                      img={movie.img}
+                      name={movie.koreanTitle}
+                      rating={movie.AverageofStarRating}
+                    />
+                  );
+                })}
+              </ul>
             </div>
           </article>
         </div>
