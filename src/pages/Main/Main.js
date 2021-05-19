@@ -9,8 +9,9 @@ export default class Main extends React.Component {
     };
   }
 
-  getBoxOfficeData = () => {
-    fetch('data/boxoffice.json', {
+  //백엔드에서 데이터 받아오는 함수
+  getData = address => {
+    return fetch(address, {
       method: 'GET',
     })
       .then(res => res.json())
@@ -24,40 +25,11 @@ export default class Main extends React.Component {
       });
   };
 
-  getNetflixData = () => {
-    fetch('data/netflix.json', {
-      method: 'GET',
-    })
-      .then(res => res.json())
-      .then(movieList => {
-        this.setState({
-          movieInformationList: [
-            ...this.state.movieInformationList,
-            movieList.MESSAGE[0],
-          ],
-        });
-      });
-  };
-
-  getWatchaData = () => {
-    fetch('data/watcha.json', {
-      method: 'GET',
-    })
-      .then(res => res.json())
-      .then(movieList => {
-        this.setState({
-          movieInformationList: [
-            ...this.state.movieInformationList,
-            movieList.MESSAGE[0],
-          ],
-        });
-      });
-  };
-
+  // 함수 실행
   componentDidMount() {
-    this.getBoxOfficeData();
-    this.getNetflixData();
-    this.getWatchaData();
+    this.getData('data/boxoffice.json')
+      .then(this.getData('data/netflix.json'))
+      .then(this.getData('data/watcha.json'));
   }
 
   render() {
