@@ -3,22 +3,60 @@
 .mainSectionMovieList {
   @include flexColumnSet(center, stretch);
   position: relative;
-  padding: 0px 8px;
+  padding: 0 8px;
+  width: 20%;
+  height: auto;
 
   img {
-    width: 250px;
-    height: 363px;
     border: 1px solid $line;
     border-radius: 5px;
   }
 
+  .listNetflixicon {
+    @include flexSet();
+    position: absolute;
+    // width: 30px;
+    // height: 30px;
+    top: 10px;
+    left: 83%;
+    border-radius: 50%;
+    &::before {
+      font-family: 'Font Awesome 5 Free';
+      font-weight: 900;
+      content: '\f004';
+      color: #eb92df;
+      font-size: 1.825rem;
+    }
+  }
+
+  .listWatchaicon {
+    @include flexSet();
+    position: absolute;
+    // width: 30px;
+    // height: 30px;
+    top: 10px;
+    left: 83%;
+    // background-color: $white;
+    border-radius: 50%;
+    // background-image: url('../../../../../public/weebly-brands.png');
+    // background-repeat: no-repeat;
+    // background-size: cover;
+    &::before {
+      font-family: 'Font Awesome 5 Free';
+      font-weight: 900;
+      content: '\f005';
+      color: #ffd900;
+      font-size: 1.825rem;
+    }
+  }
+
   .listRanking {
     position: absolute;
-    padding: 1px 0 0 10px;
     width: 28px;
     height: 28px;
     top: 6px;
     left: 14px;
+    text-align: center;
     color: $white;
     background-color: $dark-gray;
     line-height: 27px;
@@ -45,9 +83,9 @@
       color: $list-main-gray;
     }
 
-    .listDescriptionGrade {
-      margin: 2px 0 0;
-      font-size: 0.875rem;
+    .listDescriptionEnglish {
+      margin: 0 0 5px;
+      font-size: 1rem;
       color: $list-sub-gray;
     }
   }
