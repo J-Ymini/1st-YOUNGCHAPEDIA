@@ -3,9 +3,10 @@ import './SingleStar.scss';
 
 export default class SingleStar extends Component {
   render() {
-    const { nthStar, rating, id, clickStar, hoverStar } = this.props;
+    const { nthStar, rating, id, clickStar, hoverStar, starRef } = this.props;
     return (
       <div
+        ref={starRef}
         className="blankStar"
         id={id}
         onMouseMove={hoverStar}

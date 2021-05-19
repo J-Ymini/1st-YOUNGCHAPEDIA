@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 import SingleStar from './SingleStar';
 import API_URLS from '../../config';
 import './StarRating.scss';
@@ -7,6 +7,7 @@ export default class StarRating extends Component {
   constructor() {
     super();
     this.state = { rating: 0 };
+    this.starRef = createRef();
   }
 
   // ToDo : 상세페이지에서의 별점
@@ -22,19 +23,18 @@ export default class StarRating extends Component {
 
   clickStar = e => {
     const starX = e.nativeEvent.offsetX;
+    const starWidth = this.starRef.current.offsetWidth;
     let postStarRating;
-
-    if (starX > 10 && starX < 20) {
+    if (starWidth * 0.5 < starX) {
       postStarRating = parseInt(e.target.id);
       this.setState({
         rating: parseInt(e.target.id),
       });
     }
-
-    if (starX > 0 && starX <= 10) {
+    if (starX < starWidth * 0.5) {
       postStarRating = parseInt(e.target.id) - 0.5;
       this.setState({
-        rating: parseInt(e.target.id) - 0.5,
+        rating: e.target.id - 0.5,
       });
     }
 
@@ -54,12 +54,14 @@ export default class StarRating extends Component {
 
   hoverStar = e => {
     const starX = e.nativeEvent.offsetX;
-    if (starX > 10 && starX < 20) {
+    const starWidth = this.starRef.current.offsetWidth;
+
+    if (starWidth * 0.5 < starX) {
       this.setState({
         rating: parseInt(e.target.id),
       });
     }
-    if (starX > 0 && starX <= 10) {
+    if (starX < starWidth * 0.5) {
       this.setState({
         rating: e.target.id - 0.5,
       });
@@ -71,6 +73,7 @@ export default class StarRating extends Component {
       <div className="starContainer">
         {new Array(5).fill(0).map((el, index) => (
           <SingleStar
+            starRef={this.starRef}
             id={index + 1}
             clickStar={this.clickStar}
             nthStar={index + 1}
