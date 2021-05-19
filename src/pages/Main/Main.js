@@ -28,39 +28,38 @@ export default class Main extends React.Component {
   };
 
   getMockData = () => {
+    const { preItems, items } = this.state;
     return fetch('data/movieMockData.json', {
       method: 'GET',
     })
       .then(res => res.json())
       .then(movieList => {
-        let dataToAdd = movieList.slice(this.state.preItems, this.state.items);
+        let dataToAdd = movieList.slice(preItems, items);
         this.setState({
           movieInformationList: [
             ...this.state.movieInformationList,
             ...dataToAdd,
           ],
         });
-        console.log(dataToAdd);
-        console.log(this.state.items);
       });
   };
 
+  // 무한 스크롤
   infiniteScroll = () => {
-    if (
-      document.documentElement.scrollTop >=
-      document.documentElement.scrollHeight -
-        document.documentElement.clientHeight
-    ) {
+    const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+    const { preItems, items } = this.state;
+
+    if (scrollTop >= scrollHeight - clientHeight) {
       this.setState({
-        preItems: this.state.preItems + 1,
-        items: this.state.items,
+        preItems: preItems + 1,
+        items: items + 1,
       });
       fetch('data/movieMockData.json', {
         method: 'GET',
       })
         .then(res => res.json())
         .then(res => {
-          let result = res.slice(this.state.preitem, this.state.item);
+          let result = res.slice(preItems, items);
           this.setState({
             movieInformationList: [
               ...this.state.movieInformationList,
@@ -71,20 +70,22 @@ export default class Main extends React.Component {
     }
   };
 
-  // removeInfiniteScroll = () => {
-  //   if(this.state.)
-  // }
-  // 함수 실행
   componentDidMount() {
     this.getData('data/boxoffice.json')
       .then(this.getData('data/netflix.json'))
       .then(this.getData('data/watcha.json'))
       .then(this.getMockData());
     window.addEventListener('scroll', this.infiniteScroll);
-    console.log(this.state.item);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.infiniteScroll);
   }
 
   render() {
+    console.log('preItems', this.state.preItems);
+    console.log('items', this.state.items);
+    console.log('movieInformation', this.state.movieInformationList);
     return (
       <>
         {this.state.movieInformationList && (
