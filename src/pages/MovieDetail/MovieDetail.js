@@ -16,6 +16,7 @@ export default class MovieDetail extends React.Component {
       commentModal: false,
       commentInputValue: '',
       commentList: [],
+      movieInformation: {},
     };
   }
 
@@ -63,17 +64,47 @@ export default class MovieDetail extends React.Component {
       leaveComment: false,
       showComment: true,
     });
+  };
 
-    console.log(this.state);
+  componentDidMount() {
+    // const id = this.props.match.params.id;
+    fetch(`http://192.168.25.36:8000/movies/1`)
+      .then(res => res.json())
+      .then(res =>
+        this.setState({
+          movieInformation: [res['movie_information']],
+        })
+      );
+  }
+
+  goToPrevious = () => {
+    const { style } = this.commentList.current;
+    if (this.count.current === 0) return;
+    this.count.current--;
+    style.transform = `translate(-${931 * this.count.current}px, 0)`;
+  };
+
+  goToNext = () => {
+    const { style } = this.commentList.current;
+    const { commentListContents } = this.state;
+    const commentLength = Math.floor(commentListContents.length / 3);
+
+    if (this.count.current === commentLength) {
+      this.count.current = -1;
+    }
+    this.count.current++;
+    style.transform = `translate(-${931 * this.count.current}px, 0)`;
   };
 
   render() {
-    const { leaveComment, showComment, commentInputValue } = this.state;
+    const { leaveComment, showComment, commentInputValue, movieInformation } =
+      this.state;
     return (
       <main className="MovieDetail">
         <MovieBannerSection
           userWishStatus={this.state}
           userWishStatusHandler={this.changeStateOfWish}
+          movieInformation={movieInformation}
         />
 
         {leaveComment && (
@@ -92,9 +123,14 @@ export default class MovieDetail extends React.Component {
             closeModal={this.closeModal}
             modifyingComment={this.modifyingComment}
             deleteComment={this.deleteComment}
+            movieInformation={movieInformation}
           />
         )}
-        <MovieDetailContentsSection />
+        <MovieDetailContentsSection
+          movieInformation={movieInformation}
+          goToPrevious={this.goToPrevious}
+          goToNext={this.goToNext}
+        />
       </main>
     );
   }
