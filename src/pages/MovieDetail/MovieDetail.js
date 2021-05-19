@@ -21,36 +21,13 @@ export default class MovieDetail extends React.Component {
 
   changeStateOfWish = () => {
     const { userWish } = this.state;
-
-    fetch(
-      ('http://192.168.25.28:8000/movies/wishmovie',
-      {
-        method: 'POST',
-        body: JSON.stringify({ movie_id: '반가워요' }),
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-      })
-    )
-      .then(res => res.json())
-      .then(res => console.log(res));
-
-    // .catch(result => console.log(result));
-    // .then(res => {
-    //   if (res === '에러입니다.') {
-    //     console.log(res);
-    //     return;
-    //   } else {
-    //     !userWish
-    //       ? this.setState({ userWish: true, leaveComment: true })
-    //       : this.setState({
-    //           userWish: false,
-    //           leaveComment: false,
-    //           showComment: false,
-    //         });
-    //   }
-    // });
+    !userWish
+      ? this.setState({ userWish: true, leaveComment: true })
+      : this.setState({
+          userWish: false,
+          leaveComment: false,
+          showComment: false,
+        });
   };
 
   modifyingComment = () => {
@@ -89,14 +66,6 @@ export default class MovieDetail extends React.Component {
 
     console.log(this.state);
   };
-
-  // fetch('https://api.google.com/user', { fetch 로직 구현중
-  //   method: 'post',
-  //   headers: '',
-  //   body: JSON.stringify({
-  //     comment: 'commentInputValue',
-  //   }),
-  // });
 
   render() {
     const { leaveComment, showComment, commentInputValue } = this.state;
