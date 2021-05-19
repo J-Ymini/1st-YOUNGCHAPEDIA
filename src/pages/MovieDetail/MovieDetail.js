@@ -36,6 +36,8 @@ export default class MovieDetail extends React.Component {
   };
 
   deleteComment = () => {
+    fetch;
+
     this.setState({
       leaveComment: true,
       showComment: false,
@@ -59,11 +61,24 @@ export default class MovieDetail extends React.Component {
   };
 
   commentSubmit = () => {
-    this.setState({
-      commentModal: false,
-      leaveComment: false,
-      showComment: true,
-    });
+    fetch('http://192.168.25.36:8000/movies/1/comment', {
+      method: 'POST',
+      headers: {
+        Authorization: `eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxfQ.j-6V8dLx9sVbVgnyGqibQwfZi1Hhl0aS71vjFWCrbj4`,
+      },
+      body: JSON.stringify({
+        comment: this.state.commentValue,
+      }),
+    })
+      .then(res => res.json())
+      .then(res => {
+        this.setState({
+          commentModal: false,
+          leaveComment: false,
+          showComment: true,
+        });
+        console.log(res);
+      });
   };
 
   componentDidMount() {
