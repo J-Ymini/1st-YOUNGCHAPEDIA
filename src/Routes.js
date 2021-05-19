@@ -25,9 +25,3 @@ class Routes extends React.Component {
   }
 }
 export default Routes;
-
-/* global history */
-/* global location */
-/* global window */
-
-/* eslint no-restricted-globals: ["off"] */
