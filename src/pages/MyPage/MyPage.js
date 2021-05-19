@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import API_URLS from '../../config';
 import './MyPage.scss';
 
 class MyPage extends Component {
@@ -12,15 +13,11 @@ class MyPage extends Component {
 
   componentDidMount() {
     let token = localStorage.getItem('TOKEN');
-    fetch(
-      '/data/userArchiveData.json'
-      // ToDo : BE와 테스트
-      //  {
-      //   headers: {
-      //     Authorization: token,
-      //   },
-      // }
-    )
+    fetch(API_URLS.MYPAGE, {
+      headers: {
+        Authorization: token,
+      },
+    })
       .then(res => {
         if (res.status === 200) {
           return res.json();
@@ -29,17 +26,21 @@ class MyPage extends Component {
       .catch(error => {
         alert('로그인해주세요');
         this.props.history.push('/');
-        return;
       })
       .then(userRatedData => {
+        localStorage.setItem('NAME', userRatedData.result.name);
         this.setState({
           userData: userRatedData.result,
         });
       });
   }
 
+  goToMyTest = () => {
+    this.props.history.push('/mytest');
+  };
+
   render() {
-    const { userName, moviesCount, wantedCount } = this.state.userData[0];
+    const { userData } = this.state || '';
     return (
       <section className="myPageSection">
         <div className="myPageContainer">
@@ -55,7 +56,7 @@ class MyPage extends Component {
                 <i className="fas fa-user-circle myPageProfileImg" />
               </div>
               <div className="myProfileColumn">
-                <h1>{userName}</h1>
+                <h1>{userData.name}</h1>
               </div>
               <div className="myProfileColumn">
                 <h6>프로필이 없습니다.</h6>
@@ -63,7 +64,7 @@ class MyPage extends Component {
             </header>
             <div className="analyzeTest">
               <div>
-                <button className="analyzeBtn">
+                <button onClick={this.goToMyTest} className="analyzeBtn">
                   <i class="fas fa-chart-bar" />
                   취향분석
                 </button>
@@ -74,11 +75,13 @@ class MyPage extends Component {
                 <p className="contentBannersColumn">영화</p>
                 <p className="contentBannersColumn">
                   <span>★</span>
-                  <span>{moviesCount}</span>
+                  <span>{userData['rating_count']}</span>
                 </p>
                 <p className="contentBannersColumn">
                   <span>보고싶어요</span>
-                  <span className="myPageWantedCount">{wantedCount}</span>
+                  <span className="myPageWantedCount">
+                    {userData['wish_count']}
+                  </span>
                 </p>
               </button>
             </div>
