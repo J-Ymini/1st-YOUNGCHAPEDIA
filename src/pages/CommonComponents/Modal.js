@@ -12,7 +12,6 @@ class Modal extends Component {
     document.body.style.overflow = 'hidden';
   }
 
-  // 창 전환시 모달창 꺼지는 부분 실험
   componentDidUpdate(prevProps) {
     if (this.props.location.pathname !== prevProps.location.pathname) {
       this.props.closeModal();
