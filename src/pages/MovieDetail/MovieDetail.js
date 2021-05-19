@@ -17,18 +17,31 @@ export default class MovieDetail extends React.Component {
       commentInputValue: '',
       commentList: [],
       movieInformation: {},
+      comment_id: 0,
     };
   }
 
   changeStateOfWish = () => {
     const { userWish } = this.state;
-    !userWish
-      ? this.setState({ userWish: true, leaveComment: true })
-      : this.setState({
-          userWish: false,
-          leaveComment: false,
-          showComment: false,
-        });
+    fetch('http://192.168.25.28:8000/movies/1/wish', {
+      method: 'POST',
+      headers: {
+        // 'Contents-Type': 'application/json',
+        Authorization:
+          'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxfQ.j-6V8dLx9sVbVgnyGqibQwfZi1Hhl0aS71vjFWCrbj4',
+      },
+      body: JSON.stringify({ movie_id: 1 }),
+    })
+      .then(res => res.json())
+      .then(res => console.log(res));
+
+    // !userWish
+    //   ? this.setState({ userWish: true, leaveComment: true })
+    //   : this.setState({
+    //       userWish: false,
+    //       leaveComment: false,
+    //       showComment: false,
+    //     });
   };
 
   modifyingComment = () => {
@@ -36,7 +49,16 @@ export default class MovieDetail extends React.Component {
   };
 
   deleteComment = () => {
-    fetch;
+    const { comment_id } = this.state;
+    fetch(`http://192.168.25.36:8000/movies/1/comment/${comment_id}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization:
+          'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxfQ.j-6V8dLx9sVbVgnyGqibQwfZi1Hhl0aS71vjFWCrbj4',
+      },
+      body: JSON.stringify({ comment: this.state.commentInputValue }),
+    }).then(res => console.log(res));
+    // .then(res => console.log(res));
 
     this.setState({
       leaveComment: true,
@@ -64,11 +86,11 @@ export default class MovieDetail extends React.Component {
     fetch('http://192.168.25.36:8000/movies/1/comment', {
       method: 'POST',
       headers: {
-        Authorization: `eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxfQ.j-6V8dLx9sVbVgnyGqibQwfZi1Hhl0aS71vjFWCrbj4`,
+        // 'Contents-Type': 'application/json',
+        Authorization:
+          'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxfQ.j-6V8dLx9sVbVgnyGqibQwfZi1Hhl0aS71vjFWCrbj4',
       },
-      body: JSON.stringify({
-        comment: this.state.commentValue,
-      }),
+      body: JSON.stringify({ comment: this.state.commentInputValue }),
     })
       .then(res => res.json())
       .then(res => {
@@ -76,7 +98,9 @@ export default class MovieDetail extends React.Component {
           commentModal: false,
           leaveComment: false,
           showComment: true,
+          comment_id: res['comment_id'],
         });
+        console.log(this.state.comment_id);
         console.log(res);
       });
   };

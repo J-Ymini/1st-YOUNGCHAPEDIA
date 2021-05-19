@@ -6,7 +6,6 @@
   background-color: $section-background;
 
   .movieDetailContents {
-    width: 975px;
     margin-bottom: 30px;
     padding: 20px;
     background-color: white;
@@ -16,8 +15,9 @@
 
   .movieInformationContents {
     margin-bottom: 20px;
-    border-bottom: 1.5px solid $line;
     padding-bottom: 20px;
+    width: 975px;
+    border-bottom: 1.5px solid $line;
 
     header {
       display: flex;
@@ -36,13 +36,21 @@
     }
 
     article {
+      height: 300px;
+      overflow-y: auto;
       color: $info-main-text;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      &::-webkit-scrollbar {
+        display: none;
+      }
 
       div {
         margin-bottom: 20px;
       }
 
       p {
+        margin-top: 20px;
         line-height: 1.5;
       }
     }

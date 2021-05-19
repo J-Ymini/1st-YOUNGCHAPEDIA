@@ -60,7 +60,6 @@ export default class MovieDetailContentsSection extends React.Component {
             <div className="movieInformationContents">
               <header>
                 <h2>기본정보</h2>
-                <button>더보기</button>
               </header>
               <article>
                 <div>
@@ -74,7 +73,7 @@ export default class MovieDetailContentsSection extends React.Component {
                   <br />
                   <div>{movieInformation[0]?.['running_time']} 분</div>
                 </div>
-                <p>{movieInformation[0]?.['discription']}</p>
+                <p>{movieInformation[0]?.['discription']} 안녕하세요</p>
               </article>
             </div>
           </article>
@@ -85,7 +84,6 @@ export default class MovieDetailContentsSection extends React.Component {
                   <h2>코멘트</h2>
                   <span>{movieInformation[0]?.['comments']?.length}개</span>
                 </div>
-                <button>더보기</button>
               </header>
               <article className="commentContainer">
                 <div className="commentSlideButton">
