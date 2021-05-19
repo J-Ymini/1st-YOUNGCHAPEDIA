@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import './MyPage.scss';
 
-export default class MyPage extends Component {
+class MyPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,7 +24,12 @@ export default class MyPage extends Component {
       .then(res => {
         if (res.status === 200) {
           return res.json();
-        } else alert('로그인해주세요');
+        }
+      })
+      .catch(error => {
+        alert('로그인해주세요');
+        this.props.history.push('/');
+        return;
       })
       .then(userRatedData => {
         this.setState({
@@ -82,3 +88,5 @@ export default class MyPage extends Component {
     );
   }
 }
+
+export default withRouter(MyPage);
