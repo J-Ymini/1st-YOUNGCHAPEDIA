@@ -1,7 +1,8 @@
 import React, { Component, createRef } from 'react';
+import { withRouter } from 'react-router-dom';
 import './Modal.scss';
 
-export default class Modal extends Component {
+class Modal extends Component {
   constructor(props) {
     super(props);
     this.modalRef = createRef();
@@ -9,6 +10,13 @@ export default class Modal extends Component {
 
   componentDidMount() {
     document.body.style.overflow = 'hidden';
+  }
+
+  // 창 전환시 모달창 꺼지는 부분 실험
+  componentDidUpdate(prevProps) {
+    if (this.props.location.pathname !== prevProps.location.pathname) {
+      this.props.closeModal();
+    }
   }
 
   componentWillUnmount() {
@@ -32,6 +40,8 @@ export default class Modal extends Component {
     );
   }
 }
+
+export default withRouter(Modal);
 
 /*
 ------------
