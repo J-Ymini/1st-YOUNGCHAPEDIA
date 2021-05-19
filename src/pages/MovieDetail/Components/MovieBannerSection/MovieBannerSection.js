@@ -28,8 +28,22 @@ export default class MovieBannerSection extends React.Component {
                 평균 <i class="fas fa-star"></i> 3.8(192명)
               </div>
               <div className="wishAndStarPoint">
-                <button className="wishButton">
-                  <i class="fas fa-plus"></i> 보고싶어요
+                <button
+                  className={
+                    this.props.userWishStatus.userWish
+                      ? 'wishButton active'
+                      : 'wishButton'
+                  }
+                  onClick={this.props.userWishStatusHandler}
+                >
+                  <i
+                    class={
+                      this.props.userWishStatus.userWish
+                        ? 'far fa-bookmark'
+                        : 'fas fa-plus'
+                    }
+                  ></i>
+                  보고싶어요
                 </button>
                 <div className="giveStarPoint">
                   <div>평가하기</div>

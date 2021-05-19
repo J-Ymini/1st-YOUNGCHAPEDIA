@@ -1,0 +1,28 @@
+@import '../../../../styles/variables.scss';
+
+.CommentModal {
+  padding: 50px;
+
+  textarea {
+    width: 500px;
+    height: 500px;
+    resize: none;
+    font-size: 1.2rem;
+  }
+
+  button {
+    padding: 10px 20px;
+    color: white;
+    border-radius: 10px;
+    background-color: #0066ff;
+    font-weight: bold;
+    font-size: 1.2rem;
+
+    &:active {
+      opacity: 0.8;
+    }
+  }
+  .leaveCommentButtonDisabled {
+    opacity: 0.5;
+  }
+}
