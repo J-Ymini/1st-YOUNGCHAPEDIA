@@ -12,7 +12,6 @@ export default class ReviewPage extends Component {
     super(props);
     this.state = {
       movieData: [],
-      filterGenreData: [],
       ratingsCount: 0,
       modalOpened: false,
     };
@@ -21,51 +20,36 @@ export default class ReviewPage extends Component {
 
   componentDidMount() {
     this.getMovieData();
-    // this.updateRatingCount();
+    this.updateRatingCount();
     this.scrollBoxRef.current.addEventListener(
       'scroll',
       throttle(this.infiniteScroll)
     );
   }
 
-  getMovieData = () => {
-    // let token = localStorage.getItem('TOKEN') || '';
+  getMovieData = id => {
+    let token = localStorage.getItem('TOKEN');
     const { movieData } = this.state;
-    // fetch(API_URLS.REVIEW, {
-    //   headers: {
-    //     Authorization: token,
-    //   },
-    // })
-    //   .then(res => {
-    //     if (res.status === 200 && token) {
-    //       return res.json();
-    //     }
-    //   })
-    //   .then(res => {
-    //     const updatedMovieData = res['result'].slice(
-    //       movieData.length,
-    //       movieData.length + 7
-    //     );
-    //     this.setState({
-    //       movieData: [...movieData, ...updatedMovieData],
-    //     });
-    //   });
-
-    // 서버 연결 안됐을 때 테스트용
-    fetch('/data/movieMockData.json')
+    const API = id ? `${API_URLS.REVIEW}?genre_id=${id}` : API_URLS.REVIEW;
+    fetch(API, {
+      headers: {
+        Authorization: token,
+      },
+    })
       .then(res => {
-        if (res.status === 200) {
+        if (res.status === 200 && token) {
           return res.json();
         }
       })
       .then(res => {
-        const updatedMovieData = res['result'].slice(
+        let keyName = id ? 'genre_movie' : 'movie_random';
+        const updatedMovieData = res[keyName].slice(
           movieData.length,
           movieData.length + 7
         );
+        console.log(updatedMovieData);
         this.setState({
           movieData: [...movieData, ...updatedMovieData],
-          filterGenreData: res['genre'],
         });
       });
   };
@@ -79,20 +63,25 @@ export default class ReviewPage extends Component {
       this.getMovieData();
   };
 
-  // updateRatingCount = () => {
-  //   fetch(API_URLS.REVIEW, {
-  //     headers: {
-  //       Authorization: token,
-  //     },
-  //   })
-  //     .then(res => res.json())
-  //     .then(res => {
-  //       const updatedRatingsCount = res['rating_movies'];
-  //       this.setState({
-  //         ratingsCount: updatedRatingsCount,
-  //       });
-  //     });
-  // };
+  updateRatingCount = () => {
+    let token = localStorage.getItem('TOKEN');
+    fetch(API_URLS.REVIEW, {
+      headers: {
+        Authorization: token,
+      },
+    })
+      .then(res => res.json())
+      .then(res => {
+        const lastIndex = res['movie_random'].length - 1;
+        const test = res['movie_random'][lastIndex];
+        const updatedRatingsCount = Object.values(test);
+        this.setState({
+          ratingsCount: updatedRatingsCount,
+        });
+      })
+      .catch(error => alert(error));
+  };
+
   closeModal = () => {
     this.setState({
       modalOpened: false,
@@ -106,17 +95,15 @@ export default class ReviewPage extends Component {
   };
 
   render() {
-    const { movieData, ratingsCount, modalOpened, filterGenreData } =
-      this.state;
-    const { openFilterGenre, updateRatingCount, closeModal } = this;
+    const { movieData, ratingsCount, modalOpened } = this.state;
+    const { getMovieData, openFilterGenre, updateRatingCount, closeModal } =
+      this;
     return (
       <>
         {modalOpened && (
           <Modal
             closeModal={closeModal}
-            childComponent={
-              <FilterGenreMenu filterGenreData={filterGenreData} />
-            }
+            childComponent={<FilterGenreMenu getMovieData={getMovieData} />}
           />
         )}
         <section className="reviewSection">
@@ -137,7 +124,7 @@ export default class ReviewPage extends Component {
             <div className="reviewCategory">
               <div>
                 <button className="reviewCategoryBtn" onClick={openFilterGenre}>
-                  🔻랜덤 영화
+                  🔻영화 카테고리
                 </button>
               </div>
             </div>
@@ -150,7 +137,7 @@ export default class ReviewPage extends Component {
                   id={movie.movie_id}
                   movieTitle={movie.title}
                   imgSrc={movie.thumbnail}
-                  movieReleaseDate={movie.release_date}
+                  movieReleaseDate={movie['release_date']}
                   movieCountry={movie.country}
                   updateRatingCount={updateRatingCount}
                 />

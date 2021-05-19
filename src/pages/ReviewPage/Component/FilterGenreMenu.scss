@@ -7,7 +7,7 @@
     position: relative;
     @include flexSet;
     padding-bottom: 10px;
-    font-size: 17px;
+    font-size: 1.063rem;
     font-weight: 700;
     border-bottom: 1px solid $line;
 
@@ -26,7 +26,7 @@
 
     .menuSubTitle {
       margin: 20px 0 5px 0;
-      font-size: 14px;
+      font-size: 0.875rem;
       color: $list-sub-gray;
     }
   }

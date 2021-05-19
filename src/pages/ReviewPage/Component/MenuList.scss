@@ -2,10 +2,10 @@
 
 .menuList {
   @include flexSet(space-between);
-  width: 335px;
   padding: 15px 3px;
+  width: 335px;
   border-bottom: 1px solid $line;
-  font-size: 16px;
+  font-size: 1rem;
   cursor: pointer;
 
   &:last-of-type {
