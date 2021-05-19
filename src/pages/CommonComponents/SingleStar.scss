@@ -3,10 +3,10 @@
   width: 22px;
 
   &::before {
-    font-family: 'Font Awesome 5 Free';
-    font-weight: 900;
     content: '\f005';
     color: #ebebeb;
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
   }
 
   .fullStar,
@@ -18,16 +18,16 @@
   }
 
   .fullStar::before {
-    font-family: 'Font Awesome 5 Free';
-    font-weight: 900;
     content: '\f005';
     color: #ffd900;
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
   }
 
   .halfStar::before {
-    font-family: 'Font Awesome 5 Free';
-    font-weight: 900;
     content: '\f089';
     color: #ffd900;
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
   }
 }

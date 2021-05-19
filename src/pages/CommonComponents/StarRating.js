@@ -9,31 +9,36 @@ export default class StarRating extends Component {
     this.state = { rating: 0 };
   }
 
+  // ToDo : 상세페이지에서의 별점
   // getStarRating = () => {
   //   fetch(API, {
   //     headers: {
   //       Authorization: token,
   //     },
   //   }).then(res => {
-  //     //상세 페이지에서 유저가 해당 영화에 별점을 부여했다면 그 별점 가져오는 코드
+  //     //상세페이지에서 유저가 해당 영화에 별점을 부여했다면 그 별점 가져오는 코드
   //   });
   // };
 
-  handleStar = e => {
+  clickStar = e => {
     const starX = e.nativeEvent.offsetX;
-    let postStarRating = 0;
+    let postStarRating;
+
     if (starX > 10 && starX < 20) {
       postStarRating = parseInt(e.target.id);
       this.setState({
         rating: parseInt(e.target.id),
       });
     }
+
     if (starX > 0 && starX <= 10) {
       postStarRating = parseInt(e.target.id) - 0.5;
       this.setState({
-        rating: e.target.id - 0.5,
+        rating: parseInt(e.target.id) - 0.5,
       });
     }
+
+    let token = localStorage.getItem('TOKEN');
 
     fetch(API_URLS.REVIEW, {
       method: 'POST',
@@ -44,38 +49,33 @@ export default class StarRating extends Component {
         movie: this.props.id,
         rating: postStarRating,
       }),
-    }).then(
-      this.props.updateRatingCount();
-    );
+    }).then(this.props.updateRatingCount());
   };
 
-  starHover = e => {
+  hoverStar = e => {
     const starX = e.nativeEvent.offsetX;
     if (starX > 10 && starX < 20) {
-      postStarRating = parseInt(e.target.id);
       this.setState({
         rating: parseInt(e.target.id),
       });
     }
     if (starX > 0 && starX <= 10) {
-      postStarRating = parseInt(e.target.id) - 0.5;
       this.setState({
         rating: e.target.id - 0.5,
       });
     }
-  }
+  };
 
   render() {
-    console.log(this.state.rating);
     return (
       <div className="starContainer">
         {new Array(5).fill(0).map((el, index) => (
           <SingleStar
             id={index + 1}
-            handler={this.handleStar}
+            clickStar={this.clickStar}
             nthStar={index + 1}
             rating={this.state.rating}
-            starHover={this.starHover}
+            hoverStar={this.hoverStar}
           />
         ))}
       </div>
