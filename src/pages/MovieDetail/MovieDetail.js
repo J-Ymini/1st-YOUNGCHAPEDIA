@@ -15,23 +15,45 @@ export default class MovieDetail extends React.Component {
       showComment: false,
       commentModal: false,
       commentInputValue: '',
-      commentList: [], // 댓글 데이터를 저장할 배열입니다.
+      commentList: [],
     };
   }
 
   changeStateOfWish = () => {
     const { userWish } = this.state;
-    !userWish
-      ? this.setState({ userWish: true, leaveComment: true })
-      : this.setState({
-          userWish: false,
-          leaveComment: false,
-          showComment: false,
-        });
+
+    fetch(
+      ('http://192.168.25.28:8000/movies/wishmovie',
+      {
+        method: 'POST',
+        body: JSON.stringify({ movie_id: '반가워요' }),
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+      })
+    )
+      .then(res => res.json())
+      .then(res => console.log(res));
+
+    // .catch(result => console.log(result));
+    // .then(res => {
+    //   if (res === '에러입니다.') {
+    //     console.log(res);
+    //     return;
+    //   } else {
+    //     !userWish
+    //       ? this.setState({ userWish: true, leaveComment: true })
+    //       : this.setState({
+    //           userWish: false,
+    //           leaveComment: false,
+    //           showComment: false,
+    //         });
+    //   }
+    // });
   };
 
   modifyingComment = () => {
-    const { commentModal, commentInputValue } = this.state;
     this.setState({ commentModal: true });
   };
 
@@ -59,22 +81,22 @@ export default class MovieDetail extends React.Component {
   };
 
   commentSubmit = () => {
-    const { commentInputValue } = this.state;
     this.setState({
       commentModal: false,
       leaveComment: false,
       showComment: true,
-      commentInputValue: commentInputValue,
     });
 
-    // fetch('https://api.google.com/user', { fetch 로직 구현중
-    //   method: 'post',
-    //   headers: '',
-    //   body: JSON.stringify({
-    //     comment: 'commentInputValue',
-    //   }),
-    // });
+    console.log(this.state);
   };
+
+  // fetch('https://api.google.com/user', { fetch 로직 구현중
+  //   method: 'post',
+  //   headers: '',
+  //   body: JSON.stringify({
+  //     comment: 'commentInputValue',
+  //   }),
+  // });
 
   render() {
     const { leaveComment, showComment, commentInputValue } = this.state;
