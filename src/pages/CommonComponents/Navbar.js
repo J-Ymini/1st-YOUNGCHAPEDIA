@@ -81,7 +81,9 @@ class Navbar extends Component {
           로그아웃
         </button>
         <button>
-          <div className="navUserProfile"></div>
+          <Link to="/mypage">
+            <div className="navUserProfile" />
+          </Link>
         </button>
       </>
     );
