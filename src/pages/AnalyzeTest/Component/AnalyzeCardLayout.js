@@ -3,11 +3,11 @@ import './AnalyzeCardLayout.scss';
 
 export default class AnalyzeCardLayout extends Component {
   render() {
-    const { favTitle } = this.props;
+    const { favTitle, childComponent } = this.props;
     return (
       <section className="analyzeSection">
         <header className="analyzeTitle">{FAV_TITLE[favTitle]}</header>
-        {this.props.childComponent}
+        {childComponent}
       </section>
     );
   }

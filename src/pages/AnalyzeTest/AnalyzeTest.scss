@@ -2,14 +2,14 @@
 
 .analyzeTestPage {
   @include flexColumnSet;
-  padding: 50px 0;
+  padding: 100px 0;
   background-color: $input-background;
 
   .analyzeHeader {
     @include flexColumnSet(none, none);
     padding: 30px;
-    border-radius: 8px;
     color: white;
+    border-radius: 8px;
     background: linear-gradient(45deg, $hot-pink, #c3194b);
 
     div:first-of-type,
@@ -20,7 +20,7 @@
 
     div:first-of-type {
       margin-bottom: 10px;
-      font-size: 35px;
+      font-size: 2.188rem;
       font-family: 'Oswald', sans-serif;
       font-weight: 400;
 
@@ -38,7 +38,7 @@
       .analyzeProfileImg {
         margin-right: 10px;
         color: $line;
-        font-size: 40px;
+        font-size: 2.5rem;
 
         &::before {
           background-color: $section-aside-text;
@@ -47,22 +47,8 @@
       }
 
       span {
-        font-size: 17px;
+        font-size: 1.063rem;
       }
-    }
-  }
-
-  .analyzeSection {
-    margin-top: 20px;
-    padding: 20px;
-    background-color: white;
-    border-radius: 8px;
-    border: 1px solid #e3e3e3;
-
-    .analyzeTitle {
-      width: 598px;
-      font-size: 19px;
-      font-weight: 700;
     }
   }
 }

@@ -37,7 +37,7 @@ export default class AnalyzeStarRate extends Component {
             </div>
             <ul className="topResults">
               <li className="resultRow">
-                {starRateDatas[0]['rating_average']}
+                {starRateDatas[0]['rating_average'].toFixed(2)}
                 <span>별점 평균</span>
               </li>
               <li className="resultRow">

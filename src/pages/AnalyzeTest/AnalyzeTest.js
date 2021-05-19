@@ -2,58 +2,50 @@ import React, { Component } from 'react';
 import AnalyzeCardLayout from './Component/AnalyzeCardLayout';
 import AnalyzeFavorite from './Component/AnalyzeFavorite';
 import AnalyzeStarRate from './Component/AnalyzeStarRate';
-import API_URL from '../../config';
+import API_URLS from '../../config';
 import './AnalyzeTest.scss';
 
 export default class AnalyzeTest extends Component {
   constructor() {
     super();
     this.state = {
-      favDatas: [],
+      favGenreDatas: [],
       starRateDatas: [],
     };
   }
 
   componentDidMount() {
-    fetch('/data/analyzeStarRatesMockData.json')
+    let token = localStorage.getItem('TOKEN');
+    fetch(API_URLS['MYTEST_STAR'], {
+      headers: {
+        Authorization: token,
+      },
+    })
       .then(res => res.json())
       .then(data =>
         this.setState({
           starRateDatas: [data.result],
         })
-      );
-    fetch('/data/analyzeGenresMockData.json')
+      )
+      .catch(error => alert('별점 받아오기 실패'));
+
+    fetch(API_URLS['MYTEST_GENRE'], {
+      headers: {
+        Authorization: token,
+      },
+    })
       .then(res => res.json())
-      .then(data =>
+      .then(data => {
         this.setState({
-          favDatas: [data.result],
-        })
-      );
+          favGenreDatas: [data['favorite_genre']],
+        });
+      })
+      .catch(error => alert('장르 받아오기 실패'));
   }
 
-  // Todo : API 붙이기
-  // componentDidMount() {
-  //   let token = localStorage.getItem('TOKEN');
-  //   fetch(API_URLS.MYTEST, {
-  //     headers: {
-  //       Authorization: token,
-  //     },
-  //   })
-  //     .then(res => {
-  //       if (res.status === 200 && token) {
-  //         return res.json();
-  //       }
-  //     })
-  //     .then(data =>
-  //       this.setState({
-  //         favDatas: [data['favorite_genre'], data['favorite_country']],
-  //         starRateDatas: [...data['star_distribution']],
-  //       })
-  //     );
-  // }
-
   render() {
-    const { favDatas, starRateDatas } = this.state;
+    const { favGenreDatas, starRateDatas } = this.state;
+    const userName = localStorage.getItem('NAME');
     return (
       <section className="analyzeTestPage">
         <header className="analyzeHeader">
@@ -63,7 +55,7 @@ export default class AnalyzeTest extends Component {
           <p>취향분석</p>
           <div>
             <i className="fas fa-user-circle analyzeProfileImg" />
-            <span>김영차</span>
+            <span>{userName}</span>
           </div>
         </header>
         <AnalyzeCardLayout
@@ -71,7 +63,7 @@ export default class AnalyzeTest extends Component {
           favTitle={1}
         />
         <AnalyzeCardLayout
-          childComponent={<AnalyzeFavorite favDatas={favDatas} />}
+          childComponent={<AnalyzeFavorite favGenreDatas={favGenreDatas} />}
           favTitle={2}
         />
       </section>
