@@ -40,11 +40,11 @@ export default class MainSection extends React.Component {
 
   render() {
     const { movieListContainerWidth, movieListIndex } = this.state;
-    const { movieInformationList, movieTitleIndex } = this.props;
+    const { movieInformationList, movieTitle } = this.props;
     return (
       <section className="mainSection">
         <div className="mainTitle">
-          <p>{Title[movieTitleIndex]}</p>
+          <p>{Title[movieTitle]}</p>
         </div>
         <button
           disabled={movieListIndex === 0} //초기값일때 이전버튼 비활성화

@@ -65,16 +65,14 @@ export default class Main extends React.Component {
       <>
         {this.state.movieInformationList && (
           <section className="main">
-            {this.state.movieInformationList.map(
-              (listElement, movieTitleindex) => {
-                return (
-                  <MainSection
-                    movieInformationList={listElement}
-                    movieTitleIndex={movieTitleindex}
-                  />
-                );
-              }
-            )}
+            {this.state.movieInformationList.map((listElement, movieTitle) => {
+              return (
+                <MainSection
+                  movieInformationList={listElement}
+                  movieTitle={movieTitle}
+                />
+              );
+            })}
           </section>
         )}
       </>
