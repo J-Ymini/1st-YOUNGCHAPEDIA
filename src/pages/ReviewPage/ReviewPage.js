@@ -117,7 +117,7 @@ export default class ReviewPage extends Component {
                 imgSrc={movie.thumbnail}
                 movieReleaseDate={movie.release_date}
                 movieCountry={movie.country}
-                updateRatingCount={this.updateRatingCount}
+                updateRatingCount={this.updataeRatingCount}
               />
             ))}
           </ul>

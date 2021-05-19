@@ -3,6 +3,7 @@ import MovieBannerSection from './Components/MovieBannerSection/MovieBannerSecti
 import LeaveCommentSection from './Components/LeaveCommentSection/LeaveCommentSection';
 import ShowComment from './Components/LeaveCommentSection/ShowComment';
 import MovieDetailContentsSection from './Components/MovieDetailContentsSection/MovieDetailContentsSection';
+import API_URLS from '../../config';
 
 import './MovieDetail.scss';
 
@@ -15,50 +16,33 @@ export default class MovieDetail extends React.Component {
       showComment: false,
       commentModal: false,
       commentInputValue: '',
-      commentList: [],
       movieInformation: {},
       comment_id: 0,
     };
   }
 
   changeStateOfWish = () => {
-    const { userWish } = this.state;
-    fetch('http://192.168.25.28:8000/movies/1/wish', {
+    const movieId = this.props.match.params.id;
+    fetch(`${API_URLS.DETAIL}/${movieId}/wish`, {
       method: 'POST',
       headers: {
-        // 'Contents-Type': 'application/json',
-        Authorization:
-          'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxfQ.j-6V8dLx9sVbVgnyGqibQwfZi1Hhl0aS71vjFWCrbj4',
+        // Authorization:
+        //   'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxfQ.j-6V8dLx9sVbVgnyGqibQwfZi1Hhl0aS71vjFWCrbj4', 테스트용 토큰입니다.
       },
-      body: JSON.stringify({ movie_id: 1 }),
-    })
-      .then(res => res.json())
-      .then(res => {
-        if (res.MESSAGE === 'CREATE_SUCCESS') {
-          this.setState({ userWish: true, leaveComment: true });
-        } else {
-          alert('로그인이 필요합니다.');
-          return;
-        }
-      });
-  };
-
-  deleteComment = () => {
-    const { comment_id } = this.state;
-    fetch(`http://192.168.25.36:8000/movies/1/comment/${comment_id}`, {
-      method: 'DELETE',
-      headers: {
-        Authorization:
-          'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxfQ.j-6V8dLx9sVbVgnyGqibQwfZi1Hhl0aS71vjFWCrbj4',
-      },
-      body: JSON.stringify({ comment: this.state.commentInputValue }),
-    }).then(res => console.log(res));
-    // .then(res => console.log(res));
-
-    this.setState({
-      leaveComment: true,
-      showComment: false,
-      commentInputValue: '',
+      body: JSON.stringify({ movie_id: movieId }),
+    }).then(res => {
+      if (res.status === 201) {
+        this.setState({ userWish: true, leaveComment: true });
+      } else if (res.status === 204) {
+        this.setState({
+          userWish: false,
+          leaveComment: false,
+          showComment: false,
+        });
+        return;
+      } else if (res.status === 401) {
+        alert('로그인이 필요합니다!');
+      }
     });
   };
 
@@ -78,12 +62,12 @@ export default class MovieDetail extends React.Component {
   };
 
   commentSubmit = () => {
-    fetch('http://192.168.25.36:8000/movies/1/comment', {
+    const movieId = this.props.match.params.id;
+    fetch(`${API_URLS.DETAIL}/${movieId}/comment`, {
       method: 'POST',
       headers: {
-        // 'Contents-Type': 'application/json',
-        Authorization:
-          'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxfQ.j-6V8dLx9sVbVgnyGqibQwfZi1Hhl0aS71vjFWCrbj4',
+        // Authorization: 테스트용 토큰입니다.
+        //   'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxfQ.j-6V8dLx9sVbVgnyGqibQwfZi1Hhl0aS71vjFWCrbj4',
       },
       body: JSON.stringify({ comment: this.state.commentInputValue }),
     })
@@ -95,20 +79,51 @@ export default class MovieDetail extends React.Component {
           showComment: true,
           comment_id: res['comment_id'],
         });
-        console.log(this.state.comment_id);
-        console.log(res);
       });
   };
 
+  deleteComment = () => {
+    const movieId = this.props.match.params.id;
+    const { comment_id } = this.state;
+    fetch(`${API_URLS.DETAIL}/${movieId}/comment/${comment_id}`, {
+      method: 'DELETE',
+      headers: {
+        // Authorization:
+        //   'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxfQ.j-6V8dLx9sVbVgnyGqibQwfZi1Hhl0aS71vjFWCrbj4', 테스트용 토큰입니다.
+      },
+      body: JSON.stringify({ comment: this.state.commentInputValue }),
+    }).then(() => {
+      this.setState({ comment_id: 0, leaveComment: true, showComment: false });
+    });
+  };
+
   componentDidMount() {
-    // const id = this.props.match.params.id;
-    fetch(`http://192.168.25.36:8000/movies/1`)
+    const movieId = this.props.match.params.id;
+    fetch(`${API_URLS.DETAIL}/${movieId}`)
       .then(res => res.json())
       .then(res =>
         this.setState({
           movieInformation: [res['movie_information']],
         })
       );
+
+    fetch(`${API_URLS.DETAIL}/${movieId}/wish`, {
+      method: 'GET',
+      headers: {
+        // Authorization: 테스트용 토큰입니다.
+        //   'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxfQ.j-6V8dLx9sVbVgnyGqibQwfZi1Hhl0aS71vjFWCrbj4',
+      },
+    })
+      .then(res => res.json())
+      .then(res => {
+        if (res.WishCheck === 1) {
+          this.setState({
+            userWish: true,
+            leaveComment: true,
+            showComment: false,
+          });
+        }
+      });
   }
 
   goToPrevious = () => {
