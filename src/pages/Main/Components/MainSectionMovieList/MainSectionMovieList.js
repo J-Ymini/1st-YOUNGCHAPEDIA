@@ -11,6 +11,7 @@ export default class MainSectionMovieList extends React.Component {
       netflix,
       watcha,
       movieListRanking,
+      englishTitle,
     } = this.props;
     return (
       <li
@@ -29,10 +30,10 @@ export default class MainSectionMovieList extends React.Component {
         <img alt="test" src={thumbnailImgUrl} />
         <div className="listDescription">
           <p className="listDescriptionTitle">{title}</p>
+          <p className="listDescriptionEnglish">{englishTitle}</p>
           <p className="listDescriptionYear">
             {country} ・ {releaseDate}
           </p>
-          <p className="listDescriptionGrade">평균 3.8</p>
         </div>
       </li>
     );

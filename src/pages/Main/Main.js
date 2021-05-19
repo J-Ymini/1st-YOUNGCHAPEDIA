@@ -59,7 +59,7 @@ export default class Main extends React.Component {
       })
         .then(res => res.json())
         .then(res => {
-          let result = res.slice(preItems, items);
+          let result = res.slice(preItems + 1, items + 1);
           this.setState({
             movieInformationList: [
               ...this.state.movieInformationList,
