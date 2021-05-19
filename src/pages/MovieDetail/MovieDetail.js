@@ -33,19 +33,14 @@ export default class MovieDetail extends React.Component {
       body: JSON.stringify({ movie_id: 1 }),
     })
       .then(res => res.json())
-      .then(res => console.log(res));
-
-    // !userWish
-    //   ? this.setState({ userWish: true, leaveComment: true })
-    //   : this.setState({
-    //       userWish: false,
-    //       leaveComment: false,
-    //       showComment: false,
-    //     });
-  };
-
-  modifyingComment = () => {
-    this.setState({ commentModal: true });
+      .then(res => {
+        if (res.MESSAGE === 'CREATE_SUCCESS') {
+          this.setState({ userWish: true, leaveComment: true });
+        } else {
+          alert('로그인이 필요합니다.');
+          return;
+        }
+      });
   };
 
   deleteComment = () => {
