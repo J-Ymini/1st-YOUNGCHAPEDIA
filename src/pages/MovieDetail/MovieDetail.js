@@ -23,11 +23,11 @@ export default class MovieDetail extends React.Component {
 
   changeStateOfWish = () => {
     const movieId = this.props.match.params.id;
+    let token = localStorage.getItem('TOKEN') || '';
     fetch(`${API_URLS.DETAIL}/${movieId}/wish`, {
       method: 'POST',
       headers: {
-        // Authorization:
-        //   'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxfQ.j-6V8dLx9sVbVgnyGqibQwfZi1Hhl0aS71vjFWCrbj4', 테스트용 토큰입니다.
+        Authorization: token,
       },
       body: JSON.stringify({ movie_id: movieId }),
     }).then(res => {
@@ -63,11 +63,11 @@ export default class MovieDetail extends React.Component {
 
   commentSubmit = () => {
     const movieId = this.props.match.params.id;
+    let token = localStorage.getItem('TOKEN') || '';
     fetch(`${API_URLS.DETAIL}/${movieId}/comment`, {
       method: 'POST',
       headers: {
-        // Authorization: 테스트용 토큰입니다.
-        //   'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxfQ.j-6V8dLx9sVbVgnyGqibQwfZi1Hhl0aS71vjFWCrbj4',
+        Authorization: token,
       },
       body: JSON.stringify({ comment: this.state.commentInputValue }),
     })
@@ -85,11 +85,11 @@ export default class MovieDetail extends React.Component {
   deleteComment = () => {
     const movieId = this.props.match.params.id;
     const { comment_id } = this.state;
+    let token = localStorage.getItem('TOKEN') || '';
     fetch(`${API_URLS.DETAIL}/${movieId}/comment/${comment_id}`, {
       method: 'DELETE',
       headers: {
-        // Authorization:
-        //   'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxfQ.j-6V8dLx9sVbVgnyGqibQwfZi1Hhl0aS71vjFWCrbj4', 테스트용 토큰입니다.
+        Authorization: token,
       },
       body: JSON.stringify({ comment: this.state.commentInputValue }),
     }).then(() => {
@@ -109,11 +109,11 @@ export default class MovieDetail extends React.Component {
   }
 
   componentWillMount = () => {
+    let token = localStorage.getItem('TOKEN') || '';
     fetch(`${API_URLS.DETAIL}/${movieId}/wish`, {
       method: 'GET',
       headers: {
-        // Authorization: 테스트용 토큰입니다.
-        //   'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxfQ.j-6V8dLx9sVbVgnyGqibQwfZi1Hhl0aS71vjFWCrbj4',
+        Authorization: token,
       },
     })
       .then(res => res.json())
