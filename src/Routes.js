@@ -7,6 +7,7 @@ import Navbar from './pages/CommonComponents/Navbar';
 import ReviewPage from './pages/ReviewPage/ReviewPage';
 import MovieDetail from './pages/MovieDetail/MovieDetail';
 import MyPage from './pages/MyPage/MyPage';
+import AnalyzeTest from './pages/AnalyzeTest/AnalyzeTest';
 
 class Routes extends React.Component {
   render() {
@@ -17,7 +18,8 @@ class Routes extends React.Component {
           <Route exact path="/" component={Main}></Route>
           <Route exact path="/moviedetail" component={MovieDetail}></Route>
           <Route exact path="/review" component={ReviewPage}></Route>
-          <Route exact path="/mypage" component={MyPage}></Route>
+          <Route exact path="/mypage" component={MyPage}></Route>;
+          <Route exact path="/mytest" component={AnalyzeTest}></Route>;
         </Switch>
         <Footer />
       </Router>

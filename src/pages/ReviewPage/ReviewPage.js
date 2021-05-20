@@ -1,6 +1,6 @@
 import React, { Component, createRef } from 'react';
 import { throttle } from '../../utils/throttle';
-import ReviewMovieList from './component/ReviewMovieList';
+import ReviewMovieList from './Component/ReviewMovieList';
 import API_URLS from '../../config';
 import './ReviewPage.scss';
 
@@ -24,7 +24,7 @@ export default class ReviewPage extends Component {
   }
 
   getMovieData = () => {
-    let token = localStorage.getItem('TOKEN') || '';
+    let token = localStorage.getItem('TOKEN');
     const { movieData } = this.state;
     fetch(API_URLS.REVIEW, {
       headers: {

@@ -88,42 +88,43 @@ class Navbar extends Component {
 
     return (
       <>
-        {modalOpened && (
-          <Modal
-            closeModal={closeModal}
-            childComponent={
-              <LoginSignInForm
-                checkUserLogined={checkUserLogined}
-                isSignBtnClicked={isSignBtnClicked}
+        {this.props.location.pathname !== '/mytest' && (
+          <>
+            {isLoginClicked && (
+              <Modal
+                modalOpened={isLoginClicked}
+                closeModal={closeModal}
+                childComponent={test}
               />
-            }
-          />
+            )}
+            <nav className="topNav">
+              <span className="logoMenu">
+                <header>
+                  <Link to="/">
+                    <h1>
+                      {/* h1을 두 개 할 수는 없어서 h1안에 span 2개로 했습니다 */}
+                      <span>YOUNGCHA</span>
+                      <span>PEDIA</span>
+                    </h1>
+                  </Link>
+                </header>
+                <ul className="navMenu">
+                  <li>영화</li>
+                </ul>
+              </span>
+              <span className="searchUser">
+                <label className="navSearch" htmlFor="searchInput">
+                  <FontAwesomeIcon icon={faSearch} className="topNavIcon" />
+                  <input
+                    id="searchInput"
+                    placeholder="작품 제목, 배우, 감독을 검색해보세요"
+                  />
+                </label>
+                {isUserLogin ? loginedBtn : logoutedBtn}
+              </span>
+            </nav>
+          </>
         )}
-        <nav className="topNav">
-          <span className="logoMenu">
-            <header>
-              <Link to="/">
-                <h1>
-                  <span>YOUNGCHA</span>
-                  <span>PEDIA</span>
-                </h1>
-              </Link>
-            </header>
-            <ul className="navMenu">
-              <li>영화</li>
-            </ul>
-          </span>
-          <span className="searchUser">
-            <label className="navSearch" htmlFor="searchInput">
-              <FontAwesomeIcon icon={faSearch} className="topNavIcon" />
-              <input
-                id="searchInput"
-                placeholder="작품 제목, 배우, 감독을 검색해보세요"
-              />
-            </label>
-            {isUserLogined ? loginedBtn : logoutedBtn}
-          </span>
-        </nav>
       </>
     );
   }
