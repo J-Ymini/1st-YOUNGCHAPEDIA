@@ -46,12 +46,12 @@ export default class FilterGenreMenu extends Component {
             랜덤 영화 {isMenuChecked && <span className="menuChecked">✔</span>}
           </li>
           <h6 className="menuSubTitle">장르</h6>
-          {genreMenusArr.map(el => (
+          {genreMenusArr.map(([id, genre]) => (
             <MenuList
               getMovieData={getMovieData}
-              key={el[0]}
-              id={el[0]}
-              genre={el[1]}
+              key={id}
+              id={id}
+              genre={genre}
             />
           ))}
         </ul>

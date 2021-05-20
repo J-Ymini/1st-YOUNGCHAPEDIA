@@ -43,39 +43,17 @@ export default class ReviewPage extends Component {
         }
       })
       .then(res => {
-        let keyName = id ? 'genre_movie' : 'movie_random';
-        if (!id) {
-          const updatedMovieData = res[keyName].slice(
-            randomMovie.length,
-            randomMovie.length + 7
-          );
-          this.setState(
-            {
-              randomMovie: [...randomMovie, ...updatedMovieData],
-            },
-            () => {
-              this.setState({
-                movieData: [...randomMovie],
-              });
-            }
-          );
-        }
-        if (id) {
-          const updatedMovieData = res[keyName].slice(
-            genreMovie.length,
-            genreMovie.length + 7
-          );
-          this.setState(
-            {
-              genreMovie: [...genreMovie, ...updatedMovieData],
-            },
-            () => {
-              this.setState({
-                movieData: [...genreMovie],
-              });
-            }
-          );
-        }
+        const responeKey = id ? 'genre_movie' : 'movie_random';
+        const movieKeyName = id ? 'genreMovie' : 'randomMovie';
+        const prevMovieData = this.state[movieKeyName];
+        const updatedMovieData = res[responeKey].slice(
+          prevMovieData.length,
+          prevMovieData.length + 7
+        );
+        this.setState({
+          [movieKeyName]: [...prevMovieData, ...updatedMovieData],
+          movieData: [...prevMovieData, ...updatedMovieData],
+        });
       });
   };
 
@@ -98,8 +76,8 @@ export default class ReviewPage extends Component {
       .then(res => res.json())
       .then(res => {
         const lastIndex = res['movie_random'].length - 1;
-        const test = res['movie_random'][lastIndex];
-        const updatedRatingsCount = Object.values(test);
+        const ratingCountObject = res['movie_random'][lastIndex];
+        const updatedRatingsCount = Object.values(ratingCountObject);
         this.setState({
           ratingsCount: updatedRatingsCount,
         });

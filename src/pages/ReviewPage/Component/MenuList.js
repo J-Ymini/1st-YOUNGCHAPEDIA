@@ -20,12 +20,10 @@ export default class MenuList extends Component {
     const { genre } = this.props;
     const { isMenuChecked } = this.state;
     return (
-      <>
-        <li className="menuList" onClick={this.clickGenreMenu}>
-          {genre}
-          {isMenuChecked && <span className="menuChecked">✔</span>}
-        </li>
-      </>
+      <li className="menuList" onClick={this.clickGenreMenu}>
+        {genre}
+        {isMenuChecked && <span className="menuChecked">✔</span>}
+      </li>
     );
   }
 }
