@@ -79,3 +79,5 @@ export default class StarRating extends Component {
 }
 
 const STAR = [1, 2, 3, 4, 5];
+
+// starRating 컴포넌트 POST,GET요청 보내는 함수는 starRating을 사용할 부모 컴포넌트에서 선언하여 props로 넘겨주세요
