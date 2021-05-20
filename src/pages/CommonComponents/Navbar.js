@@ -10,15 +10,14 @@ class Navbar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isUserLogined: false,
+      isUserLogined: !!localStorage.getItem('TOKEN'),
       isSignBtnClicked: false,
       modalOpened: false,
     };
   }
 
   checkUserLogined = () => {
-    let token = localStorage.getItem('TOKEN');
-    if (token) {
+    if (localStorage.getItem('TOKEN')) {
       this.setState({
         isUserLogined: true,
       });
@@ -47,10 +46,23 @@ class Navbar extends Component {
 
   clickLogout = () => {
     localStorage.removeItem('TOKEN');
+    localStorage.removeItem('NAME');
     this.setState({
       isUserLogined: false,
     });
     this.props.history.push('/');
+  };
+
+  goToLoginModal = () => {
+    this.setState({
+      isSignBtnClicked: false,
+    });
+  };
+
+  goToSignInModal = () => {
+    this.setState({
+      isSignBtnClicked: true,
+    });
   };
 
   render() {
@@ -61,6 +73,8 @@ class Navbar extends Component {
       clickLogin,
       clickLogout,
       checkUserLogined,
+      goToLoginModal,
+      goToSignInModal,
     } = this;
     const logoutedBtn = (
       <>
@@ -81,50 +95,54 @@ class Navbar extends Component {
           로그아웃
         </button>
         <button>
-          <div className="navUserProfile"></div>
+          <Link to="/mypage">
+            <div className="navUserProfile" />
+          </Link>
         </button>
       </>
     );
 
     return (
       <>
-        {this.props.location.pathname !== '/mytest' && (
-          <>
-            {isLoginClicked && (
-              <Modal
-                modalOpened={isLoginClicked}
+        {modalOpened && (
+          <Modal
+            closeModal={closeModal}
+            childComponent={
+              <LoginSignInForm
                 closeModal={closeModal}
-                childComponent={test}
+                checkUserLogined={checkUserLogined}
+                isSignBtnClicked={isSignBtnClicked}
+                goToLoginModal={goToLoginModal}
+                goToSignInModal={goToSignInModal}
               />
-            )}
-            <nav className="topNav">
-              <span className="logoMenu">
-                <header>
-                  <Link to="/">
-                    <h1>
-                      {/* h1을 두 개 할 수는 없어서 h1안에 span 2개로 했습니다 */}
-                      <span>YOUNGCHA</span>
-                      <span>PEDIA</span>
-                    </h1>
-                  </Link>
-                </header>
-                <ul className="navMenu">
-                  <li>영화</li>
-                </ul>
-              </span>
-              <span className="searchUser">
-                <label className="navSearch" htmlFor="searchInput">
-                  <FontAwesomeIcon icon={faSearch} className="topNavIcon" />
-                  <input
-                    id="searchInput"
-                    placeholder="작품 제목, 배우, 감독을 검색해보세요"
-                  />
-                </label>
-                {isUserLogin ? loginedBtn : logoutedBtn}
-              </span>
-            </nav>
-          </>
+            }
+          />
         )}
+        <nav className="topNav">
+          <span className="logoMenu">
+            <header>
+              <Link to="/">
+                <h1>
+                  <span>YOUNGCHA</span>
+                  <span>PEDIA</span>
+                </h1>
+              </Link>
+            </header>
+            <ul className="navMenu">
+              <li>영화</li>
+            </ul>
+          </span>
+          <span className="searchUser">
+            <label className="navSearch" htmlFor="searchInput">
+              <FontAwesomeIcon icon={faSearch} className="topNavIcon" />
+              <input
+                id="searchInput"
+                placeholder="작품 제목, 배우, 감독을 검색해보세요"
+              />
+            </label>
+            {isUserLogined ? loginedBtn : logoutedBtn}
+          </span>
+        </nav>
       </>
     );
   }
