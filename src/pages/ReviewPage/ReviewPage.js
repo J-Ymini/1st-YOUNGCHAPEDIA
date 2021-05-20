@@ -3,7 +3,6 @@ import { throttle } from '../../utils/throttle';
 import ReviewMovieList from './Component/ReviewMovieList';
 import FilterGenreMenu from './Component/FilterGenreMenu';
 import Modal from '../CommonComponents/Modal';
-
 import API_URLS from '../../config';
 import './ReviewPage.scss';
 
@@ -12,6 +11,8 @@ export default class ReviewPage extends Component {
     super(props);
     this.state = {
       movieData: [],
+      randomMovie: [],
+      genreMovie: [],
       ratingsCount: 0,
       modalOpened: false,
     };
@@ -29,7 +30,7 @@ export default class ReviewPage extends Component {
 
   getMovieData = id => {
     let token = localStorage.getItem('TOKEN');
-    const { movieData } = this.state;
+    const { randomMovie, genreMovie } = this.state;
     const API = id ? `${API_URLS.REVIEW}?genre_id=${id}` : API_URLS.REVIEW;
     fetch(API, {
       headers: {
@@ -43,14 +44,38 @@ export default class ReviewPage extends Component {
       })
       .then(res => {
         let keyName = id ? 'genre_movie' : 'movie_random';
-        const updatedMovieData = res[keyName].slice(
-          movieData.length,
-          movieData.length + 7
-        );
-        console.log(updatedMovieData);
-        this.setState({
-          movieData: [...movieData, ...updatedMovieData],
-        });
+        if (!id) {
+          const updatedMovieData = res[keyName].slice(
+            randomMovie.length,
+            randomMovie.length + 7
+          );
+          this.setState(
+            {
+              randomMovie: [...randomMovie, ...updatedMovieData],
+            },
+            () => {
+              this.setState({
+                movieData: [...randomMovie],
+              });
+            }
+          );
+        }
+        if (id) {
+          const updatedMovieData = res[keyName].slice(
+            genreMovie.length,
+            genreMovie.length + 7
+          );
+          this.setState(
+            {
+              genreMovie: [...genreMovie, ...updatedMovieData],
+            },
+            () => {
+              this.setState({
+                movieData: [...genreMovie],
+              });
+            }
+          );
+        }
       });
   };
 
@@ -103,7 +128,12 @@ export default class ReviewPage extends Component {
         {modalOpened && (
           <Modal
             closeModal={closeModal}
-            childComponent={<FilterGenreMenu getMovieData={getMovieData} />}
+            childComponent={
+              <FilterGenreMenu
+                getMovieData={getMovieData}
+                closeModal={closeModal}
+              />
+            }
           />
         )}
         <section className="reviewSection">

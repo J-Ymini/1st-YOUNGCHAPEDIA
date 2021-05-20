@@ -23,19 +23,23 @@ export default class FilterGenreMenu extends Component {
   }
 
   clickRandomMenu = () => {
+    this.props.getMovieData();
     this.setState({
       isMenuChecked: !this.state.isMenuChecked,
     });
   };
 
   render() {
-    const { getMovieData } = this.props;
+    const { getMovieData, closeModal } = this.props;
     const { isMenuChecked, genreMenus } = this.state;
     const genreMenusArr = Object.entries(genreMenus);
     return (
       <section className="filterGenreMenu">
         <header className="menuTitle">
-          <button className="menuClosedBtn">X</button>영화
+          <button className="menuClosedBtn" onClick={closeModal}>
+            X
+          </button>
+          영화
         </header>
         <ul className="menuLists">
           <li className="menuList" onClick={this.clickRandomMenu}>
