@@ -34,7 +34,7 @@ export default class LeaveCommentSection extends React.Component {
           }
         >
           <div>
-            <p>전용민 님의 생각을 글로 적어보세요</p>
+            <p>영화에 대한 생각을 글로 적어보세요</p>
             <button className="leaveCommentButton" onClick={showCommentModal}>
               코멘트 남기기
             </button>
