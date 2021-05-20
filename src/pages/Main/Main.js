@@ -28,8 +28,8 @@ export default class Main extends React.Component {
   // 함수 실행
   componentDidMount() {
     this.getData('data/boxoffice.json')
-      .then(this.getData('data/netflix.json'))
-      .then(this.getData('data/watcha.json'));
+      .then(() => this.getData('data/netflix.json'))
+      .then(() => this.getData('data/watcha.json'));
   }
 
   render() {
