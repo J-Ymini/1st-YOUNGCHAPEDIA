@@ -1,7 +1,7 @@
-const BASE_URL = 'http://10.58.2.139:8000';
+const BASE_URL = 'http://10.58.2.8:8000';
 const API_URLS = {
   MAIN_BOX_OFFICE: `${BASE_URL}/movies/movies?ranking=box-office`,
-  MAIN_YOUNGCHA: `${BASE_URL}movies/movies?provider=watcha`,
+  MAIN_YOUNGCHA: `${BASE_URL}/movies/movies?provider=watcha`,
   MAIN_NETFLIX: `${BASE_URL}/movies/movies?provider=netflix`,
   DETAIL: `${BASE_URL}/movies`,
   COMMENT_LIKE: `${BASE_URL}/movies/comment/like`,
