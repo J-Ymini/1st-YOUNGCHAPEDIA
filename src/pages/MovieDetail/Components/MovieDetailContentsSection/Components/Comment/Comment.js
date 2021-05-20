@@ -15,10 +15,7 @@ export default class Comment extends React.Component {
           <div className="commentUserName">{name}</div>
         </div>
         <div className="comment">
-          <span>
-            {content}
-            {number}
-          </span>
+          <span>{content}</span>
         </div>
         <div className="likeAndCommentPlus">
           <div className="container">

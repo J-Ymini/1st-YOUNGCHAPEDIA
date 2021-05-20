@@ -6,10 +6,11 @@
   .movieBannerPoster {
     display: flex;
     justify-content: center;
-    background-image: linear-gradient(to right, black, white, black);
+    background-image: linear-gradient(to right, white, black, white);
 
     .stillCut {
       height: 460px;
+      box-shadow: 0px -20px 100px black;
     }
   }
 
@@ -92,6 +93,17 @@
       display: inline-block;
       margin-right: 5px;
       transition: transform 0.5s;
+    }
+  }
+
+  .wishButton.active {
+    color: black;
+    border: 2px solid $line;
+    background-color: $section-background;
+    transition: background-color 1s;
+
+    i {
+      margin-right: 10px;
     }
   }
 
