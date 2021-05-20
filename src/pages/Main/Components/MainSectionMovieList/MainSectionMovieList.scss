@@ -3,22 +3,50 @@
 .mainSectionMovieList {
   @include flexColumnSet(center, stretch);
   position: relative;
-  padding: 0px 8px;
+  padding: 0 8px;
+  width: 20%;
+  height: auto;
 
   img {
-    width: 250px;
-    height: 363px;
     border: 1px solid $line;
     border-radius: 5px;
   }
 
+  .listNetflixicon {
+    @include flexSet();
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 10px;
+    left: 83%;
+    border-radius: 50%;
+    background-color: $white;
+    background-image: url('https://an2-img.amz.wtchn.net/image/v1/updatable_images/2571/original/42e70f1bc34d7af54478a311983ecf6d3601eefa.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .listWatchaicon {
+    @include flexSet();
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 10px;
+    left: 83%;
+    background-color: $white;
+    border-radius: 50%;
+    background-image: url('https://an2-img.amz.wtchn.net/image/v2/33c15d90f101414a351372f19172859f.png?jwt=ZXlKaGJHY2lPaUpJVXpJMU5pSjkuZXlKd1lYUm9Jam9pTDNZeUwzTjBiM0psTDNWcGJXRm5aUzh4TmpFeE1qQXdNVGN3T1RZd05qWTVNRE0xSW4wLlFwWFc3MERPaF9GR3ZMWVVzSUFCOFdLNWhLRjE3Ym5za1Z1bVFEN0lsSkU');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
   .listRanking {
     position: absolute;
-    padding: 1px 0 0 10px;
     width: 28px;
     height: 28px;
     top: 6px;
     left: 14px;
+    text-align: center;
     color: $white;
     background-color: $dark-gray;
     line-height: 27px;
