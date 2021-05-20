@@ -18,6 +18,7 @@ export default class MovieDetail extends React.Component {
       commentInputValue: '',
       movieInformation: {},
       comment_id: 0,
+      detailStar: 0,
     };
   }
 
@@ -104,6 +105,27 @@ export default class MovieDetail extends React.Component {
           movieInformation: [res['movie_information']],
         })
       );
+
+    //로그인 유저
+    if (localStorage.getItem('TOKEN')) {
+      getStar = () => {
+        const movieId = this.props.match.params.id;
+        fetch(API_URLS.DETAIL, {
+          method: 'GET',
+          headers: {
+            Authorization: localStorage.getItem('TOKEN'),
+          },
+          body: JSON.stringify({
+            movie_id: movieId,
+            rating: starRatingForPost,
+          }),
+        })
+          .then(res => res.json())
+          .then
+          //데이터 구조 정해지면 별점만 받아서 this.setState({detailStar:응답})
+          ();
+      };
+    }
   }
 
   componentWillMount = () => {
@@ -169,6 +191,7 @@ export default class MovieDetail extends React.Component {
           userWishStatusHandler={this.changeStateOfWish}
           movieInformation={movieInformation}
           postStar={this.postStar}
+          starRatingForDetail={this.state.detailStar}
         />
 
         {leaveComment && (
