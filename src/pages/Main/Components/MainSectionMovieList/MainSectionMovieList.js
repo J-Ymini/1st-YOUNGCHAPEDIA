@@ -38,7 +38,7 @@ class MainSectionMovieList extends React.Component {
           <p className="listDescriptionTitle">{title}</p>
           <p className="listDescriptionEnglish">{englishTitle}</p>
           <p className="listDescriptionYear">
-            {country} ・ {releaseDate}
+            {country} ・ {releaseDate.slice(0, 4)}
           </p>
         </div>
       </li>
