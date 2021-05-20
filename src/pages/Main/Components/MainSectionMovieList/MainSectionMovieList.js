@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 class MainSectionMovieList extends React.Component {
   goToDetailPage = () => {
     const id = this.props.id;
-    this.props.history.push(`/movie/detail/${id}`);
+    this.props.history.push(`/detail/${id}`);
   };
   render() {
     const {

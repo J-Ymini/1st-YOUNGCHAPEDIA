@@ -11,7 +11,7 @@ export default class AnalyzeFavorite extends Component {
             <li className="resultRow" key={favData.id}>
               {favData.genre || favData.country}
               <span>
-                <span>{favData.average}점</span>
+                <span>{favData.average.toFixed(2)}점</span>
                 <span>{favData.count}편</span>
               </span>
             </li>
@@ -22,7 +22,7 @@ export default class AnalyzeFavorite extends Component {
             <li className="resultList" key={favData.id}>
               {favData.genre || favData.country}
               <span>
-                <span>{favData.average}점</span>
+                <span>{favData.average.toFixed(2)}점</span>
                 <span>{favData.count}편</span>
               </span>
             </li>

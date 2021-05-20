@@ -13,7 +13,7 @@ export default class FilterGenreMenu extends Component {
   }
 
   componentDidMount() {
-    fetch(API_URLS.REVIEW_GENRE)
+    fetch(API_URLS['REVIEW_GENRE'])
       .then(res => {
         if (res.status === 200) {
           return res.json();

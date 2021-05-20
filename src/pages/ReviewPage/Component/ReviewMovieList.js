@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 import StarRating from '../../CommonComponents/StarRating';
+import API_URLS from '../../../config';
 import './ReviewMovieList.scss';
 
 export default class ReviewMovieList extends Component {
@@ -20,7 +21,6 @@ export default class ReviewMovieList extends Component {
 
   render() {
     const { movieTitle, imgSrc, movieReleaseDate, movieCountry } = this.props;
-
     return (
       <li className="reviewMovieList">
         <img alt={`${movieTitle}포스터`} src={imgSrc} />
@@ -33,7 +33,7 @@ export default class ReviewMovieList extends Component {
               </span>
             </div>
             <div className="movieYearCountry">
-              {movieReleaseDate?.movieReleaseDate.slice(0, 4)}·{movieCountry}
+              {movieReleaseDate?.slice(0, 4)}·{movieCountry}
             </div>
           </div>
           <div className="movieInfoColumn">
