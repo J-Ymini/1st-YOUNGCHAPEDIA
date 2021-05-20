@@ -104,9 +104,7 @@ export default class MovieDetail extends React.Component {
           movieInformation: [res['movie_information']],
         })
       );
-  }
 
-  componentWillMount = () => {
     const movieId = this.props.match.params.id;
     fetch(`${API_URLS.DETAIL}/${movieId}/wish`, {
       method: 'GET',
@@ -124,7 +122,7 @@ export default class MovieDetail extends React.Component {
           });
         }
       });
-  };
+  }
 
   goToPrevious = () => {
     const { style } = this.commentList.current;
