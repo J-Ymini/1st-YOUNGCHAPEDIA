@@ -33,7 +33,7 @@ export default class ReviewMovieList extends Component {
               </span>
             </div>
             <div className="movieYearCountry">
-              {movieReleaseDate.slice(0, 4)}·{movieCountry}
+              {movieReleaseDate?.movieReleaseDate.slice(0, 4)}·{movieCountry}
             </div>
           </div>
           <div className="movieInfoColumn">

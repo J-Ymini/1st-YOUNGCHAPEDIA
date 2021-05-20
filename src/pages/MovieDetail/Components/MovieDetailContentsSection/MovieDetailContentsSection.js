@@ -59,7 +59,6 @@ export default class MovieDetailContentsSection extends React.Component {
   }
 
   render() {
-    console.log(this.state);
     const { commentListContents, similarMovieList } = this.state;
     return (
       <section className="MovieDetailContentsSection">
