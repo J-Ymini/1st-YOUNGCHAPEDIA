@@ -92,7 +92,7 @@ export default class ReviewPage extends Component {
     let token = localStorage.getItem('TOKEN');
     fetch(API_URLS.REVIEW, {
       headers: {
-        Authorization: token,
+        Authorization: localStorage.getItem('TOKEN'),
       },
     })
       .then(res => res.json())
