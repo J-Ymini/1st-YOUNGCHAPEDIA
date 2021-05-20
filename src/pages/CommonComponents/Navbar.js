@@ -10,15 +10,14 @@ class Navbar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isUserLogined: false,
+      isUserLogined: !!localStorage.getItem('TOKEN'),
       isSignBtnClicked: false,
       modalOpened: false,
     };
   }
 
   checkUserLogined = () => {
-    let token = localStorage.getItem('TOKEN');
-    if (token) {
+    if (localStorage.getItem('TOKEN')) {
       this.setState({
         isUserLogined: true,
       });
@@ -47,10 +46,23 @@ class Navbar extends Component {
 
   clickLogout = () => {
     localStorage.removeItem('TOKEN');
+    localStorage.removeItem('NAME');
     this.setState({
       isUserLogined: false,
     });
     this.props.history.push('/');
+  };
+
+  goToLoginModal = () => {
+    this.setState({
+      isSignBtnClicked: false,
+    });
+  };
+
+  goToSignInModal = () => {
+    this.setState({
+      isSignBtnClicked: true,
+    });
   };
 
   render() {
@@ -61,6 +73,8 @@ class Navbar extends Component {
       clickLogin,
       clickLogout,
       checkUserLogined,
+      goToLoginModal,
+      goToSignInModal,
     } = this;
     const logoutedBtn = (
       <>
@@ -81,7 +95,9 @@ class Navbar extends Component {
           로그아웃
         </button>
         <button>
-          <div className="navUserProfile"></div>
+          <Link to="/mypage">
+            <div className="navUserProfile" />
+          </Link>
         </button>
       </>
     );
@@ -93,8 +109,11 @@ class Navbar extends Component {
             closeModal={closeModal}
             childComponent={
               <LoginSignInForm
+                closeModal={closeModal}
                 checkUserLogined={checkUserLogined}
                 isSignBtnClicked={isSignBtnClicked}
+                goToLoginModal={goToLoginModal}
+                goToSignInModal={goToSignInModal}
               />
             }
           />

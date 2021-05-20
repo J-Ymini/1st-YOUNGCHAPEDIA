@@ -2,6 +2,7 @@
 
 .mainSection {
   @include flexColumnSet();
+  position: relative;
   margin-bottom: 50px;
 
   .mainTitle {
@@ -18,10 +19,44 @@
   }
 
   .mainMovie {
+    @include flexSet();
+    position: relative;
+    width: 85vw;
+    max-width: 1400px;
+    overflow: hidden;
+
     ul {
-      @include flexSet();
+      @include flexSet(start);
+      width: 100%;
+      overflow: hidden;
     }
 
     background-color: $white;
+  }
+
+  .mainMoviePreBtn {
+    position: absolute;
+    top: 46%;
+    right: 98%;
+    width: 34px;
+    height: 34px;
+    background-color: $white;
+    border-radius: 50%;
+    z-index: 5;
+    box-shadow: 1px 1px 1px 1px $section-aside-text;
+    cursor: pointer;
+  }
+
+  .mainMovieNextBtn {
+    position: absolute;
+    top: 46%;
+    right: -0.7%;
+    width: 34px;
+    height: 34px;
+    background-color: $white;
+    border-radius: 50%;
+    z-index: 5;
+    cursor: pointer;
+    box-shadow: 1px 1px 1px 1px $section-aside-text;
   }
 }
