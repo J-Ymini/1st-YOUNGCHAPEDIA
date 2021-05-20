@@ -3,7 +3,6 @@ import './CommentModal.scss';
 
 export default class CommentModal extends Component {
   render() {
-    // const {}
     const { commentInputValue } = this.props.userWishStatus;
     return (
       <div className="CommentModal">

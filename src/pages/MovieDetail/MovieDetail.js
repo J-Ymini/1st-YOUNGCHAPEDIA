@@ -23,25 +23,25 @@ export default class MovieDetail extends React.Component {
 
   changeStateOfWish = () => {
     const movieId = this.props.match.params.id;
-    let token = localStorage.getItem('TOKEN') || '';
     fetch(`${API_URLS.DETAIL}/${movieId}/wish`, {
       method: 'POST',
       headers: {
-        Authorization: token,
+        Authorization: localStorage.getItem('TOKEN'),
       },
       body: JSON.stringify({ movie_id: movieId }),
     }).then(res => {
       if (res.status === 201) {
-        this.setState({ userWish: true, leaveComment: true });
-      } else if (res.status === 204) {
-        this.setState({
+        return this.setState({ userWish: true, leaveComment: true });
+      }
+      if (res.status === 204) {
+        return this.setState({
           userWish: false,
           leaveComment: false,
           showComment: false,
         });
-        return;
-      } else if (res.status === 401) {
-        alert('로그인이 필요합니다!');
+      }
+      if (res.status === 401) {
+        return alert('로그인이 필요합니다!');
       }
     });
   };
@@ -63,11 +63,10 @@ export default class MovieDetail extends React.Component {
 
   commentSubmit = () => {
     const movieId = this.props.match.params.id;
-    let token = localStorage.getItem('TOKEN') || '';
     fetch(`${API_URLS.DETAIL}/${movieId}/comment`, {
       method: 'POST',
       headers: {
-        Authorization: token,
+        Authorization: localStorage.getItem('TOKEN'),
       },
       body: JSON.stringify({ comment: this.state.commentInputValue }),
     })
@@ -85,11 +84,10 @@ export default class MovieDetail extends React.Component {
   deleteComment = () => {
     const movieId = this.props.match.params.id;
     const { comment_id } = this.state;
-    let token = localStorage.getItem('TOKEN') || '';
     fetch(`${API_URLS.DETAIL}/${movieId}/comment/${comment_id}`, {
       method: 'DELETE',
       headers: {
-        Authorization: token,
+        Authorization: localStorage.getItem('TOKEN'),
       },
       body: JSON.stringify({ comment: this.state.commentInputValue }),
     }).then(() => {
@@ -110,11 +108,10 @@ export default class MovieDetail extends React.Component {
 
   componentWillMount = () => {
     const movieId = this.props.match.params.id;
-    let token = localStorage.getItem('TOKEN') || '';
     fetch(`${API_URLS.DETAIL}/${movieId}/wish`, {
       method: 'GET',
       headers: {
-        Authorization: token,
+        Authorization: localStorage.getItem('TOKEN'),
       },
     })
       .then(res => res.json())

@@ -61,7 +61,7 @@ export default class MovieDetailContentsSection extends React.Component {
               </header>
               <article>
                 <div>
-                  <div>{movieInformation[0]?.['']}</div>
+                  <div>{movieInformation[0]?.['english_title']}</div>
                   <br />
                   <div>
                     {movieInformation[0]?.['release_date']} &middot;
@@ -80,7 +80,7 @@ export default class MovieDetailContentsSection extends React.Component {
               <header>
                 <div className="commentSubjectAndCount">
                   <h2>코멘트</h2>
-                  <span>{movieInformation[0]?.['comments']?.length}개</span>
+                  <span>{movieInformation[0]?.comments?.length}개</span>
                 </div>
               </header>
               <article className="commentContainer">
