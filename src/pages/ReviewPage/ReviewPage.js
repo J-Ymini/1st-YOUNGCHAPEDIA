@@ -1,6 +1,8 @@
 import React, { Component, createRef } from 'react';
 import { throttle } from '../../utils/throttle';
-import ReviewMovieList from './component/ReviewMovieList';
+import ReviewMovieList from './Component/ReviewMovieList';
+import FilterGenreMenu from './Component/FilterGenreMenu';
+import Modal from '../CommonComponents/Modal';
 import API_URLS from '../../config';
 import './ReviewPage.scss';
 
@@ -9,7 +11,10 @@ export default class ReviewPage extends Component {
     super(props);
     this.state = {
       movieData: [],
+      randomMovie: [],
+      genreMovie: [],
       ratingsCount: 0,
+      modalOpened: false,
     };
     this.scrollBoxRef = createRef();
   }
@@ -23,10 +28,10 @@ export default class ReviewPage extends Component {
     );
   }
 
-  getMovieData = () => {
-    let token = localStorage.getItem('TOKEN') || '';
-    const { movieData } = this.state;
-    fetch(API_URLS.REVIEW, {
+  getMovieData = id => {
+    let token = localStorage.getItem('TOKEN');
+    const API = id ? `${API_URLS.REVIEW}?genre_id=${id}` : API_URLS.REVIEW;
+    fetch(API, {
       headers: {
         Authorization: token,
       },
@@ -37,27 +42,18 @@ export default class ReviewPage extends Component {
         }
       })
       .then(res => {
-        const updatedMovieData = res['result'].slice(
-          movieData.length,
-          movieData.length + 7
+        const responeKey = id ? 'genre_movie' : 'movie_random';
+        const movieKeyName = id ? 'genreMovie' : 'randomMovie';
+        const prevMovieData = this.state[movieKeyName];
+        const updatedMovieData = res[responeKey].slice(
+          prevMovieData.length,
+          prevMovieData.length + 7
         );
         this.setState({
-          movieData: [...movieData, ...updatedMovieData],
+          [movieKeyName]: [...prevMovieData, ...updatedMovieData],
+          movieData: [...prevMovieData, ...updatedMovieData],
         });
       });
-
-    // 서버 연결 안됐을 때 테스트용
-    // fetch('/data/movieMockData.json')
-    //   .then(res => res.json())
-    //   .then(res => {
-    //     const updatedMovieData = res.slice(
-    //       movieData.length,
-    //       movieData.length + 7
-    //     );
-    //     this.setState({
-    //       movieData: [...movieData, ...updatedMovieData],
-    //     });
-    //   });
   };
 
   infiniteScroll = () => {
@@ -70,59 +66,93 @@ export default class ReviewPage extends Component {
   };
 
   updateRatingCount = () => {
+    let token = localStorage.getItem('TOKEN');
     fetch(API_URLS.REVIEW, {
       headers: {
-        Authorization: token,
+        Authorization: localStorage.getItem('TOKEN'),
       },
     })
       .then(res => res.json())
       .then(res => {
-        const updatedRatingsCount = res['rating_movies'];
+        const lastIndex = res['movie_random'].length - 1;
+        const ratingCountObject = res['movie_random'][lastIndex];
+        const updatedRatingsCount = Object.values(ratingCountObject);
         this.setState({
           ratingsCount: updatedRatingsCount,
         });
-      });
+      })
+      .catch(error => alert(error));
+  };
+
+  closeModal = () => {
+    this.setState({
+      modalOpened: false,
+    });
+  };
+
+  openFilterGenre = () => {
+    this.setState({
+      modalOpened: true,
+    });
   };
 
   render() {
+    const { movieData, ratingsCount, modalOpened } = this.state;
+    const { getMovieData, openFilterGenre, updateRatingCount, closeModal } =
+      this;
     return (
-      <section className="reviewSection">
-        <header className="reviewHeader">
-          <h2 className="reviewCount">{this.state.ratingsCount}</h2>
-          <h3 className="reviewNotice">
-            이제 알듯 말듯 하네요. 조금만 더 평가해주세요!
-          </h3>
-          <div className="reviewMenu">
+      <>
+        {modalOpened && (
+          <Modal
+            closeModal={closeModal}
+            childComponent={
+              <FilterGenreMenu
+                getMovieData={getMovieData}
+                closeModal={closeModal}
+              />
+            }
+          />
+        )}
+        <section className="reviewSection">
+          <header className="reviewHeader">
+            <h2 className="reviewCount">{ratingsCount}</h2>
+            <h3 className="reviewNotice">
+              이제 알듯 말듯 하네요. 조금만 더 평가해주세요!
+            </h3>
+            <div className="reviewMenu">
+              <ul>
+                {CATEGORY_LIST.map(category => (
+                  <li className="reviewMenuList" key={category.id}>
+                    <button>{category.name}</button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="reviewCategory">
+              <div>
+                <button className="reviewCategoryBtn" onClick={openFilterGenre}>
+                  🔻영화 카테고리
+                </button>
+              </div>
+            </div>
+          </header>
+          <div className="reviewList" ref={this.scrollBoxRef}>
             <ul>
-              {CATEGORY_LIST.map(category => (
-                <li className="reviewMenuList" key={category.id}>
-                  <button>{category.name}</button>
-                </li>
+              {movieData.map(movie => (
+                <ReviewMovieList
+                  key={movie.movie_id}
+                  id={movie.movie_id}
+                  movieTitle={movie.title}
+                  imgSrc={movie.thumbnail}
+                  movieReleaseDate={movie['release_date']}
+                  movieCountry={movie.country}
+                  updateRatingCount={updateRatingCount}
+                />
               ))}
             </ul>
           </div>
-          <div className="reviewCategory">
-            <div>
-              <button className="reviewCategoryBtn">🔻랜덤 영화</button>
-            </div>
-          </div>
-        </header>
-        <div className="reviewList" ref={this.scrollBoxRef}>
-          <ul>
-            {this.state.movieData.map(movie => (
-              <ReviewMovieList
-                key={movie.movie_id}
-                id={movie.movie_id}
-                movieTitle={movie.title}
-                imgSrc={movie.thumbnail}
-                movieReleaseDate={movie.release_date}
-                movieCountry={movie.country}
-                updateRatingCount={this.updataeRatingCount}
-              />
-            ))}
-          </ul>
-        </div>
-      </section>
+        </section>
+      </>
     );
   }
 }

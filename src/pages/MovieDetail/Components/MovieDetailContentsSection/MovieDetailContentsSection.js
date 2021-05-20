@@ -51,7 +51,6 @@ export default class MovieDetailContentsSection extends React.Component {
 
   render() {
     const { movieInformation } = this.props;
-
     return (
       <section className="MovieDetailContentsSection">
         <div className="movieDetailContents">

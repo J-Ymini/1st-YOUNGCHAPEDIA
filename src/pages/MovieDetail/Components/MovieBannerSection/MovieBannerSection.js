@@ -1,4 +1,5 @@
 import React from 'react';
+import StarRating from '../../../CommonComponents/StarRating';
 import './MovieBannerSection.scss';
 
 export default class MovieBannerSection extends React.Component {
@@ -45,11 +46,7 @@ export default class MovieBannerSection extends React.Component {
                 <div className="giveStarPoint">
                   <div>평가하기</div>
                   <div>
-                    <i class="far fa-star" />
-                    <i class="far fa-star" />
-                    <i class="far fa-star" />
-                    <i class="far fa-star" />
-                    <i class="far fa-star" />
+                    <StarRating />
                   </div>
                 </div>
               </div>
