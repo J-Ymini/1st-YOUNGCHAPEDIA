@@ -6,8 +6,8 @@ export default class EasterEgg extends Component {
     return (
       <div className="easterEgg">
         <header className="easterEggHeader">Special Thanks To</header>
-        <p className="thanksPeople">⭐황갓연욱⭐</p>
-        <p className="thanksPeople">⭐홍갓연우⭐</p>
+        <p className="thanksPeople">⭐갓연욱⭐</p>
+        <p className="thanksPeople">⭐갓연우⭐</p>
       </div>
     );
   }
