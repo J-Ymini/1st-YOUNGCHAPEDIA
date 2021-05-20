@@ -106,26 +106,24 @@ export default class MovieDetail extends React.Component {
         })
       );
 
-    //로그인 유저
-    // if (localStorage.getItem('TOKEN')) {
-    //   getStar = () => {
-    //     const movieId = this.props.match.params.id;
-    //     fetch(API_URLS.DETAIL, {
-    //       method: 'GET',
-    //       headers: {
-    //         Authorization: localStorage.getItem('TOKEN'),
-    //       },
-    //       body: JSON.stringify({
-    //         movie_id: movieId,
-    //         rating: starRatingForPost,
-    //       }),
-    //     })
-    //       .then(res => res.json())
-    //       .then
-    //       //데이터 구조 정해지면 별점만 받아서 this.setState({detailStar:응답})
-    //       ();
-    //   };
-    // }
+    // 로그인 유저
+    if (localStorage.getItem('TOKEN')) {
+      getStar = () => {
+        const movieId = this.props.match.params.id;
+        fetch(`${API_URLS.DETAIL}/${movieId}`, {
+          method: 'GET',
+          headers: {
+            Authorization: localStorage.getItem('TOKEN'),
+          },
+        })
+          .then(res => res.json())
+          .then(res =>
+            this.setState({
+              detailStar: res['movie_information']?.['star_check'],
+            })
+          );
+      };
+    }
 
     const movieId = this.props.match.params.id;
     fetch(`${API_URLS.DETAIL}/${movieId}/wish`, {
