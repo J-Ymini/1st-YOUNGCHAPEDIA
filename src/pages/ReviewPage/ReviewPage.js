@@ -30,7 +30,6 @@ export default class ReviewPage extends Component {
 
   getMovieData = id => {
     let token = localStorage.getItem('TOKEN');
-    const { randomMovie, genreMovie } = this.state;
     const API = id ? `${API_URLS.REVIEW}?genre_id=${id}` : API_URLS.REVIEW;
     fetch(API, {
       headers: {
