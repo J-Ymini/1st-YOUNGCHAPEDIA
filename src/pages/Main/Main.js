@@ -12,10 +12,8 @@ export default class Main extends React.Component {
   }
 
   //백엔드에서 데이터 받아오는 함수
-  getData = address => {
-    return fetch(address, {
-      method: 'GET',
-    })
+  getMovieListData = address => {
+    return fetch(address)
       .then(res => res.json())
       .then(movieList => {
         this.setState({
@@ -29,16 +27,14 @@ export default class Main extends React.Component {
 
   getMockData = () => {
     const { preItems, items } = this.state;
-    return fetch('data/movieMockData.json', {
-      method: 'GET',
-    })
+    return fetch('data/movieMockData.json')
       .then(res => res.json())
       .then(movieList => {
-        let dataToAdd = movieList.slice(preItems, items);
+        const movieListToAdd = movieList.slice(preItems, items);
         this.setState({
           movieInformationList: [
             ...this.state.movieInformationList,
-            ...dataToAdd,
+            ...movieListToAdd,
           ],
         });
       });
@@ -54,9 +50,7 @@ export default class Main extends React.Component {
         preItems: preItems + 1,
         items: items + 1,
       });
-      fetch('data/movieMockData.json', {
-        method: 'GET',
-      })
+      fetch('data/movieMockData.json')
         .then(res => res.json())
         .then(res => {
           let result = res.slice(preItems + 1, items + 1);
@@ -71,9 +65,9 @@ export default class Main extends React.Component {
   };
 
   componentDidMount() {
-    this.getData('data/boxoffice.json')
-      .then(() => this.getData('data/netflix.json'))
-      .then(() => this.getData('data/watcha.json'))
+    this.getMovieListData('data/boxoffice.json')
+      .then(() => this.getMovieListData('data/netflix.json'))
+      .then(() => this.getMovieListData('data/watcha.json'))
       .then(() => this.getMockData());
     window.addEventListener('scroll', this.infiniteScroll);
   }
@@ -84,20 +78,16 @@ export default class Main extends React.Component {
 
   render() {
     return (
-      <>
-        {this.state.movieInformationList && (
-          <section className="main">
-            {this.state.movieInformationList.map((listElement, movieTitle) => {
-              return (
-                <MainSection
-                  movieInformationList={listElement}
-                  movieTitle={movieTitle}
-                />
-              );
-            })}
-          </section>
-        )}
-      </>
+      <section className="main">
+        {this.state.movieInformationList.map((listElement, movieTitle) => {
+          return (
+            <MainSection
+              movieInformationList={listElement}
+              movieTitle={movieTitle}
+            />
+          );
+        })}
+      </section>
     );
   }
 }
