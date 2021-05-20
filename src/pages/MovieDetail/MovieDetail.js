@@ -109,7 +109,6 @@ export default class MovieDetail extends React.Component {
     // 로그인 유저
     if (localStorage.getItem('TOKEN')) {
       getStar = () => {
-        const movieId = this.props.match.params.id;
         fetch(`${API_URLS.DETAIL}/${movieId}`, {
           method: 'GET',
           headers: {
