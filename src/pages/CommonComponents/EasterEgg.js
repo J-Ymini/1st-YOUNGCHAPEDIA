@@ -3,6 +3,6 @@ import './EasterEgg.scss';
 
 export default class EasterEgg extends Component {
   render() {
-    return <div className="easterEgg"></div>;
+    return <div></div>;
   }
 }
