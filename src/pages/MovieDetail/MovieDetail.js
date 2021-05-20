@@ -18,6 +18,7 @@ export default class MovieDetail extends React.Component {
       commentInputValue: '',
       movieInformation: {},
       comment_id: 0,
+      detailStar: 0,
     };
   }
 
@@ -105,6 +106,25 @@ export default class MovieDetail extends React.Component {
         })
       );
 
+    // 로그인 유저
+    if (localStorage.getItem('TOKEN')) {
+      getStar = () => {
+        const movieId = this.props.match.params.id;
+        fetch(`${API_URLS.DETAIL}/${movieId}`, {
+          method: 'GET',
+          headers: {
+            Authorization: localStorage.getItem('TOKEN'),
+          },
+        })
+          .then(res => res.json())
+          .then(res =>
+            this.setState({
+              detailStar: res['movie_information']?.['star_check'],
+            })
+          );
+      };
+    }
+
     const movieId = this.props.match.params.id;
     fetch(`${API_URLS.DETAIL}/${movieId}/wish`, {
       method: 'GET',
@@ -143,6 +163,20 @@ export default class MovieDetail extends React.Component {
     style.transform = `translate(-${931 * this.count.current}px, 0)`;
   };
 
+  postStar = starRatingForPost => {
+    const movieId = this.props.match.params.id;
+    fetch(`${API_URLS.DETAIL}/${movieId}/rating`, {
+      method: 'POST',
+      headers: {
+        Authorization: localStorage.getItem('TOKEN'),
+      },
+      body: JSON.stringify({
+        movie_id: movieId,
+        rating: starRatingForPost,
+      }),
+    });
+  };
+
   render() {
     const { leaveComment, showComment, commentInputValue, movieInformation } =
       this.state;
@@ -152,6 +186,8 @@ export default class MovieDetail extends React.Component {
           userWishStatus={this.state}
           userWishStatusHandler={this.changeStateOfWish}
           movieInformation={movieInformation}
+          postStar={this.postStar}
+          starRatingForDetail={this.state.detailStar}
         />
 
         {leaveComment && (

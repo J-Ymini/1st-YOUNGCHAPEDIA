@@ -1,4 +1,4 @@
-@import '../../../../styles/variables.scss';
+@import '../../../../styles/variables';
 
 .MovieBannerSection {
   border-bottom: 1.5px solid $line;
@@ -72,7 +72,7 @@
   }
 
   .wishAndStarPoint {
-    @include flexSet(space-between, center);
+    @include flexSet(flex-start, center);
     position: relative;
     bottom: -20px;
   }
@@ -83,6 +83,7 @@
 
   .wishButton {
     padding: 10px 80px;
+    margin-right: 50px;
     color: white;
     background-color: #ff2f6e;
     font-size: 1.0625em;
@@ -110,12 +111,9 @@
   .giveStarPoint {
     position: relative;
 
-    div:first-child {
-      position: absolute;
-      top: -20px;
-      margin-bottom: 5px;
-      color: $movie-info-text;
-      font-size: 0.75em;
+    .detailStarRatingTitle {
+      margin-bottom: 10px;
+      color: $info-sub-text;
     }
 
     div:nth-child(2) i {

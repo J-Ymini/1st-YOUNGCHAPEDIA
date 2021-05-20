@@ -1,7 +1,5 @@
-import { faWindows } from '@fortawesome/free-brands-svg-icons';
 import React from 'react';
 import Comment from './Components/Comment/Comment';
-
 import SimilarMovie from './Components/SimilarMovie/SimilarMovie';
 import './MovieDetailContentsSection.scss';
 
