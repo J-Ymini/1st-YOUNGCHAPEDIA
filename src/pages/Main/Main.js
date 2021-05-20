@@ -1,7 +1,8 @@
 import React from 'react';
-import MainSection from './Components/MainSection/MainSection';
-import './Main.scss';
 import { withRouter } from 'react-router-dom';
+import MainSection from './Components/MainSection/MainSection';
+import API_URLS from '../../config';
+import './Main.scss';
 
 class Main extends React.Component {
   constructor() {
@@ -67,9 +68,9 @@ class Main extends React.Component {
   };
 
   componentDidMount() {
-    this.getMovieListData('data/boxoffice.json')
-      .then(() => this.getMovieListData('data/netflix.json'))
-      .then(() => this.getMovieListData('data/watcha.json'))
+    this.getMovieListData(API_URLS['MAIN_BOX_OFFICE'])
+      .then(() => this.getMovieListData(API_URLS['MAIN_NETFLIX']))
+      .then(() => this.getMovieListData(API_URLS['MAIN_YOUNGCHA']))
       .then(() => this.getMockData());
     window.addEventListener('scroll', this.infiniteScroll);
   }
