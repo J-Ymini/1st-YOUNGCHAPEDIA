@@ -1,63 +1,121 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import Modal from './Modal';
-// 테스트용
-import test from './test';
+import LoginSignInForm from '../LoginSignIn/LoginSignInForm';
 import './Navbar.scss';
 
-export default class Navbar extends Component {
+class Navbar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isUserLogin: false,
-      isLoginClicked: false,
+      isUserLogined: !!localStorage.getItem('TOKEN'),
+      isSignBtnClicked: false,
+      modalOpened: false,
     };
   }
 
+  checkUserLogined = () => {
+    if (localStorage.getItem('TOKEN')) {
+      this.setState({
+        isUserLogined: true,
+      });
+    }
+  };
+
   closeModal = () => {
     this.setState({
-      isLoginClicked: false,
+      modalOpened: false,
     });
   };
 
-  openModal = () => {
+  clickSignIn = () => {
     this.setState({
-      isLoginClicked: true,
+      modalOpened: true,
+      isSignBtnClicked: true,
+    });
+  };
+
+  clickLogin = () => {
+    this.setState({
+      modalOpened: true,
+      isSignBtnClicked: false,
+    });
+  };
+
+  clickLogout = () => {
+    localStorage.removeItem('TOKEN');
+    localStorage.removeItem('NAME');
+    this.setState({
+      isUserLogined: false,
+    });
+    this.props.history.push('/');
+  };
+
+  goToLoginModal = () => {
+    this.setState({
+      isSignBtnClicked: false,
+    });
+  };
+
+  goToSignInModal = () => {
+    this.setState({
+      isSignBtnClicked: true,
     });
   };
 
   render() {
-    const { isUserLogin, isLoginClicked } = this.state;
-    const { closeModal, openModal } = this;
+    const { isUserLogined, isSignBtnClicked, modalOpened } = this.state;
+    const {
+      closeModal,
+      clickSignIn,
+      clickLogin,
+      clickLogout,
+      checkUserLogined,
+      goToLoginModal,
+      goToSignInModal,
+    } = this;
     const logoutedBtn = (
       <>
-        <button className="navBtn navLoginBtn" onClick={openModal}>
+        <button className="navLoginBtn" onClick={clickLogin}>
           로그인
         </button>
-        <button className="navSignInBtn" onClick={openModal}>
+        <button className="navSignInBtn" onClick={clickSignIn}>
           회원가입
         </button>
       </>
     );
     const loginedBtn = (
       <>
-        <button className="navBtn navReviewBtn">평가하기</button>
-        <button className="navBtn navLogoutBtn">로그아웃</button>
+        <button className="navLogoutBtn">
+          <Link to="/review">평가하기</Link>
+        </button>
+        <button className="navLogoutBtn" onClick={clickLogout}>
+          로그아웃
+        </button>
         <button>
-          <div className="navUserProfile"></div>
+          <Link to="/mypage">
+            <div className="navUserProfile" />
+          </Link>
         </button>
       </>
     );
 
     return (
       <>
-        {isLoginClicked && (
+        {modalOpened && (
           <Modal
-            modalOpened={isLoginClicked}
             closeModal={closeModal}
-            childComponent={test}
+            childComponent={
+              <LoginSignInForm
+                closeModal={closeModal}
+                checkUserLogined={checkUserLogined}
+                isSignBtnClicked={isSignBtnClicked}
+                goToLoginModal={goToLoginModal}
+                goToSignInModal={goToSignInModal}
+              />
+            }
           />
         )}
         <nav className="topNav">
@@ -65,7 +123,6 @@ export default class Navbar extends Component {
             <header>
               <Link to="/">
                 <h1>
-                  {/* h1을 두 개 할 수는 없어서 h1안에 span 2개로 했습니다 */}
                   <span>YOUNGCHA</span>
                   <span>PEDIA</span>
                 </h1>
@@ -83,10 +140,12 @@ export default class Navbar extends Component {
                 placeholder="작품 제목, 배우, 감독을 검색해보세요"
               />
             </label>
-            {isUserLogin ? loginedBtn : logoutedBtn}
+            {isUserLogined ? loginedBtn : logoutedBtn}
           </span>
         </nav>
       </>
     );
   }
 }
+
+export default withRouter(Navbar);

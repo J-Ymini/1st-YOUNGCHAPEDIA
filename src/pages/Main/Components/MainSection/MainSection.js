@@ -44,7 +44,7 @@ export default class MainSection extends React.Component {
     return (
       <section className="mainSection">
         <div className="mainTitle">
-          <p>{Title[movieTitle]}</p>
+          <p>{TITLE[movieTitle]}</p>
         </div>
         <button
           disabled={movieListIndex === 0} //초기값일때 이전버튼 비활성화
@@ -92,7 +92,7 @@ export default class MainSection extends React.Component {
   }
 }
 
-const Title = {
+const TITLE = {
   0: '🏆 박스오피스 순위',
   1: '🏅 넷플릭스 순위',
   2: '🎖 영차 추천 영화순위',

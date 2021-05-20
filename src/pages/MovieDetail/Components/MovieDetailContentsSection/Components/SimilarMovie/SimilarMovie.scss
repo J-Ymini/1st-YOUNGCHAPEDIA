@@ -1,0 +1,36 @@
+@import '../../../../../../styles/variables.scss';
+
+.SimilarMovie {
+  margin-right: 30px;
+  margin-bottom: 30px;
+
+  img {
+    display: block;
+    margin-bottom: 10px;
+    width: 155px;
+    border-radius: 6px;
+  }
+
+  dt {
+    margin-bottom: 5px;
+    font-weight: 700;
+  }
+
+  dl {
+    dd {
+      font-size: 0.8125rem;
+      color: $info-sub-text;
+    }
+
+    .movieName {
+      width: 155px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .averageOfStarRatings {
+      margin-bottom: 5px;
+    }
+  }
+}

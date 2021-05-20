@@ -72,9 +72,9 @@ export default class Main extends React.Component {
 
   componentDidMount() {
     this.getData('data/boxoffice.json')
-      .then(this.getData('data/netflix.json'))
-      .then(this.getData('data/watcha.json'))
-      .then(this.getMockData());
+      .then(() => this.getData('data/netflix.json'))
+      .then(() => this.getData('data/watcha.json'))
+      .then(() => this.getMockData());
     window.addEventListener('scroll', this.infiniteScroll);
   }
 
@@ -83,9 +83,6 @@ export default class Main extends React.Component {
   }
 
   render() {
-    console.log('preItems', this.state.preItems);
-    console.log('items', this.state.items);
-    console.log('movieInformation', this.state.movieInformationList);
     return (
       <>
         {this.state.movieInformationList && (
