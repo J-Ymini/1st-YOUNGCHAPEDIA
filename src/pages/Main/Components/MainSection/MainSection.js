@@ -7,8 +7,10 @@ export default class MainSection extends React.Component {
     this.state = {
       movieListContainerWidth: 0,
       movieListIndex: 0,
+      containerHeight: 0,
     };
     this.containerWidth = React.createRef();
+    this.listHeight = React.createRef();
   }
 
   //다음 슬라이드 이동 함수
@@ -37,6 +39,10 @@ export default class MainSection extends React.Component {
         this.containerWidth.current.scrollWidth * (movieListIndex - 1),
     });
   };
+
+  componentDidMount() {
+    console.log('hi');
+  }
 
   render() {
     const { movieListContainerWidth, movieListIndex } = this.state;
