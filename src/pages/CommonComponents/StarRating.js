@@ -5,7 +5,7 @@ import './StarRating.scss';
 export default class StarRating extends Component {
   constructor() {
     super();
-    this.state = { rating: this.props.starRatingForDetail || 0 };
+    this.state = { rating: this.props?.starRatingForDetail || 0 };
   }
 
   hoverStar = e => {
