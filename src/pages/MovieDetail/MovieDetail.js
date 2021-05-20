@@ -106,7 +106,9 @@ export default class MovieDetail extends React.Component {
           movieInformation: [res['movie_information']],
         })
       );
+  }
 
+  componentWillMount = () => {
     fetch(`${API_URLS.DETAIL}/${movieId}/wish`, {
       method: 'GET',
       headers: {
@@ -124,7 +126,7 @@ export default class MovieDetail extends React.Component {
           });
         }
       });
-  }
+  };
 
   goToPrevious = () => {
     const { style } = this.commentList.current;
