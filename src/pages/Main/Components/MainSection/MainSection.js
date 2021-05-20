@@ -102,8 +102,8 @@ export default class MainSection extends React.Component {
 
 const TITLE = {
   0: '🏆 박스오피스 순위',
-  1: '🏅 넷플릭스 순위',
-  2: '🎖 영차 추천 영화순위',
+  1: '🏅 넷플릭스 추천 영화',
+  2: '🎖 영차 추천 영화',
   3: '💖 달달한 로맨틱 영화',
   4: '🌿 여름과 잘어울리는 영화',
   5: '🚏 감성적인 일본 애니메이션',
