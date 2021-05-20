@@ -62,12 +62,14 @@ export default class MainSection extends React.Component {
                 country,
                 release_date,
                 thumbnail_img,
+                english_title,
                 netflix,
                 watcha,
               } = movie;
               return (
                 <MainSectionMovieList
                   movieListRanking={movieListRanking}
+                  englishTitle={english_title}
                   key={id}
                   title={korean_title}
                   country={country}
@@ -91,7 +93,11 @@ export default class MainSection extends React.Component {
 }
 
 const TITLE = {
-  0: '박스오피스 순위',
-  1: '넷플릭스 순위',
-  2: '왓챠 순위',
+  0: '🏆 박스오피스 순위',
+  1: '🏅 넷플릭스 순위',
+  2: '🎖 영차 추천 영화순위',
+  3: '💖 달달한 로맨틱 영화',
+  4: '🌿 여름과 잘어울리는 영화',
+  5: '🚏 감성적인 일본 애니메이션',
+  6: '🪐 신비롭고 흥미로운 우주 SF 영화',
 };
