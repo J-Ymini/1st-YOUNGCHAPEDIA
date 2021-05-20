@@ -108,23 +108,20 @@ export default class MovieDetail extends React.Component {
 
     // 로그인 유저
     if (localStorage.getItem('TOKEN')) {
-      getStar = () => {
-        fetch(`${API_URLS.DETAIL}/${movieId}`, {
-          method: 'GET',
-          headers: {
-            Authorization: localStorage.getItem('TOKEN'),
-          },
-        })
-          .then(res => res.json())
-          .then(res =>
-            this.setState({
-              detailStar: res['movie_information']?.['star_check'],
-            })
-          );
-      };
+      fetch(`${API_URLS.DETAIL}/${movieId}`, {
+        method: 'GET',
+        headers: {
+          Authorization: localStorage.getItem('TOKEN'),
+        },
+      })
+        .then(res => res.json())
+        .then(res =>
+          this.setState({
+            detailStar: res['movie_information']?.['star_check'],
+          })
+        );
     }
 
-    const movieId = this.props.match.params.id;
     fetch(`${API_URLS.DETAIL}/${movieId}/wish`, {
       method: 'GET',
       headers: {
