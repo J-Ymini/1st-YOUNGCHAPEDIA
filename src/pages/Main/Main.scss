@@ -5,3 +5,37 @@
   margin-top: 90px;
   height: 100%;
 }
+
+@media screen and (max-width: 850px) {
+  .mainSectionMovieList {
+    @include flexColumnSet(center, stretch);
+    position: relative;
+    padding: 0 8px;
+    width: 25%;
+    height: auto;
+  }
+}
+
+@media screen and (max-width: 570px) {
+  .mainSectionMovieList {
+    @include flexColumnSet(center, stretch);
+    position: relative;
+    padding: 0 8px;
+    width: 33.3%;
+    height: auto;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+  animation-name: fadeIn;
+  animation-duration: 2s;
+}

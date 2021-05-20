@@ -1,7 +1,10 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import MainSection from './Components/MainSection/MainSection';
+import API_URLS from '../../config';
 import './Main.scss';
-export default class Main extends React.Component {
+
+class Main extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -65,9 +68,9 @@ export default class Main extends React.Component {
   };
 
   componentDidMount() {
-    this.getMovieListData('data/boxoffice.json')
-      .then(() => this.getMovieListData('data/netflix.json'))
-      .then(() => this.getMovieListData('data/watcha.json'))
+    this.getMovieListData(API_URLS['MAIN_BOX_OFFICE'])
+      .then(() => this.getMovieListData(API_URLS['MAIN_NETFLIX']))
+      .then(() => this.getMovieListData(API_URLS['MAIN_YOUNGCHA']))
       .then(() => this.getMockData());
     window.addEventListener('scroll', this.infiniteScroll);
   }
@@ -78,16 +81,22 @@ export default class Main extends React.Component {
 
   render() {
     return (
-      <section className="main">
-        {this.state.movieInformationList.map((listElement, movieTitle) => {
-          return (
-            <MainSection
-              movieInformationList={listElement}
-              movieTitle={movieTitle}
-            />
-          );
-        })}
-      </section>
+      <>
+        {this.state.movieInformationList && (
+          <section className="main">
+            {this.state.movieInformationList.map((listElement, movieTitle) => {
+              return (
+                <MainSection
+                  goToDetailPage={this.goToDetailPage}
+                  movieInformationList={listElement}
+                  movieTitle={movieTitle}
+                />
+              );
+            })}
+          </section>
+        )}
+      </>
     );
   }
 }
+export default withRouter(Main);

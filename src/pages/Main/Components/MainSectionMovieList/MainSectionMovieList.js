@@ -1,6 +1,11 @@
 import React from 'react';
 import './MainSectionMovieList.scss';
-export default class MainSectionMovieList extends React.Component {
+import { withRouter } from 'react-router-dom';
+class MainSectionMovieList extends React.Component {
+  goToDetailPage = () => {
+    const id = this.props.id;
+    this.props.history.push(`/movie/detail/${id}`);
+  };
   render() {
     const {
       title,
@@ -15,6 +20,7 @@ export default class MainSectionMovieList extends React.Component {
     } = this.props;
     return (
       <li
+        onClick={this.goToDetailPage}
         style={{
           transform: `translateX(-${width}px)`,
           transition: 'transform .8s ', //영화 각 리스트에 translateX 스타일 지정
@@ -39,3 +45,4 @@ export default class MainSectionMovieList extends React.Component {
     );
   }
 }
+export default withRouter(MainSectionMovieList);
