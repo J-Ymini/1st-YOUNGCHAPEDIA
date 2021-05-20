@@ -46,7 +46,7 @@ export default class MovieBannerSection extends React.Component {
                 <div className="giveStarPoint">
                   <div>평가하기</div>
                   <div>
-                    <StarRating />
+                    <StarRating postStar={this.props.postStar} />
                   </div>
                 </div>
               </div>

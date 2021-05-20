@@ -145,6 +145,20 @@ export default class MovieDetail extends React.Component {
     style.transform = `translate(-${931 * this.count.current}px, 0)`;
   };
 
+  postStar = starRatingForPost => {
+    const movieId = this.props.match.params.id;
+    fetch(`${API_URLS.DETAIL}/${movieId}/rating`, {
+      method: 'POST',
+      headers: {
+        Authorization: localStorage.getItem('TOKEN'),
+      },
+      body: JSON.stringify({
+        movie_id: movieId,
+        rating: starRatingForPost,
+      }),
+    });
+  };
+
   render() {
     const { leaveComment, showComment, commentInputValue, movieInformation } =
       this.state;
@@ -154,6 +168,7 @@ export default class MovieDetail extends React.Component {
           userWishStatus={this.state}
           userWishStatusHandler={this.changeStateOfWish}
           movieInformation={movieInformation}
+          postStar={this.postStar}
         />
 
         {leaveComment && (
