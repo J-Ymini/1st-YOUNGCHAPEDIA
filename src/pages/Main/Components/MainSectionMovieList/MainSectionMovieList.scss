@@ -15,9 +15,7 @@
   .listNetflixicon {
     @include flexSet();
     position: absolute;
-    // width: 30px;
-    // height: 30px;
-    top: 10px;
+    top: 10%;
     left: 83%;
     border-radius: 50%;
     &::before {
@@ -32,21 +30,15 @@
   .listWatchaicon {
     @include flexSet();
     position: absolute;
-    // width: 30px;
-    // height: 30px;
     top: 10px;
     left: 83%;
-    // background-color: $white;
     border-radius: 50%;
-    // background-image: url('../../../../../public/weebly-brands.png');
-    // background-repeat: no-repeat;
-    // background-size: cover;
     &::before {
       font-family: 'Font Awesome 5 Free';
       font-weight: 900;
       content: '\f005';
-      color: #ffd900;
       font-size: 1.825rem;
+      color: #ffd900;
     }
   }
 

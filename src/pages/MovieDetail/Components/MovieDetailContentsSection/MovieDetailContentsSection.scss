@@ -49,6 +49,7 @@
   }
 
   .comments {
+    position: relative;
     margin-bottom: 20px;
     border-bottom: 1.5px solid $line;
     padding-bottom: 20px;
@@ -90,6 +91,38 @@
     font-size: 1.3125em;
     font-weight: bold;
     margin-bottom: 20px;
+  }
+
+  .commentList {
+    display: flex;
+    transition: all 1s;
+  }
+
+  .commentContainer {
+    overflow: hidden;
+
+    .commentSlideButton {
+      display: none;
+    }
+
+    &:hover .commentSlideButton {
+      @include flexSet(space-between, center);
+      position: absolute;
+      width: 100%;
+      top: 210px;
+    }
+
+    .prevButton,
+    .nextButton {
+      font-size: 2em;
+      color: grey;
+      z-index: 50;
+    }
+
+    .nextButton {
+      position: relative;
+      right: 15px;
+    }
   }
 
   .similarMovieList {
