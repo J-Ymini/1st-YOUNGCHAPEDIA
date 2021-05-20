@@ -10,15 +10,14 @@ class Navbar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isUserLogined: false,
+      isUserLogined: !!localStorage.getItem('TOKEN'),
       isSignBtnClicked: false,
       modalOpened: false,
     };
   }
 
   checkUserLogined = () => {
-    let token = localStorage.getItem('TOKEN');
-    if (token) {
+    if (localStorage.getItem('TOKEN')) {
       this.setState({
         isUserLogined: true,
       });
