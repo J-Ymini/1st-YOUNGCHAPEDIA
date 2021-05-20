@@ -5,15 +5,21 @@ import StarRating from '../../CommonComponents/StarRating';
 import './ReviewMovieList.scss';
 
 export default class ReviewMovieList extends Component {
+  postStar = starRatingForPost => {
+    fetch(API_URLS.REVIEW, {
+      method: 'POST',
+      headers: {
+        Authorization: localStorage.getItem('TOKEN'),
+      },
+      body: JSON.stringify({
+        movie: this.props.id,
+        rating: starRatingForPost,
+      }),
+    }).then(this.props.updateRatingCount);
+  };
+
   render() {
-    const {
-      id,
-      movieTitle,
-      imgSrc,
-      movieReleaseDate,
-      movieCountry,
-      updateRatingCount,
-    } = this.props;
+    const { movieTitle, imgSrc, movieReleaseDate, movieCountry } = this.props;
 
     return (
       <li className="reviewMovieList">
@@ -27,11 +33,11 @@ export default class ReviewMovieList extends Component {
               </span>
             </div>
             <div className="movieYearCountry">
-              {movieReleaseDate.slice(0, 4)}·{movieCountry}
+              {movieReleaseDate?.movieReleaseDate.slice(0, 4)}·{movieCountry}
             </div>
           </div>
           <div className="movieInfoColumn">
-            <StarRating id={id} updateRatingCount={updateRatingCount} />
+            <StarRating postStar={this.postStar} />
           </div>
         </div>
       </li>

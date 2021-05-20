@@ -15,7 +15,7 @@
   .listNetflixicon {
     @include flexSet();
     position: absolute;
-    top: 10px;
+    top: 10%;
     left: 83%;
     border-radius: 50%;
     &::before {
@@ -23,7 +23,9 @@
       font-weight: 900;
       content: '\f004';
       color: #eb92df;
-      font-size: 1.825rem;
+      // font-size: 1.825rem;
+      // font-size: 30px;
+      width: 10%;
     }
   }
 
@@ -38,7 +40,7 @@
       font-weight: 900;
       content: '\f005';
       color: #ffd900;
-      font-size: 1.825rem;
+      width: 50px;
     }
   }
 
