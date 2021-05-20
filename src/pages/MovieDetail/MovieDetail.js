@@ -109,6 +109,7 @@ export default class MovieDetail extends React.Component {
   }
 
   componentWillMount = () => {
+    const movieId = this.props.match.params.id;
     let token = localStorage.getItem('TOKEN') || '';
     fetch(`${API_URLS.DETAIL}/${movieId}/wish`, {
       method: 'GET',

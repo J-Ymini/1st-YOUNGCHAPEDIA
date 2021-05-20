@@ -24,7 +24,6 @@ export default class MovieDetailContentsSection extends React.Component {
   goToNext = () => {
     const { style } = this.commentList.current;
     const { movieInformation } = this.props;
-    console.log(movieInformation);
     const commentLength = Math.floor(
       movieInformation[0]?.['comments'].length / 3
     );
