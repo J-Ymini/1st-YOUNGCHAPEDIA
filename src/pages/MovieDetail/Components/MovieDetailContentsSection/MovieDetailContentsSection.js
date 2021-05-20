@@ -33,20 +33,6 @@ export default class MovieDetailContentsSection extends React.Component {
     style.transform = `translate(-${931 * this.count.current}px, 0)`;
   };
 
-  handleScroll = () => {
-    const { scrollTop, clientHeight } = document.documentElement;
-
-    const eventStartHeight = scrollTop + clientHeight;
-    if (eventStartHeight > 1560) {
-      this.fadeInTarget.current.className = 'similarMovieList fadeIn';
-      window.removeEventListener('scroll', this.handleScroll);
-    }
-  };
-
-  componentDidMount() {
-    window.addEventListener('scroll', this.handleScroll);
-  }
-
   render() {
     const { movieInformation } = this.props;
     return (
