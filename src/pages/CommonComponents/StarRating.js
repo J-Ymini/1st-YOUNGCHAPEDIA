@@ -1,4 +1,4 @@
-import React, { Component, createRef } from 'react';
+import React, { Component } from 'react';
 import SingleStar from './SingleStar';
 import API_URLS from '../../config';
 import './StarRating.scss';
@@ -7,7 +7,6 @@ export default class StarRating extends Component {
   constructor() {
     super();
     this.state = { rating: 0 };
-    this.starRef = createRef();
   }
 
   // ToDo : 상세페이지에서의 별점
@@ -21,62 +20,55 @@ export default class StarRating extends Component {
   //   });
   // };
 
-  clickStar = e => {
+  hoverStar = e => {
     const starX = e.nativeEvent.offsetX;
-    const starWidth = this.starRef.current.offsetWidth;
-    let postStarRating;
+    const starWidth = e.currentTarget.offsetWidth;
+    let nthstar = e.currentTarget.getAttribute('nthstar');
+    let starRatingForPost;
+
     if (starWidth * 0.5 < starX) {
-      postStarRating = parseInt(e.target.id);
       this.setState({
-        rating: parseInt(e.target.id),
+        rating: parseInt(nthstar),
       });
+      starRatingForPost = parseInt(nthstar);
     }
+
     if (starX < starWidth * 0.5) {
-      postStarRating = parseInt(e.target.id) - 0.5;
+      starRatingForPost = parseInt(nthstar) - 0.5;
       this.setState({
-        rating: e.target.id - 0.5,
+        rating: nthstar - 0.5,
       });
     }
 
-    let token = localStorage.getItem('TOKEN');
+    return starRatingForPost;
+  };
 
+  clickStar = e => {
+    let starRatingForPost = this.hoverStar(e);
+    this.postStar(starRatingForPost);
+  };
+
+  postStar = starRatingForPost => {
     fetch(API_URLS.REVIEW, {
       method: 'POST',
       headers: {
-        Authorization: token,
+        Authorization: localStorage.getItem('TOKEN'),
       },
       body: JSON.stringify({
         movie: this.props.id,
-        rating: postStarRating,
+        rating: starRatingForPost,
       }),
-    }).then(this.props.updateRatingCount());
-  };
-
-  hoverStar = e => {
-    const starX = e.nativeEvent.offsetX;
-    const starWidth = this.starRef.current.offsetWidth;
-
-    if (starWidth * 0.5 < starX) {
-      this.setState({
-        rating: parseInt(e.target.id),
-      });
-    }
-    if (starX < starWidth * 0.5) {
-      this.setState({
-        rating: e.target.id - 0.5,
-      });
-    }
+    }).then(this.props.updateRatingCount);
   };
 
   render() {
     return (
       <div className="starContainer">
-        {new Array(5).fill(0).map((el, index) => (
+        {STAR.map(el => (
           <SingleStar
-            starRef={this.starRef}
-            id={index + 1}
+            key={el}
+            nthstar={el}
             clickStar={this.clickStar}
-            nthStar={index + 1}
             rating={this.state.rating}
             hoverStar={this.hoverStar}
           />
@@ -85,3 +77,5 @@ export default class StarRating extends Component {
     );
   }
 }
+
+const STAR = [1, 2, 3, 4, 5];

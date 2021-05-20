@@ -24,7 +24,7 @@ export default class ReviewPage extends Component {
   }
 
   getMovieData = () => {
-    let token = localStorage.getItem('TOKEN') || '';
+    let token = localStorage.getItem('TOKEN');
     const { movieData } = this.state;
     fetch(API_URLS.REVIEW, {
       headers: {
@@ -45,19 +45,6 @@ export default class ReviewPage extends Component {
           movieData: [...movieData, ...updatedMovieData],
         });
       });
-
-    // 서버 연결 안됐을 때 테스트용
-    // fetch('/data/movieMockData.json')
-    //   .then(res => res.json())
-    //   .then(res => {
-    //     const updatedMovieData = res.slice(
-    //       movieData.length,
-    //       movieData.length + 7
-    //     );
-    //     this.setState({
-    //       movieData: [...movieData, ...updatedMovieData],
-    //     });
-    //   });
   };
 
   infiniteScroll = () => {
@@ -72,7 +59,7 @@ export default class ReviewPage extends Component {
   updateRatingCount = () => {
     fetch(API_URLS.REVIEW, {
       headers: {
-        Authorization: token,
+        Authorization: localStorage.getItem('TOKEN'),
       },
     })
       .then(res => res.json())

@@ -3,17 +3,18 @@ import './SingleStar.scss';
 
 export default class SingleStar extends Component {
   render() {
-    const { nthStar, rating, id, clickStar, hoverStar, starRef } = this.props;
+    const { nthstar, rating, clickStar, hoverStar } = this.props;
     return (
       <div
-        ref={starRef}
         className="blankStar"
-        id={id}
+        nthstar={nthstar}
         onMouseMove={hoverStar}
         onClick={clickStar}
       >
-        {nthStar - rating === 0.5 && <span className="halfStar" id={id} />}
-        {nthStar <= rating && <span className="fullStar" id={id} />}
+        {nthstar - rating === 0.5 && (
+          <span className="halfStar" nthstar={nthstar} />
+        )}
+        {nthstar <= rating && <span className="fullStar" nthstar={nthstar} />}
       </div>
     );
   }
