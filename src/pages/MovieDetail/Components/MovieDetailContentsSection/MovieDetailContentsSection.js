@@ -50,7 +50,7 @@ export default class MovieDetailContentsSection extends React.Component {
                   <div>
                     {movieInformation[0]?.['release_date']} &middot;
                     {movieInformation[0]?.['country']} &middot;
-                    {movieInformation[0]?.genre[0].name}
+                    {movieInformation[0]?.genre[0]?.name}
                   </div>
                   <br />
                   <div>{movieInformation[0]?.['running_time']} 분</div>

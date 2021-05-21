@@ -107,6 +107,7 @@ export default class MovieDetail extends React.Component {
 
     // 로그인 유저
     if (localStorage.getItem('TOKEN')) {
+      this.getStar();
     }
 
     fetch(`${API_URLS.DETAIL}/${movieId}/wish`, {

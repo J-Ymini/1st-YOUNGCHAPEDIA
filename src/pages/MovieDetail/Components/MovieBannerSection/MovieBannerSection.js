@@ -22,7 +22,7 @@ export default class MovieBannerSection extends React.Component {
               <h1>{movieInformation[0]?.['korean_title']}</h1>
               <div className="movieGenre">
                 {movieInformation[0]?.['running_time']} 분 &middot;
-                {movieInformation[0]?.genre[0].name}
+                {movieInformation[0]?.genre[0]?.name}
                 &middot; {movieInformation[0]?.country}
               </div>
               <div className="wishAndStarPoint">
