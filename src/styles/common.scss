@@ -1,3 +1,15 @@
+@import './_variables.scss';
+
+:root {
+  font-size: 16px;
+}
+
+@include tablet {
+  :root {
+    font-size: 14px;
+  }
+}
+
 body {
   font-family: 'Noto Sans KR', sans-serif;
   -ms-overflow-style: none;

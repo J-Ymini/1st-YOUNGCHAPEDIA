@@ -128,6 +128,7 @@ export default class MovieDetail extends React.Component {
   }
 
   getStar = () => {
+    const movieId = this.props.match.params.id;
     let detailStar;
     fetch(`${API_URLS.DETAIL}/${movieId}`, {
       method: 'GET',

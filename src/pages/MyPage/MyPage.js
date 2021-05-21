@@ -23,15 +23,15 @@ class MyPage extends Component {
           return res.json();
         }
       })
-      .catch(error => {
-        alert('로그인해주세요');
-        this.props.history.push('/');
-      })
       .then(userRatedData => {
         localStorage.setItem('NAME', userRatedData.result.name);
         this.setState({
           userData: userRatedData.result,
         });
+      })
+      .catch(error => {
+        alert('로그인해주세요');
+        this.props.history.push('/');
       });
   }
 
