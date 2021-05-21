@@ -18,6 +18,7 @@ export default class MovieDetail extends React.Component {
       commentInputValue: '',
       movieInformation: {},
       comment_id: 0,
+      detailStarRate: null,
     };
   }
 
@@ -110,7 +111,7 @@ export default class MovieDetail extends React.Component {
       this.getStar();
     }
 
-    fetch(`${API_URLS.DETAIL}/${movieId}/wish`, {
+    fetch(`${API_URLS.DETAIL}/${movieId}`, {
       method: 'GET',
       headers: {
         Authorization: localStorage.getItem('TOKEN'),
@@ -118,7 +119,7 @@ export default class MovieDetail extends React.Component {
     })
       .then(res => res.json())
       .then(res => {
-        if (res['wish_check'] === 1) {
+        if (res['movie_information']?.['wish_check'] === 1) {
           this.setState({
             userWish: true,
             leaveComment: true,
@@ -130,7 +131,7 @@ export default class MovieDetail extends React.Component {
 
   getStar = () => {
     const movieId = this.props.match.params.id;
-    let detailStar;
+
     fetch(`${API_URLS.DETAIL}/${movieId}`, {
       method: 'GET',
       headers: {
@@ -139,10 +140,10 @@ export default class MovieDetail extends React.Component {
     })
       .then(res => res.json())
       .then(res => {
-        detailStar = res['movie_information']?.['star_check'];
+        this.setState({
+          detailStarRate: res['movie_information']?.['star_check'],
+        });
       });
-
-    return detailStar;
   };
 
   goToPrevious = () => {
@@ -188,7 +189,7 @@ export default class MovieDetail extends React.Component {
           userWishStatusHandler={this.changeStateOfWish}
           movieInformation={movieInformation}
           postStar={this.postStar}
-          starRatingForDetail={this.getStar()}
+          starRatingForDetail={this.state.detailStarRate}
         />
 
         {leaveComment && (
