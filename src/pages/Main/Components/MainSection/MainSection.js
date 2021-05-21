@@ -40,10 +40,6 @@ export default class MainSection extends React.Component {
     });
   };
 
-  componentDidMount() {
-    console.log('hi');
-  }
-
   render() {
     const { movieListContainerWidth, movieListIndex } = this.state;
     const { movieInformationList, movieTitle } = this.props;
