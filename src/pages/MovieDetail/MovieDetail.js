@@ -18,7 +18,7 @@ export default class MovieDetail extends React.Component {
       commentInputValue: '',
       movieInformation: {},
       comment_id: 0,
-      detailStar: 0,
+      detailStarRate: null,
     };
   }
 
@@ -108,21 +108,10 @@ export default class MovieDetail extends React.Component {
 
     // 로그인 유저
     if (localStorage.getItem('TOKEN')) {
-      fetch(`${API_URLS.DETAIL}/${movieId}`, {
-        method: 'GET',
-        headers: {
-          Authorization: localStorage.getItem('TOKEN'),
-        },
-      })
-        .then(res => res.json())
-        .then(res =>
-          this.setState({
-            detailStar: res['movie_information']?.['star_check'],
-          })
-        );
+      this.getStar();
     }
 
-    fetch(`${API_URLS.DETAIL}/${movieId}/wish`, {
+    fetch(`${API_URLS.DETAIL}/${movieId}`, {
       method: 'GET',
       headers: {
         Authorization: localStorage.getItem('TOKEN'),
@@ -130,7 +119,7 @@ export default class MovieDetail extends React.Component {
     })
       .then(res => res.json())
       .then(res => {
-        if (res.WishCheck === 1) {
+        if (res['movie_information']?.['wish_check'] === 1) {
           this.setState({
             userWish: true,
             leaveComment: true,
@@ -139,6 +128,23 @@ export default class MovieDetail extends React.Component {
         }
       });
   }
+
+  getStar = () => {
+    const movieId = this.props.match.params.id;
+
+    fetch(`${API_URLS.DETAIL}/${movieId}`, {
+      method: 'GET',
+      headers: {
+        Authorization: localStorage.getItem('TOKEN'),
+      },
+    })
+      .then(res => res.json())
+      .then(res => {
+        this.setState({
+          detailStarRate: res['movie_information']?.['star_check'],
+        });
+      });
+  };
 
   goToPrevious = () => {
     const { style } = this.commentList.current;
@@ -183,7 +189,7 @@ export default class MovieDetail extends React.Component {
           userWishStatusHandler={this.changeStateOfWish}
           movieInformation={movieInformation}
           postStar={this.postStar}
-          starRatingForDetail={this.state.detailStar}
+          starRatingForDetail={this.state.detailStarRate}
         />
 
         {leaveComment && (

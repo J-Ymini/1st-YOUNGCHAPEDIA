@@ -5,7 +5,6 @@ import './MovieBannerSection.scss';
 export default class MovieBannerSection extends React.Component {
   render() {
     const { movieInformation } = this.props;
-
     return (
       <section className="MovieBannerSection">
         <div className="movieBannerPoster">
@@ -22,7 +21,7 @@ export default class MovieBannerSection extends React.Component {
               <h1>{movieInformation[0]?.['korean_title']}</h1>
               <div className="movieGenre">
                 {movieInformation[0]?.['running_time']} 분 &middot;
-                {movieInformation[0]?.genre[0].name}
+                {movieInformation[0]?.genre[0]?.name}
                 &middot; {movieInformation[0]?.country}
               </div>
               <div className="wishAndStarPoint">
@@ -35,7 +34,7 @@ export default class MovieBannerSection extends React.Component {
                   onClick={this.props.userWishStatusHandler}
                 >
                   <i
-                    class={
+                    className={
                       this.props.userWishStatus.userWish
                         ? 'far fa-bookmark'
                         : 'fas fa-plus'
@@ -46,10 +45,12 @@ export default class MovieBannerSection extends React.Component {
                 <div className="giveStarPoint">
                   <div className="detailStarRatingTitle">평가하기</div>
                   <div>
-                    <StarRating
-                      postStar={this.props.postStar}
-                      starRatingForDetail={this.props.starRatingForDetail}
-                    />
+                    {this.props.starRatingForDetail !== null && (
+                      <StarRating
+                        postStar={this.props.postStar}
+                        starRatingForDetail={this.props.starRatingForDetail}
+                      />
+                    )}
                   </div>
                 </div>
               </div>

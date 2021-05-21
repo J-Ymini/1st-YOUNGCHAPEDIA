@@ -17,7 +17,7 @@
 
     header {
       padding: 10px 20px;
-      font-size: 30px;
+      font-size: 1.875rem;
       font-family: 'Oswald', sans-serif;
 
       span:first-of-type {
@@ -59,13 +59,20 @@
         width: 70%;
         height: 30px;
         background-color: $input-background;
-        font-size: 13px;
+        font-size: 0.8125rem;
       }
     }
 
     .navBtn {
       color: $menu-normal-text;
       margin: 0 5px;
+    }
+
+    button {
+      font-size: 0.8125rem;
+      a {
+        font-size: 0.8125rem;
+      }
     }
   }
 

@@ -40,10 +40,6 @@ export default class MainSection extends React.Component {
     });
   };
 
-  componentDidMount() {
-    console.log('hi');
-  }
-
   render() {
     const { movieListContainerWidth, movieListIndex } = this.state;
     const { movieInformationList, movieTitle } = this.props;
@@ -57,7 +53,7 @@ export default class MainSection extends React.Component {
           onClick={this.handlePreSliding}
           className="mainMoviePreBtn"
         >
-          <i class="fas fa-chevron-left"></i>
+          <i className="fas fa-chevron-left"></i>
         </button>
         <section className="mainMovie" ref={this.containerWidth}>
           <ul>
@@ -93,7 +89,7 @@ export default class MainSection extends React.Component {
           <div></div>
         </section>
         <button onClick={this.handleNextSliding} className="mainMovieNextBtn">
-          <i class="fas fa-chevron-right"></i>
+          <i className="fas fa-chevron-right"></i>
         </button>
       </section>
     );
