@@ -60,14 +60,18 @@ class LoginSignInForm extends Component {
           return res.json();
         }
       })
-      .then(res => {
-        if (res) {
-          localStorage.setItem('TOKEN', res.token);
-          this.props.checkUserLogined();
+      .then(
+        res => {
           this.props.closeModal();
           alert('회원가입 성공');
         }
-      })
+        //   {
+        //   if (res) {
+        //     localStorage.setItem('TOKEN', res.token);
+        //     this.props.checkUserLogined();
+        //   }
+        // }
+      )
       .catch(error => {
         alert(error);
       });

@@ -66,7 +66,6 @@ export default class ReviewPage extends Component {
   };
 
   updateRatingCount = () => {
-    let token = localStorage.getItem('TOKEN');
     fetch(API_URLS.REVIEW, {
       headers: {
         Authorization: localStorage.getItem('TOKEN'),

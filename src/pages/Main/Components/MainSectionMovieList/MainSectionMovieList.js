@@ -16,7 +16,6 @@ class MainSectionMovieList extends React.Component {
       netflix,
       watcha,
       movieListRanking,
-      englishTitle,
     } = this.props;
     return (
       <li
@@ -36,7 +35,6 @@ class MainSectionMovieList extends React.Component {
         <img alt="test" src={thumbnailImgUrl} />
         <div className="listDescription">
           <p className="listDescriptionTitle">{title}</p>
-          {/* <p className="listDescriptionEnglish">{englishTitle}</p> */}
           <p className="listDescriptionYear">
             {country} ・ {releaseDate.slice(0, 4)}
           </p>
