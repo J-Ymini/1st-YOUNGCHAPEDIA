@@ -51,7 +51,7 @@
 
 - 메인페이지(이다슬)
 
-1. 메인페이지 레이아웃 및 반응형 Carosel
+1. 메인페이지 레이아웃 및 반응형 Carousel
 2. 효율적인 데이터 fetch를 위한 Infinite Scroll 기능 구현
 3. 영화 정보 API fetch Setting 으로 백엔드의 데이터 가져오기
 4. path parameter를 통해 상세페이지와 동적 라우팅 setting
