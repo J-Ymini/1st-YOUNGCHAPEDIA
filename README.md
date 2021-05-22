@@ -12,13 +12,15 @@
 
 ### 팀원 구성 및 블로그
 
-- Front-End: 전용민(PM), 임유진, 이다슬
+- Front-End: 전용민(PM), 임유진, [이다슬](https://velog.io/@_seeul)
 - Back-End: 김하민, 최대환 ([백엔드 깃허브](https://github.com/wecode-bootcamp-korea/20-1st-YOUNGCHAPEDIA-backend))
 
 ### 기획 포인트
 
 - 개인의 취향을 존중하는 **영화 리뷰** 커뮤니티
 - 내가 모르는 나의 취향을 추천받기 위한 영화 **평가하기**
+- 평가한 별점으로 사용자의 **선호 장르 파악** 별점 추이 **그래프화**
+- 장르별 영화 **필터링**
 - 시간이 지날수록 더 많아지는 영화들의 **정보** 관리
 
 ### 데모 영상
@@ -31,8 +33,9 @@
 
 ### 적용 기술
 
-- Front-End : React, React Router, Sass, JavaScript
+- Front-End : React, React Router, Sass, JavaScript, CRA
 - Back-End : Python, Django, My SQL
+- Communication Tool : Trello, Git, GitHub, Slack
 
 ### 구현 기능
 
@@ -42,7 +45,28 @@
 - 영화 랜덤 리스트 API, 영화 장르별 API를 활용한 평가하기 페이지 무한스크롤 구현 및 장르 카테고리 필터링 기능 구현, 평가하지 않은 영화 별점 평가 POST 요청
 - 유저별 데이터 API를 활용한 마이페이지 취향분석 결과 조회 : 별점 분포 그래프, 선호 장르 랭킹화
 
-<br>
+### 구현 기능 상세
+
+- 메인페이지(이다슬)
+
+1. 메인페이지 레이아웃 및 반응형 Carousel
+2. 효율적인 데이터 fetch를 위한 Infinite Scroll 기능 구현
+3. 영화 정보 API fetch Setting 으로 백엔드의 데이터 가져오기
+4. path parameter를 통해 상세페이지와 동적 라우팅 setting
+
+- 상세페이지
+
+- 마이페이지
+
+- 평가하기 페이지
+
+  <br>
+
+## 📝 프로젝트 회고록
+
+- 전용민
+- 임유진
+- 이다슬
 
 ## 📣 Reference
 
