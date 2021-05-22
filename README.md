@@ -10,8 +10,6 @@
   > - React Class Component를 사용한 컴포넌트 관리 및 구조 설계
   > - 라이브러리를 사용하지 않고 최대한 구현해보는 경험 쌓기
 
-## Preview
-
 ### 팀원 구성 및 블로그
 
 - Front-End: 전용민(PM), 임유진, [이다슬](https://velog.io/@_seeul)
