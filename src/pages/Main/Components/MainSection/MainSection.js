@@ -6,43 +6,42 @@ export default class MainSection extends React.Component {
     super();
     this.state = {
       movieListContainerWidth: 0,
-      movieListIndex: 0,
-      containerHeight: 0,
+      movieListIndex: 1,
     };
     this.containerWidth = React.createRef();
-    this.listHeight = React.createRef();
   }
 
   //다음 슬라이드 이동 함수
   handleNextSliding = () => {
     const { movieListIndex } = this.state;
     const { movieInformationList } = this.props;
-    if (movieListIndex === Math.floor(movieInformationList.length / 5) - 1) {
+    if (movieListIndex === Math.ceil(movieInformationList.length / 5)) {
       return;
     }
     this.setState({
       movieListIndex: movieListIndex + 1,
       movieListContainerWidth:
-        this.containerWidth.current.scrollWidth * (movieListIndex + 1),
+        this.containerWidth.current.scrollWidth * movieListIndex,
     });
   };
 
   //이전 슬라이드 이동 함수
   handlePreSliding = () => {
     const { movieListIndex } = this.state;
-    if (movieListIndex === 0) {
+    if (movieListIndex === 1) {
       return;
     }
     this.setState({
       movieListIndex: movieListIndex - 1,
       movieListContainerWidth:
-        this.containerWidth.current.scrollWidth * (movieListIndex - 1),
+        this.containerWidth.current.scrollWidth * (movieListIndex - 2),
     });
   };
 
   render() {
     const { movieListContainerWidth, movieListIndex } = this.state;
     const { movieInformationList, movieTitle } = this.props;
+    console.log('인덱스', movieListIndex, '이동x축', movieListContainerWidth);
     return (
       <section className="mainSection">
         <div className="mainTitle">
